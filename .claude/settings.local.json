@@ -11,7 +11,10 @@
       "Bash(git commit:*)",
       "Bash(findstr:*)",
       "Bash(pkill:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git config:*)"
     ],
     "deny": [],
     "ask": []
