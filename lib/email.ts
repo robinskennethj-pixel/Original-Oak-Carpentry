@@ -96,3 +96,301 @@ export const sendNewsletterConfirmation = async (email: string) => {
     throw error
   }
 }
+
+// Enhanced email interface for invoices
+export interface EmailOptions {
+  to: string | string[]
+  subject: string
+  text?: string
+  html?: string
+  attachments?: Array<{
+    filename: string
+    content: Buffer | string
+    contentType?: string
+  }>
+  from?: string
+  replyTo?: string
+}
+
+// Generic email sending function
+export const sendEmail = async (options: EmailOptions): Promise<{
+  success: boolean
+  messageId?: string
+  error?: string
+}> => {
+  try {
+    // Use mock email for development if SMTP not configured
+    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.log('SMTP not configured - using mock email')
+      console.log('Email would be sent to:', options.to)
+      console.log('Subject:', options.subject)
+      console.log('HTML:', options.html)
+      console.log('Text:', options.text)
+
+      return {
+        success: true,
+        messageId: 'mock-message-id',
+        error: 'Using mock email - SMTP not configured'
+      }
+    }
+
+    const transporter = createTransporter()
+
+    const mailOptions = {
+      from: options.from || `Ogun Carpentry <${process.env.SMTP_USER}>`,
+      to: Array.isArray(options.to) ? options.to.join(', ') : options.to,
+      subject: options.subject,
+      text: options.text,
+      html: options.html,
+      attachments: options.attachments,
+      replyTo: options.replyTo || process.env.SMTP_REPLY_TO || process.env.SMTP_USER,
+    }
+
+    const result = await transporter.sendMail(mailOptions)
+
+    return {
+      success: true,
+      messageId: result.messageId,
+    }
+
+  } catch (error) {
+    console.error('Email sending error:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to send email',
+    }
+  }
+}
+
+// Send invoice email with PDF attachment
+export const sendInvoiceEmail = async (options: {
+  to: string
+  clientName: string
+  projectType: string
+  amount: number
+  invoiceUrl: string
+  invoicePdf?: Buffer
+  aiContent?: {
+    subject: string
+    body: string
+    greeting: string
+    closing: string
+  }
+}): Promise<{
+  success: boolean
+  messageId?: string
+  error?: string
+}> => {
+  try {
+    const {
+      to,
+      clientName,
+      projectType,
+      amount,
+      invoiceUrl,
+      invoicePdf,
+      aiContent
+    } = options
+
+    const subject = aiContent?.subject || `Invoice for your ${projectType} project`
+    const greeting = aiContent?.greeting || `Dear ${clientName},`
+    const body = aiContent?.body || `Thank you for choosing Ogun Carpentry for your ${projectType.toLowerCase()} project. Your invoice is ready for payment.`
+    const closing = aiContent?.closing || 'Best regards,\nThe Ogun Carpentry Team'
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${subject}</title>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background-color: #2D5016; color: white; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
+          .content { background-color: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
+          .button { background-color: #B85C38; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 20px 0; }
+          .footer { margin-top: 30px; padding-top: 20px; border-top: 2px solid #2D5016; text-align: center; color: #666; }
+          .highlight { background-color: #fff8e1; padding: 15px; border-left: 4px solid #B85C38; margin: 20px 0; }
+          .invoice-details { background-color: white; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Ogun Carpentry</h1>
+          <p>Professional Carpentry Services</p>
+        </div>
+
+        <div class="content">
+          <h2>${greeting}</h2>
+
+          <p>${body}</p>
+
+          <div class="invoice-details">
+            <h3>Invoice Details</h3>
+            <p><strong>Project:</strong> ${projectType}</p>
+            <p><strong>Amount Due:</strong> $${amount.toFixed(2)}</p>
+          </div>
+
+          <div style="text-align: center;">
+            <a href="${invoiceUrl}" class="button">View Invoice & Pay Now</a>
+          </div>
+
+          <div class="highlight">
+            <strong>Payment Options:</strong>
+            <ul>
+              <li>Secure online payment via credit card</li>
+              <li>Bank transfer (ACH)</li>
+              <li>Check payment</li>
+            </ul>
+          </div>
+
+          <p>If you have any questions about this invoice or need to discuss payment arrangements, please don't hesitate to contact us.</p>
+
+          <p>${closing.replace(/\n/g, '<br>')}</p>
+        </div>
+
+        <div class="footer">
+          <p><strong>Ogun Carpentry</strong></p>
+          <p>Phone: (813) 555-0123 | Email: info@ogun-carpentry.com</p>
+          <p>License: CBC125847 | Website: ogun-carpentry.com</p>
+          <p style="font-size: 12px; margin-top: 20px;">This email was sent automatically. Please do not reply to this email.</p>
+        </div>
+      </body>
+      </html>
+    `
+
+    const attachments = []
+    if (invoicePdf) {
+      attachments.push({
+        filename: `invoice-${Date.now()}.pdf`,
+        content: invoicePdf,
+        contentType: 'application/pdf'
+      })
+    }
+
+    return await sendEmail({
+      to,
+      subject,
+      html: htmlContent,
+      attachments
+    })
+
+  } catch (error) {
+    console.error('Invoice email sending error:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to send invoice email'
+    }
+  }
+}
+
+// Send SMS notification (using Twilio)
+export const sendSMS = async (options: {
+  to: string
+  message: string
+}): Promise<{
+  success: boolean
+  messageId?: string
+  error?: string
+}> => {
+  try {
+    // Mock SMS for development
+    if (!process.env.TWILIO_ACCOUNT_SID || !process.env.TWILIO_AUTH_TOKEN) {
+      console.log('Twilio not configured - using mock SMS')
+      console.log('SMS would be sent to:', options.to)
+      console.log('Message:', options.message)
+
+      return {
+        success: true,
+        messageId: 'mock-sms-id',
+        error: 'Using mock SMS - Twilio not configured'
+      }
+    }
+
+    const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
+
+    const result = await client.messages.create({
+      body: options.message,
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: options.to
+    })
+
+    return {
+      success: true,
+      messageId: result.sid
+    }
+
+  } catch (error) {
+    console.error('SMS sending error:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to send SMS'
+    }
+  }
+}
+
+// Send invoice reminder via SMS
+export const sendInvoiceSMS = async (options: {
+  to: string
+  clientName: string
+  amount: number
+  invoiceUrl: string
+  daysOverdue?: number
+}): Promise<{
+  success: boolean
+  messageId?: string
+  error?: string
+}> => {
+  try {
+    const { to, clientName, amount, invoiceUrl, daysOverdue } = options
+
+    let message = `Hi ${clientName}! Your Ogun Carpentry invoice for $${amount.toFixed(2)} is ready. `
+
+    if (daysOverdue) {
+      message += `It's ${daysOverdue} days overdue. `
+    }
+
+    message += `Pay securely online: ${invoiceUrl} Questions? Call (813) 555-0123`
+
+    return await sendSMS({ to, message })
+
+  } catch (error) {
+    console.error('Invoice SMS sending error:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to send invoice SMS'
+    }
+  }
+}
+
+// Email templates for common scenarios
+export const emailTemplates = {
+  invoiceCreated: (clientName: string, projectType: string, amount: number, invoiceUrl: string) => ({
+    subject: `Invoice Ready - ${projectType}`,
+    html: `
+      <p>Dear ${clientName},</p>
+      <p>Your invoice for the ${projectType.toLowerCase()} project is ready for payment.</p>
+      <p><strong>Amount: $${amount.toFixed(2)}</strong></p>
+      <p><a href="${invoiceUrl}" style="background-color: #B85C38; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">View Invoice</a></p>
+    `
+  }),
+
+  paymentReminder: (clientName: string, amount: number, daysOverdue: number, invoiceUrl: string) => ({
+    subject: `Payment Reminder - Invoice Overdue`,
+    html: `
+      <p>Dear ${clientName},</p>
+      <p>This is a friendly reminder that your invoice for <strong>$${amount.toFixed(2)}</strong> is now <strong>${daysOverdue} days overdue</strong>.</p>
+      <p><a href="${invoiceUrl}" style="background-color: #B85C38; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px;">Pay Now</a></p>
+      <p>If you have any questions or need to discuss payment arrangements, please contact us.</p>
+    `
+  }),
+
+  paymentReceived: (clientName: string, amount: number) => ({
+    subject: 'Payment Received - Thank You!',
+    html: `
+      <p>Dear ${clientName},</p>
+      <p>Thank you for your payment of <strong>$${amount.toFixed(2)}</strong>. We appreciate your business!</p>
+      <p>If you have any questions about your project or need additional services, please don't hesitate to contact us.</p>
+    `
+  })
+}

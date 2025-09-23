@@ -321,10 +321,7 @@ export async function handleWebhook(request: NextRequest) {
   }
 }
 
-// Check if Calendly is configured
-export function isCalendlyConfigured() {
-  return !!process.env.CALENDLY_ACCESS_TOKEN
-}
+// isCalendlyConfigured is imported from the integration file
 
 // Get scheduling URL for specific event type
 export function getSchedulingUrl(eventType: keyof typeof CALENDLY_EVENT_TYPES) {
@@ -588,7 +585,7 @@ export default {
   getBookingAnalytics,
   getBookingFeedback,
   optimizeBookingSchedule,
-  trackBookingJourney,
+  trackBookingJourney
 }
 
 // Environment variables needed:

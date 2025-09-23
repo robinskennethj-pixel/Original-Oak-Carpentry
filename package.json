@@ -58,6 +58,8 @@
     "next": "14.2.16",
     "next-themes": "^0.4.6",
     "nodemailer": "7.0.6",
+    "openai": "4.85.1",
+    "pdfkit": "0.16.0",
     "react": "^18",
     "react-calendly": "4.4.0",
     "react-day-picker": "9.8.0",
@@ -69,6 +71,7 @@
     "stripe": "18.5.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "twilio": "5.5.2",
     "vaul": "^0.9.9",
     "zod": "3.25.67"
   },
