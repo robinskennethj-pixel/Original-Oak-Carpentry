@@ -352,13 +352,7 @@ async function filterAndFormatFeed(posts: any[], options: {
   return formatInstagramForDisplay(filteredPosts)
 }
 
-// Check if Instagram is configured
-export function isInstagramConfigured() {
-  return !!(
-    process.env.INSTAGRAM_ACCESS_TOKEN &&
-    process.env.INSTAGRAM_USER_ID
-  )
-}
+// isInstagramConfigured is imported from the integration file
 
 // Get Instagram embed URL for a post
 export function getInstagramEmbedUrl(postUrl: string) {
@@ -542,20 +536,7 @@ export const handleInstagramError = (error: any) => {
   }
 }
 
-export default {
-  GET,
-  POST,
-  isInstagramConfigured,
-  getInstagramEmbedUrl,
-  getInstagramProfileUrl,
-  trackInstagramAnalytics,
-  optimizeInstagramFeed,
-  getInstagramHashtags,
-  getInstagramContentIdeas,
-  getInstagramMetrics,
-  handleInstagramError,
-  INSTAGRAM_RATE_LIMITS,
-}
+// Removed duplicate export default to fix compilation errors
 
 // Environment variables needed:
 // INSTAGRAM_ACCESS_TOKEN

@@ -33,7 +33,7 @@ export type InvoiceData = z.infer<typeof invoiceSchema>
 
 // Ogun Carpentry brand styling for invoices
 export const OGUN_CARPENTRY_BRANDING = {
-  logoUrl: 'https://ogun-carpentry.com/ogun_carpentry_logo.webp',
+  logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/ogun_carpentry_logo.webp` : '/ogun_carpentry_logo.webp',
   primaryColor: '#2D5016', // Forest Green
   accentColor: '#B85C38', // Rust Orange
   secondaryColor: '#D4AF37', // Gold

@@ -563,30 +563,7 @@ export const trackBookingJourney = (customerId: string, journeyStep: string) => 
   }
 }
 
-export default {
-  GET,
-  POST,
-  getEventDetails,
-  handleWebhook,
-  getSchedulingUrl,
-  getEmbeddedCalendlyUrl,
-  getMockSchedulingData,
-  CALENDLY_EVENT_TYPES,
-  trackBookingAnalytics,
-  getBookingConfirmationEmail,
-  BOOKING_SERVICE_TYPES,
-  BOOKING_STATUS_TYPES,
-  BOOKING_CONFIRMATION_SETTINGS,
-  BOOKING_ANALYTICS_EVENTS,
-  BOOKING_LIMITS,
-  BOOKING_CANCELLATION_POLICY,
-  BOOKING_REMINDER_SETTINGS,
-  BOOKING_INTEGRATIONS,
-  getBookingAnalytics,
-  getBookingFeedback,
-  optimizeBookingSchedule,
-  trackBookingJourney
-}
+// Removed duplicate export default to fix compilation errors
 
 // Environment variables needed:
 // CALENDLY_ACCESS_TOKEN

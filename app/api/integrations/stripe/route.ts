@@ -427,23 +427,7 @@ export const REFUND_POLICY = {
   PROCESSING_TIME: '5-7 business days',
 }
 
-export default {
-  GET,
-  POST,
-  handleWebhook,
-  isStripeConfigured,
-  getMockPaymentData,
-  PAYMENT_SERVICE_TYPES,
-  PAYMENT_STATUSES,
-  STRIPE_WEBHOOK_EVENTS,
-  SUPPORTED_PAYMENT_METHODS,
-  SUPPORTED_CURRENCIES,
-  PAYMENT_SECURITY_FEATURES,
-  PAYMENT_LIMITS,
-  REFUND_POLICY,
-  getPaymentConfirmationEmail,
-  StripeError
-}
+// Removed duplicate export default to fix compilation errors
 
 // Analytics tracking for payments
 export const trackPaymentAnalytics = (paymentData: any, eventType: string) => {

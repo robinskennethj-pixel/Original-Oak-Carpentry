@@ -209,13 +209,6 @@ export function isGoogleMapsConfigured() {
   return !!process.env.GOOGLE_MAPS_API_KEY
 }
 
-export default {
-  GET,
-  POST,
-  generateEmbedUrl,
-  isGoogleMapsConfigured
-}
-
 // Type definitions for Google Maps API responses
 export interface GoogleMapsBusinessInfo {
   name: string
@@ -384,14 +377,4 @@ export const DEFAULT_MAP_CONFIG = {
   styles: CUSTOM_MAP_STYLE
 }
 
-export default {
-  GET,
-  POST,
-  generateEmbedUrl,
-  isGoogleMapsConfigured,
-  getMockMapData,
-  SERVICE_AREAS,
-  MAP_STYLES,
-  CUSTOM_MAP_STYLE,
-  DEFAULT_MAP_CONFIG
-}
+// Removed duplicate export default to fix compilation errors

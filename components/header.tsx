@@ -3,8 +3,11 @@ import { Hammer, Phone, ChevronDown, Menu } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Link from "next/link"
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from './language-switcher'
 
 export function Header() {
+  const t = useTranslations('header')
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -20,14 +23,14 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-foreground hover:text-primary transition-colors">
-            Home
+            {t('home')}
           </Link>
           <Link href="/about" className="text-foreground hover:text-primary transition-colors">
-            About
+            {t('about')}
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-foreground hover:text-primary transition-colors">
-              Services
+              {t('services')}
               <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -49,27 +52,28 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="/portfolio" className="text-foreground hover:text-primary transition-colors">
-            Portfolio
+            {t('portfolio')}
           </Link>
           <Link href="/testimonials" className="text-foreground hover:text-primary transition-colors">
-            Reviews
+            {t('reviews')}
           </Link>
           <Link href="/faq" className="text-foreground hover:text-primary transition-colors">
-            FAQ
+            {t('faq')}
           </Link>
           <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
-            Contact
+            {t('contact')}
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
+          <LanguageSwitcher />
           <Button className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90" asChild>
             <Link href="/contact">
               <Phone className="h-4 w-4" />
-              Get Free Quote
+              {t('getQuote')}
             </Link>
           </Button>
-          
+
           {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
@@ -81,13 +85,13 @@ export function Header() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col space-y-4 mt-8">
                 <Link href="/" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  Home
+                  {t('home')}
                 </Link>
                 <Link href="/about" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  About
+                  {t('about')}
                 </Link>
                 <div className="space-y-2">
-                  <div className="text-lg font-medium text-foreground">Services</div>
+                  <div className="text-lg font-medium text-foreground">{t('services')}</div>
                   <div className="ml-4 space-y-2">
                     <Link href="/services" className="block text-muted-foreground hover:text-primary transition-colors">
                       All Services
@@ -107,21 +111,21 @@ export function Header() {
                   </div>
                 </div>
                 <Link href="/portfolio" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  Portfolio
+                  {t('portfolio')}
                 </Link>
                 <Link href="/testimonials" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  Reviews
+                  {t('reviews')}
                 </Link>
                 <Link href="/faq" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  FAQ
+                  {t('faq')}
                 </Link>
                 <Link href="/contact" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
-                  Contact
+                  {t('contact')}
                 </Link>
                 <Button className="w-full mt-6 bg-primary hover:bg-primary/90" asChild>
                   <Link href="/contact">
                     <Phone className="h-4 w-4 mr-2" />
-                    Get Free Quote
+                    {t('getQuote')}
                   </Link>
                 </Button>
               </nav>

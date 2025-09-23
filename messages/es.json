@@ -1,0 +1,101 @@
+{
+  "header": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "reviews": "Reseñas",
+    "faq": "Preguntas Frecuentes",
+    "contact": "Contacto",
+    "getQuote": "Obtener Cotización Gratis"
+  },
+  "hero": {
+    "title": "Maestros Artesanos de Madera y Metal",
+    "subtitle": "Servicios profesionales de carpintería que combinan artesanía tradicional con técnicas modernas. Desde trabajos de madera personalizados hasta fabricación de metal, construimos con la fuerza de Ogun.",
+    "cta": "Obtener Cotización Gratis",
+    "learnMore": "Saber Más",
+    "since": "Maestros Artesanos Desde 2010",
+    "projectsCompleted": "Proyectos Completados",
+    "happyClients": "Clientes Felices",
+    "yearsExperience": "Años de Experiencia"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Desde cubiertas personalizadas hasta protección contra huracanes, hacemos realidad tu visión con artesanía experta y atención al detalle.",
+    "finishCarpentry": "Carpintería de Acabado",
+    "finishCarpentryDesc": "Trabajo de moldura de precisión, cornisas, zócalos y detalles de madera que añaden elegancia a cualquier espacio.",
+    "outdoorLiving": "Vida al Aire Libre",
+    "outdoorLivingDesc": "Cubiertas personalizadas, pérgolas y estructuras exteriores diseñadas para el clima de Florida y tu estilo de vida.",
+    "hurricaneProtection": "Protección Contra Huracanes",
+    "hurricaneProtectionDesc": "Instalaciones de contraventanas que cumplen con el código y son resistentes al impacto para proteger tu hogar.",
+    "repairRestoration": "Reparación y Restauración",
+    "repairRestorationDesc": "Restauración experta de hogares históricos y reparación especializada de trabajos de madera existentes."
+  },
+  "about": {
+    "title": "Acerca de Ogun Carpentry",
+    "subtitle": "Combinando artesanía tradicional con técnicas modernas",
+    "description": "En Ogun Carpentry, honramos el antiguo espíritu de la artesanía mientras abrazamos la innovación moderna. Nuestro nombre se inspira en Ogun, la deidad venerada del hierro, la guerra y la artesanía en la tradición Yoruba, simbolizando nuestro compromiso de construir con fuerza, precisión y propósito.",
+    "mission": "Nuestra Misión",
+    "missionText": "Brindar servicios excepcionales de carpintería y trabajo de metal que combinan artesanía tradicional con diseño contemporáneo, creando valor duradero para nuestros clientes y comunidad.",
+    "values": "Nuestros Valores",
+    "craftsmanship": "Artesanía",
+    "craftsmanshipText": "Cada proyecto refleja nuestra dedicación a la precisión y calidad.",
+    "innovation": "Innovación",
+    "innovationText": "Combinamos técnicas tradicionales con herramientas y métodos modernos.",
+    "integrity": "Integridad",
+    "integrityText": "Comunicación honesta y precios transparentes en todas nuestras operaciones."
+  },
+  "portfolio": {
+    "title": "Nuestro Portafolio",
+    "subtitle": "Vea la calidad y la artesanía en nuestros proyectos recientes",
+    "viewProject": "Ver Proyecto",
+    "viewGallery": "Ver Galería"
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Clientes",
+    "subtitle": "No solo tome nuestra palabra - escuche a nuestros clientes satisfechos",
+    "readMore": "Leer Más Reseñas"
+  },
+  "contact": {
+    "title": "Póngase en Contacto",
+    "subtitle": "¿Listo para comenzar su próximo proyecto? Discutamos cómo podemos hacer realidad su visión.",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "service": "Servicio",
+    "message": "Mensaje",
+    "sendMessage": "Enviar Mensaje",
+    "callUs": "Llámenos",
+    "emailUs": "Envíenos Correo",
+    "visitUs": "Visítenos",
+    "getQuote": "Obtener Cotización Gratis",
+    "quoteDesc": "Cuéntenos sobre su proyecto y le proporcionaremos una cotización detallada."
+  },
+  "footer": {
+    "services": "Servicios",
+    "company": "Empresa",
+    "contact": "Contacto",
+    "followUs": "Síganos",
+    "allRightsReserved": "Todos los derechos reservados."
+  },
+  "admin": {
+    "dashboard": "Panel",
+    "invoices": "Facturas",
+    "createInvoice": "Crear Factura",
+    "invoiceList": "Lista de Facturas",
+    "analytics": "Análisis",
+    "customers": "Clientes",
+    "calendar": "Calendario",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "login": {
+      "title": "Inicio de Sesión de Administrador",
+      "subtitle": "Portal de Acceso Empresarial",
+      "username": "Nombre de Usuario",
+      "password": "Contraseña",
+      "login": "Iniciar Sesión",
+      "error": "Usuario o contraseña inválidos",
+      "unauthorized": "Esta área es solo para personal autorizado. El acceso no autorizado está prohibido."
+    }
+  }
+}

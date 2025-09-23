@@ -1,17 +1,21 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import "./globals.css"
+import {NextIntlClientProvider} from 'next-intl'
+import {getMessages} from 'next-intl/server'
+import type {Metadata} from "next"
+import {GeistSans} from "geist/font/sans"
+import {GeistMono} from "geist/font/mono"
+import {Analytics} from "@vercel/analytics/next"
+import {Suspense} from "react"
+import "../globals.css"
+import {Header} from '@/components/header'
+import {Footer} from '@/components/footer'
+import {LanguageSwitcher} from '@/components/language-switcher'
 
 export const metadata: Metadata = {
   title: "Ogun Carpentry - Master Craftsmen of Wood & Metal",
   description:
     "Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to metal fabrication, we build with the strength of Ogun.",
   keywords: "carpentry, woodworking, custom furniture, metal work, craftsmanship, Ogun, traditional techniques, custom millwork",
-  authors: [{ name: "Ogun Carpentry" }],
+  authors: [{name: "Ogun Carpentry"}],
   creator: "Ogun Carpentry",
   publisher: "Ogun Carpentry",
   formatDetection: {
@@ -63,15 +67,27 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params: {locale}
+}: {
   children: React.ReactNode
-}>) {
+  params: {locale: string}
+}) {
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages()
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
+        <NextIntlClientProvider messages={messages}>
+          <Suspense fallback={null}>
+            <Header />
+            {children}
+            <Footer />
+          </Suspense>
+        </NextIntlClientProvider>
         <Analytics />
       </body>
     </html>

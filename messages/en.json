@@ -1,0 +1,101 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "getQuote": "Get Free Quote"
+  },
+  "hero": {
+    "title": "Master Craftsmen of Wood & Metal",
+    "subtitle": "Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to metal fabrication, we build with the strength of Ogun.",
+    "cta": "Get Free Quote",
+    "learnMore": "Learn More",
+    "since": "Master Craftsmen Since 2010",
+    "projectsCompleted": "Projects Completed",
+    "happyClients": "Happy Clients",
+    "yearsExperience": "Years Experience"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "From custom decks to hurricane protection, we bring your vision to life with expert craftsmanship and attention to detail.",
+    "finishCarpentry": "Finish Carpentry",
+    "finishCarpentryDesc": "Precision trim work, crown molding, baseboards, and detailed woodwork that adds elegance to any space.",
+    "outdoorLiving": "Outdoor Living",
+    "outdoorLivingDesc": "Custom decks, pergolas, and outdoor structures designed for Florida's climate and your lifestyle.",
+    "hurricaneProtection": "Hurricane Protection",
+    "hurricaneProtectionDesc": "Code-compliant hurricane shutters and impact-resistant installations to protect your home.",
+    "repairRestoration": "Repair & Restoration",
+    "repairRestorationDesc": "Expert restoration of historic homes and expert repair of existing woodwork and structures."
+  },
+  "about": {
+    "title": "About Ogun Carpentry",
+    "subtitle": "Combining traditional craftsmanship with modern techniques",
+    "description": "At Ogun Carpentry, we honor the ancient spirit of craftsmanship while embracing modern innovation. Our name draws inspiration from Ogun, the revered deity of iron, war, and craftsmanship in Yoruba tradition, symbolizing our commitment to building with strength, precision, and purpose.",
+    "mission": "Our Mission",
+    "missionText": "To deliver exceptional carpentry and metalwork services that blend traditional craftsmanship with contemporary design, creating lasting value for our clients and community.",
+    "values": "Our Values",
+    "craftsmanship": "Craftsmanship",
+    "craftsmanshipText": "Every project reflects our dedication to precision and quality.",
+    "innovation": "Innovation",
+    "innovationText": "We combine traditional techniques with modern tools and methods.",
+    "integrity": "Integrity",
+    "integrityText": "Honest communication and transparent pricing in all our dealings."
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "See the quality and craftsmanship in our recent projects",
+    "viewProject": "View Project",
+    "viewGallery": "View Gallery"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Don't just take our word for it - hear from our satisfied customers",
+    "readMore": "Read More Reviews"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to start your next project? Let's discuss how we can bring your vision to life.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "service": "Service",
+    "message": "Message",
+    "sendMessage": "Send Message",
+    "callUs": "Call Us",
+    "emailUs": "Email Us",
+    "visitUs": "Visit Us",
+    "getQuote": "Get Free Quote",
+    "quoteDesc": "Tell us about your project and we'll provide a detailed quote."
+  },
+  "footer": {
+    "services": "Services",
+    "company": "Company",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved."
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "invoices": "Invoices",
+    "createInvoice": "Create Invoice",
+    "invoiceList": "Invoice List",
+    "analytics": "Analytics",
+    "customers": "Customers",
+    "calendar": "Calendar",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": {
+      "title": "Administrator Login",
+      "subtitle": "Business Portal Login",
+      "username": "Username",
+      "password": "Password",
+      "login": "Login",
+      "error": "Invalid username or password",
+      "unauthorized": "This area is for authorized personnel only. Unauthorized access is prohibited."
+    }
+  }
+}

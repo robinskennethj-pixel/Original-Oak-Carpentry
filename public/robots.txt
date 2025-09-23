@@ -1,0 +1,11 @@
+# robots.txt for Ogun Carpentry
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ogun-carpentry.com/sitemap.xml
+
+# Block admin areas
+Disallow: /admin/
+Disallow: /api/

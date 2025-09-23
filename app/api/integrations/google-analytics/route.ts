@@ -524,19 +524,7 @@ async function handleSendPayment(data: any) {
   }
 }
 
-// Check if Google Analytics is configured
-export function isGoogleAnalyticsConfigured() {
-  return !!(
-    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
-    process.env.GOOGLE_ANALYTICS_API_SECRET
-  )
-}
-
-export default {
-  GET,
-  POST,
-  isGoogleAnalyticsConfigured,
-}
+// isGoogleAnalyticsConfigured is imported from the integration file
 
 // Analytics tracking helper for client-side
 export const trackAnalyticsEvent = async (eventName: string, parameters?: Record<string, any>) => {
@@ -691,26 +679,6 @@ export const trackPayment = async (paymentData: {
   }
 }
 
-export default {
-  GET,
-  POST,
-  isGoogleAnalyticsConfigured,
-  trackAnalyticsEvent,
-  trackPageView,
-  trackEcommerceEvent,
-  trackContactForm,
-  trackBooking,
-  trackPayment,
-  GA_EVENTS,
-  CUSTOM_DIMENSIONS,
-  CUSTOM_METRICS,
-  EVENT_CATEGORIES,
-  USER_PROPERTIES,
-  createEcommerceItem,
-  createTransaction,
-  OPTIMIZATION_PRESETS,
-  getMockAnalyticsData,
-}
 
 // Environment variables needed:
 // NEXT_PUBLIC_GA_MEASUREMENT_ID
