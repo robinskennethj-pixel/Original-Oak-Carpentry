@@ -14,7 +14,16 @@
       "Bash(tree:*)",
       "Bash(git push:*)",
       "Bash(gh repo create:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(echo:*)",
+      "Bash(taskkill:*)",
+      "Bash(netstat:*)",
+      "Bash(npx:*)",
+      "Bash(tasklist:*)",
+      "Bash(wmic:*)",
+      "Bash(set:*)",
+      "Bash(node:*)",
+      "Bash(npm ci:*)"
     ],
     "deny": [],
     "ask": []

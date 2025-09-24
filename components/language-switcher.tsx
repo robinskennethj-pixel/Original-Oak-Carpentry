@@ -19,11 +19,22 @@ export function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
 
-  // Extract current locale from pathname
-  const currentLocale = pathname.split('/')[1] === 'es' ? 'es' : 'en'
+  // Handle loading state
+  if (!pathname) {
+    return (
+      <Button variant="ghost" size="sm" disabled>
+        <Globe className="h-4 w-4" />
+      </Button>
+    )
+  }
+
+  // Extract current locale from pathname - handle missing pathname gracefully
+  const currentLocale = pathname && pathname.split('/')[1] === 'es' ? 'es' : 'en'
   const currentLanguage = languages.find(lang => lang.code === currentLocale)
 
   const switchLanguage = (newLocale: string) => {
+    if (!pathname) return
+
     // Get the current path without the locale
     const pathWithoutLocale = pathname.replace(/^\/(en|es)/, '').replace(/^\//, '') || ''
 
@@ -40,8 +51,14 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="gap-2">
           <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLanguage?.flag} {currentLanguage?.name}</span>
-          <span className="sm:hidden">{currentLanguage?.flag}</span>
+          {currentLanguage ? (
+            <>
+              <span className="hidden sm:inline">{currentLanguage.flag} {currentLanguage.name}</span>
+              <span className="sm:hidden">{currentLanguage.flag}</span>
+            </>
+          ) : (
+            <span className="text-muted-foreground">EN</span>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
