@@ -27,7 +27,7 @@ export default async function LocaleLayout({
       // Provide fallback messages to prevent Jest worker crashes
       messages = {
         hero: {
-          title: validLocale === 'es' ? 'Carpintería Ogun' : 'Ogun Carpentry',
+          title: validLocale === 'es' ? 'Carpintería Oak Original' : 'Original Oak Carpentry',
           subtitle: validLocale === 'es'
             ? 'Servicios profesionales de carpintería'
             : 'Professional carpentry services',
@@ -43,7 +43,7 @@ export default async function LocaleLayout({
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>
-            {validLocale === 'es' ? 'Carpintería Ogun - Servicios Profesionales' : 'Ogun Carpentry - Professional Services'}
+            {validLocale === 'es' ? 'Carpintería Oak Original - Servicios Profesionales' : 'Original Oak Carpentry - Professional Services'}
           </title>
         </head>
         <body>

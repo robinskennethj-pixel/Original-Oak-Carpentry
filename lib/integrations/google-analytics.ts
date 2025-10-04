@@ -294,8 +294,8 @@ export class GoogleAnalyticsAdminAPI {
     try {
       // Mock data
       return {
-        accountName: 'Ogun Carpentry',
-        propertyName: 'Ogun Carpentry Website',
+        accountName: 'Original Oak Carpentry',
+        propertyName: 'Original Oak Carpentry Website',
         propertyId: this.propertyId,
         created: '2024-01-01',
         updated: '2024-09-01',
@@ -323,7 +323,7 @@ export class GoogleTagManagerAPI {
       // Mock data
       return {
         containerId: this.containerId,
-        containerName: 'Ogun Carpentry Container',
+        containerName: 'Original Oak Carpentry Container',
         publicId: 'GTM-XXXXXX',
         usageContext: ['web'],
         fingerprint: '123456789',

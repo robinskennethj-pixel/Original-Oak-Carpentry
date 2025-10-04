@@ -223,7 +223,7 @@ export const getSchedulingUrl = (eventTypeSlug: string) => {
   return `${baseUrl}/${eventTypeSlug}`
 }
 
-// Common event types for Ogun Carpentry
+// Common event types for Original Oak Carpentry
 export const CALENDLY_EVENT_TYPES = {
   CONSULTATION: {
     slug: 'free-consultation',
@@ -254,7 +254,7 @@ export const CALENDLY_EVENT_TYPES = {
 // Mock data for development
 export const getMockCalendlyData = () => ({
   user: {
-    name: 'Ogun Carpentry',
+    name: 'Original Oak Carpentry',
     email: 'info@oguncarpentry.com',
     timezone: 'America/New_York',
   },

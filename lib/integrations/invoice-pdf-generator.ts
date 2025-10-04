@@ -338,7 +338,7 @@ function generateFooter(doc: PDFKit.PDFDocument) {
   // Thank you message
   doc.fontSize(12)
      .font('Helvetica-Bold')
-     .text('Thank you for choosing Ogun Carpentry!', doc.page.width - 300, footerY, { align: 'right', width: 250 })
+     .text('Thank you for choosing Original Oak Carpentry!', doc.page.width - 300, footerY, { align: 'right', width: 250 })
 
   doc.fontSize(10)
      .font('Helvetica')
@@ -370,7 +370,7 @@ export const generateSimpleInvoicePDF = async (
       doc.fillColor(OGUN_CARPENTRY_BRANDING.primaryColor)
          .fontSize(20)
          .font('Helvetica-Bold')
-         .text('Ogun Carpentry', 50, 50)
+         .text('Original Oak Carpentry', 50, 50)
 
       doc.fontSize(12)
          .text(`Invoice #${invoiceNumber}`, 50, 80)
@@ -421,7 +421,7 @@ export const getMockInvoicePDF = async (): Promise<Buffer> => {
         resolve(pdfData)
       })
 
-      doc.fontSize(20).text('Ogun Carpentry - Sample Invoice', 100, 100)
+      doc.fontSize(20).text('Original Oak Carpentry - Sample Invoice', 100, 100)
       doc.fontSize(12).text('This is a sample invoice PDF for development purposes.', 100, 150)
       doc.text('In production, this would be a fully branded invoice with client details.')
 

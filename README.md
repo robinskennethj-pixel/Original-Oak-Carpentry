@@ -1,6 +1,6 @@
-# Ogun Carpentry - Master Craftsmen of Wood & Metal
+# Original Oak Carpentry - Master Craftsmen of Wood & Metal
 
-A modern, full-stack Next.js application for Ogun Carpentry, showcasing traditional craftsmanship combined with contemporary web design. Built with the strength and spirit of Ogun, the Yoruba deity of iron, metalwork, and craftsmanship.
+A modern, full-stack Next.js application for Original Oak Carpentry, showcasing traditional craftsmanship combined with contemporary web design. Built with the strength and durability of oak, representing timeless craftsmanship and quality.
 
 ## 🎨 Design Philosophy
 
@@ -13,7 +13,7 @@ A modern, full-stack Next.js application for Ogun Carpentry, showcasing traditio
 - **Light Gray (#D9D9D9)** - Borders, separators, and subtle backgrounds
 
 ### Brand Identity
-Ogun Carpentry represents the perfect fusion of traditional African craftsmanship with modern precision and innovation. Every piece carries the strength, durability, and artistic excellence that Ogun represents.
+Original Oak Carpentry represents the perfect fusion of traditional craftsmanship with modern precision and innovation. Every piece carries the strength, durability, and artistic excellence that defines our work.
 
 ## 🚀 Current Features
 
@@ -23,7 +23,7 @@ Ogun Carpentry represents the perfect fusion of traditional African craftsmanshi
 - **Interactive Components** - Smooth animations and hover effects
 - **SEO Optimized** - Comprehensive meta tags and structured data
 - **Accessibility** - WCAG compliant with proper ARIA labels
-- **Color Scheme** - Authentic Ogun Carpentry brand colors applied
+- **Color Scheme** - Authentic Original Oak Carpentry brand colors applied
 - **Functional Buttons** - All navigation and action buttons work properly
 - **Contact Form** - Fully functional with API integration
 - **Service Pages** - Individual service detail pages
@@ -218,7 +218,7 @@ This project is proprietary and confidential. All rights reserved.
 
 ## 📞 Contact Information
 
-**Ogun Carpentry**
+**Original Oak Carpentry**
 - Website: [https://oguncarpentry.com](https://oguncarpentry.com)
 - Email: info@oguncarpentry.com
 - Phone: (555) 123-4567
@@ -226,14 +226,14 @@ This project is proprietary and confidential. All rights reserved.
 
 ---
 
-*Forged by Tradition, Driven by Passion* - Ogun Carpentry
+*Built with Strength, Crafted with Pride* - Original Oak Carpentry
 
 ## 🔄 Repository Status
 
 - ✅ **Active Development** - Regular updates and improvements
 - ✅ **Functional Components** - All main features implemented
 - ✅ **Responsive Design** - Mobile-first approach completed
-- ✅ **Brand Consistency** - Ogun Carpentry colors and identity applied
+- ✅ **Brand Consistency** - Original Oak Carpentry colors and identity applied
 - ✅ **Button Functionality** - All navigation and actions working
 - 🔄 **Content Population** - Ready for client content integration
 - 🔄 **Backend Integration** - API routes prepared for database connection

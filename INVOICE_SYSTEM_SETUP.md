@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-The Ogun Carpentry website now features a comprehensive AI-powered dynamic invoicing system that automatically generates branded invoices with AI assistance for both online and offline projects.
+The Original Oak Carpentry website now features a comprehensive AI-powered dynamic invoicing system that automatically generates branded invoices with AI assistance for both online and offline projects.
 
 ## ✨ Key Features
 
@@ -13,7 +13,7 @@ The Ogun Carpentry website now features a comprehensive AI-powered dynamic invoi
 - **Suggested add-on services** for upselling opportunities
 
 ### 🎨 Branded Invoice Design
-- **Ogun Carpentry branding** with logo, colors, and fonts
+- **Original Oak Carpentry branding** with logo, colors, and fonts
 - **Professional PDF generation** with custom templates
 - **Responsive email templates** with branded styling
 - **Custom footer** with business information and license
@@ -49,7 +49,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-EMAIL_FROM=Ogun Carpentry <info@ogun-carpentry.com>
+EMAIL_FROM=Original Oak Carpentry <info@ogun-carpentry.com>
 EMAIL_TO=info@ogun-carpentry.com
 
 # SMS Configuration (Optional - enables SMS reminders)

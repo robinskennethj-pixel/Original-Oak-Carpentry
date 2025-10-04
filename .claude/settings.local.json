@@ -23,7 +23,9 @@
       "Bash(wmic:*)",
       "Bash(set:*)",
       "Bash(node:*)",
-      "Bash(npm ci:*)"
+      "Bash(npm ci:*)",
+      "Bash(git remote add:*)",
+      "Bash(git remote:*)"
     ],
     "deny": [],
     "ask": []

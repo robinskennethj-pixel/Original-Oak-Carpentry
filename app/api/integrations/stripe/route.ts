@@ -98,7 +98,7 @@ async function handleCreatePaymentIntent(data: any) {
       customerEmail: validatedData.customerEmail,
       customerName: validatedData.customerName,
       metadata: validatedData.metadata,
-      description: validatedData.description || `Ogun Carpentry - ${validatedData.serviceType || 'Custom Payment'}`,
+      description: validatedData.description || `Original Oak Carpentry - ${validatedData.serviceType || 'Custom Payment'}`,
     })
 
     return NextResponse.json({
@@ -368,7 +368,7 @@ export class StripeError extends Error {
 
 // Payment confirmation email template
 export const getPaymentConfirmationEmail = (paymentData: any) => ({
-  subject: 'Payment Confirmation - Ogun Carpentry',
+  subject: 'Payment Confirmation - Original Oak Carpentry',
   html: `
     <h2>Payment Confirmation</h2>
     <p>Dear ${paymentData.customerName || 'Customer'},</p>
@@ -383,7 +383,7 @@ export const getPaymentConfirmationEmail = (paymentData: any) => ({
 
     <p>We will contact you within 24 hours to confirm your booking.</p>
 
-    <p>Best regards,<br>The Ogun Carpentry Team</p>
+    <p>Best regards,<br>The Original Oak Carpentry Team</p>
   `
 })
 

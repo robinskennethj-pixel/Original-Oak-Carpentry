@@ -11,7 +11,7 @@ This document details how the AI-powered invoicing system handles **offline carp
 **URL:** `https://your-domain.com/admin/invoices`
 
 **What You'll See:**
-- Clean, professional interface matching Ogun Carpentry branding
+- Clean, professional interface matching Original Oak Carpentry branding
 - Comprehensive form with all required project fields
 - Real-time calculation of totals and taxes
 - One-click AI content generation
@@ -60,7 +60,7 @@ client satisfaction."
 
 🤖 Personalized Client Message:
 "Hi Sarah, this invoice covers your custom oak cabinets installation
-completed on 09/20/2025. We appreciate your trust in Ogun Carpentry and
+completed on 09/20/2025. We appreciate your trust in Original Oak Carpentry and
 look forward to serving you again!"
 
 🤖 Warranty Notes (Project-Specific):
@@ -108,7 +108,7 @@ look forward to serving you again!"
 ### **Email Delivery (Primary)**
 ```html
 Professional branded email includes:
-- Ogun Carpentry header with logo
+- Original Oak Carpentry header with logo
 - Personalized greeting with AI-generated message
 - Project summary and amount
 - Secure "Pay Now" button
@@ -119,7 +119,7 @@ Professional branded email includes:
 
 ### **SMS Notifications (Optional)**
 ```
-"Hi Sarah! Your Ogun Carpentry invoice for $3,200.00 is ready.
+"Hi Sarah! Your Original Oak Carpentry invoice for $3,200.00 is ready.
 Pay securely online: [secure-link] Questions? Call (813) 555-0123"
 ```
 

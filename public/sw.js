@@ -1,4 +1,4 @@
-// Service Worker for Ogun Carpentry
+// Service Worker for Original Oak Carpentry
 // This is a basic service worker to prevent 404 errors
 // You can extend this for PWA functionality if needed
 

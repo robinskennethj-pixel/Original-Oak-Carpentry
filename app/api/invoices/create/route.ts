@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
                 <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
                 <p style="color: #2D5016; font-weight: bold;">${emailResult.content!.closing}</p>
                 <p style="color: #666; font-size: 12px; margin-top: 20px;">
-                  Ogun Carpentry<br>
+                  Original Oak Carpentry<br>
                   Phone: (813) 555-0123<br>
                   Email: info@ogun-carpentry.com<br>
                   License: CBC125847

@@ -1,4 +1,4 @@
-# robots.txt for Ogun Carpentry
+# robots.txt for Original Oak Carpentry
 
 User-agent: *
 Allow: /

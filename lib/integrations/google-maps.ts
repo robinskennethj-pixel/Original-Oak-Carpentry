@@ -149,7 +149,7 @@ export const getPlacePhoto = async (photoReference: string, maxWidth: number = 4
 
 // Mock data for development (when API key is not available)
 export const getMockBusinessInfo = (): BusinessInfo => ({
-  name: "Ogun Carpentry",
+  name: "Original Oak Carpentry",
   address: "123 Craftsmanship Lane, Metropolitan Area, ST 12345",
   phone: "(555) 123-4567",
   website: "https://oguncarpentry.com",
@@ -175,7 +175,7 @@ export const getMockGoogleReviews = (): GoogleReview[] => ([
   {
     author_name: "Marcus Williams",
     rating: 5,
-    text: "Ogun Carpentry restored my great-grandfather's armoire to perfection. The traditional techniques they used brought it back to life better than I ever imagined.",
+    text: "Original Oak Carpentry restored my great-grandfather's armoire to perfection. The traditional techniques they used brought it back to life better than I ever imagined.",
     time: 1705324800,
     profile_photo_url: "/satisfied-homeowner.jpg",
     relative_time_description: "6 months ago"

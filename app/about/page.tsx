@@ -37,16 +37,16 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">The Ogun Legacy</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-6">The Original Oak Legacy</h2>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Founded in 2010 with the spirit of Ogun, the Yoruba deity of iron, metalwork, and craftsmanship, 
-                Ogun Carpentry represents the perfect fusion of traditional African craftsmanship with modern 
+                Founded in 2010 with a commitment to excellence and durability,
+                Original Oak Carpentry represents the perfect fusion of traditional craftsmanship with modern
                 precision and innovation.
               </p>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Our master craftsmen bring decades of experience in both woodworking and metal fabrication, 
                 combining time-honored techniques with cutting-edge tools and materials. Every piece we create 
-                carries the strength, durability, and artistic excellence that Ogun represents.
+                carries the strength, durability, and artistic excellence that defines our work.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 We believe that true craftsmanship transcends mere construction - it's about forging connections 
@@ -58,7 +58,7 @@ export default function AboutPage() {
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img
                   src="/professional-carpenter-working-on-custom-woodwork-.jpg"
-                  alt="Master craftsman at Ogun Carpentry working on custom woodwork"
+                  alt="Master craftsman at Original Oak Carpentry working on custom woodwork"
                   className="w-full h-auto"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>

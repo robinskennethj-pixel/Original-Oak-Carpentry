@@ -76,7 +76,7 @@ export default function SettingsPage() {
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="businessName">Business Name</Label>
-                  <Input id="businessName" defaultValue="Ogun Carpentry" />
+                  <Input id="businessName" defaultValue="Original Oak Carpentry" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="license">License Number</Label>
@@ -156,7 +156,7 @@ export default function SettingsPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="senderName">Sender Name</Label>
-                <Input id="senderName" defaultValue="Ogun Carpentry" />
+                <Input id="senderName" defaultValue="Original Oak Carpentry" />
               </div>
             </CardContent>
           </Card>

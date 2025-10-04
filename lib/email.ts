@@ -38,7 +38,7 @@ export const sendContactEmail = async (data: {
       <p><strong>Project Details:</strong></p>
       <p>${data.projectDetails}</p>
       <hr>
-      <p><small>This message was sent from the Ogun Carpentry website contact form.</small></p>
+      <p><small>This message was sent from the Original Oak Carpentry website contact form.</small></p>
     `,
   }
 
@@ -46,7 +46,7 @@ export const sendContactEmail = async (data: {
   const clientMailOptions = {
     from: process.env.EMAIL_FROM,
     to: data.email,
-    subject: 'Thank you for contacting Ogun Carpentry',
+    subject: 'Thank you for contacting Original Oak Carpentry',
     html: `
       <h2>Thank you for your inquiry!</h2>
       <p>Hello ${data.firstName},</p>
@@ -55,8 +55,8 @@ export const sendContactEmail = async (data: {
       <p><strong>Project Details:</strong></p>
       <p>${data.projectDetails}</p>
       <hr>
-      <p>Best regards,<br>The Ogun Carpentry Team</p>
-      <p><small>Ogun Carpentry | Master Craftsmen of Wood & Metal</small></p>
+      <p>Best regards,<br>The Original Oak Carpentry Team</p>
+      <p><small>Original Oak Carpentry | Master Craftsmen of Wood & Metal</small></p>
     `,
   }
 
@@ -78,13 +78,13 @@ export const sendNewsletterConfirmation = async (email: string) => {
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: email,
-    subject: 'Welcome to Ogun Carpentry Newsletter',
+    subject: 'Welcome to Original Oak Carpentry Newsletter',
     html: `
-      <h2>Welcome to Ogun Carpentry!</h2>
+      <h2>Welcome to Original Oak Carpentry!</h2>
       <p>Thank you for subscribing to our newsletter.</p>
       <p>You'll receive updates about our latest projects, craftsmanship tips, and special offers.</p>
       <hr>
-      <p>Best regards,<br>The Ogun Carpentry Team</p>
+      <p>Best regards,<br>The Original Oak Carpentry Team</p>
     `,
   }
 
@@ -137,7 +137,7 @@ export const sendEmail = async (options: EmailOptions): Promise<{
     const transporter = createTransporter()
 
     const mailOptions = {
-      from: options.from || `Ogun Carpentry <${process.env.SMTP_USER}>`,
+      from: options.from || `Original Oak Carpentry <${process.env.SMTP_USER}>`,
       to: Array.isArray(options.to) ? options.to.join(', ') : options.to,
       subject: options.subject,
       text: options.text,
@@ -194,8 +194,8 @@ export const sendInvoiceEmail = async (options: {
 
     const subject = aiContent?.subject || `Invoice for your ${projectType} project`
     const greeting = aiContent?.greeting || `Dear ${clientName},`
-    const body = aiContent?.body || `Thank you for choosing Ogun Carpentry for your ${projectType.toLowerCase()} project. Your invoice is ready for payment.`
-    const closing = aiContent?.closing || 'Best regards,\nThe Ogun Carpentry Team'
+    const body = aiContent?.body || `Thank you for choosing Original Oak Carpentry for your ${projectType.toLowerCase()} project. Your invoice is ready for payment.`
+    const closing = aiContent?.closing || 'Best regards,\nThe Original Oak Carpentry Team'
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -216,7 +216,7 @@ export const sendInvoiceEmail = async (options: {
       </head>
       <body>
         <div class="header">
-          <h1>Ogun Carpentry</h1>
+          <h1>Original Oak Carpentry</h1>
           <p>Professional Carpentry Services</p>
         </div>
 
@@ -250,7 +250,7 @@ export const sendInvoiceEmail = async (options: {
         </div>
 
         <div class="footer">
-          <p><strong>Ogun Carpentry</strong></p>
+          <p><strong>Original Oak Carpentry</strong></p>
           <p>Phone: (813) 555-0123 | Email: info@ogun-carpentry.com</p>
           <p>License: CBC125847 | Website: ogun-carpentry.com</p>
           <p style="font-size: 12px; margin-top: 20px;">This email was sent automatically. Please do not reply to this email.</p>
@@ -344,7 +344,7 @@ export const sendInvoiceSMS = async (options: {
   try {
     const { to, clientName, amount, invoiceUrl, daysOverdue } = options
 
-    let message = `Hi ${clientName}! Your Ogun Carpentry invoice for $${amount.toFixed(2)} is ready. `
+    let message = `Hi ${clientName}! Your Original Oak Carpentry invoice for $${amount.toFixed(2)} is ready. `
 
     if (daysOverdue) {
       message += `It's ${daysOverdue} days overdue. `

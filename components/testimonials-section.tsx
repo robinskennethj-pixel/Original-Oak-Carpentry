@@ -6,7 +6,7 @@ const testimonials = [
     name: "Marcus Williams",
     role: "Antique Collector",
     content:
-      "Ogun Carpentry restored my great-grandfather's armoire to perfection. The traditional techniques they used brought it back to life better than I ever imagined.",
+      "Original Oak Carpentry restored my great-grandfather's armoire to perfection. The traditional techniques they used brought it back to life better than I ever imagined.",
     rating: 5,
     image: "/satisfied-homeowner.jpg",
   },
@@ -22,7 +22,7 @@ const testimonials = [
     name: "James Rodriguez",
     role: "Interior Designer",
     content:
-      "Working with Ogun Carpentry is like collaborating with artists. Their ability to translate vision into reality is truly remarkable.",
+      "Working with Original Oak Carpentry is like collaborating with artists. Their ability to translate vision into reality is truly remarkable.",
     rating: 5,
     image: "/business-owner.png",
   },
@@ -55,7 +55,7 @@ export function TestimonialsSection() {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
             Our clients' satisfaction is the true measure of our craft. Hear from those who have experienced 
-            the Ogun Carpentry difference firsthand.
+            the Original Oak Carpentry difference firsthand.
           </p>
         </div>
 

@@ -45,7 +45,7 @@ export const createPaymentIntent = async (data: PaymentIntentData) => {
         enabled: true,
       },
       metadata: data.metadata || {},
-      description: data.description || 'Ogun Carpentry Payment',
+      description: data.description || 'Original Oak Carpentry Payment',
       receipt_email: data.customerEmail,
     })
 
@@ -261,7 +261,7 @@ export const getCustomerPaymentMethods = async (customerId: string) => {
   }
 }
 
-// Common payment amounts for Ogun Carpentry services
+// Common payment amounts for Original Oak Carpentry services
 export const SERVICE_AMOUNTS = {
   CONSULTATION: 5000, // $50.00
   DEPOSIT_SMALL: 25000, // $250.00

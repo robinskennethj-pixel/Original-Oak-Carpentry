@@ -379,7 +379,7 @@ export const trackBookingAnalytics = (eventData: any) => {
 
 // Booking confirmation email template
 export const getBookingConfirmationEmail = (eventData: any) => ({
-  subject: 'Appointment Confirmation - Ogun Carpentry',
+  subject: 'Appointment Confirmation - Original Oak Carpentry',
   html: `
     <h2>Appointment Confirmation</h2>
     <p>Dear ${eventData.invitee?.name || 'Customer'},</p>
@@ -395,7 +395,7 @@ export const getBookingConfirmationEmail = (eventData: any) => ({
 
     <p><a href="${eventData.reschedule_url}" style="color: #B85C38;">Reschedule</a> | <a href="${eventData.cancel_url}" style="color: #B85C38;">Cancel</a></p>
 
-    <p>Best regards,<br>The Ogun Carpentry Team</p>
+    <p>Best regards,<br>The Original Oak Carpentry Team</p>
   `
 })
 

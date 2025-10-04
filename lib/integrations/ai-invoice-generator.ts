@@ -62,7 +62,7 @@ export const generateAIInvoiceContent = async (projectData: ProjectData): Promis
     const validatedData = projectDataSchema.parse(projectData)
 
     const prompt = `
-Create professional invoice content for Ogun Carpentry based on the following project details:
+Create professional invoice content for Original Oak Carpentry based on the following project details:
 
 CLIENT: ${validatedData.clientName}
 PROJECT TYPE: ${validatedData.projectType}
@@ -87,7 +87,7 @@ Please generate:
 5. Project category classification
 6. Any suggested add-on services
 
-Make the content professional but warm, reflecting Ogun Carpentry's commitment to quality craftsmanship. Use specific details from the project when possible.
+Make the content professional but warm, reflecting Original Oak Carpentry's commitment to quality craftsmanship. Use specific details from the project when possible.
 `
 
     const completion = await openai.chat.completions.create({
@@ -95,7 +95,7 @@ Make the content professional but warm, reflecting Ogun Carpentry's commitment t
       messages: [
         {
           role: 'system',
-          content: `You are an expert invoice content generator for Ogun Carpentry, a premium carpentry service.
+          content: `You are an expert invoice content generator for Original Oak Carpentry, a premium carpentry service.
 Create professional, detailed, and personalized invoice content that reflects the company's commitment to quality craftsmanship.
 
 Guidelines:
@@ -238,7 +238,7 @@ function generateDefaultDescription(projectData: ProjectData): string {
 }
 
 function generateDefaultClientMessage(projectData: ProjectData): string {
-  return `Thank you for choosing Ogun Carpentry for your ${projectData.projectType.toLowerCase()} project! We appreciate your trust in our craftsmanship and look forward to serving you again.`
+  return `Thank you for choosing Original Oak Carpentry for your ${projectData.projectType.toLowerCase()} project! We appreciate your trust in our craftsmanship and look forward to serving you again.`
 }
 
 function generateDefaultPaymentInstructions(): string {
@@ -311,7 +311,7 @@ export const generateAIEmailContent = async (clientName: string, projectType: st
 }> => {
   try {
     const prompt = `
-Create a professional email for Ogun Carpentry to send an invoice to a client.
+Create a professional email for Original Oak Carpentry to send an invoice to a client.
 
 CLIENT: ${clientName}
 PROJECT TYPE: ${projectType}
@@ -335,7 +335,7 @@ Tone should be warm, professional, and appreciative. Make it personal but busine
       messages: [
         {
           role: 'system',
-          content: `You are a professional email writer for Ogun Carpentry. Create warm, appreciative, and professional emails for invoice delivery. Make clients feel valued while maintaining business professionalism.`
+          content: `You are a professional email writer for Original Oak Carpentry. Create warm, appreciative, and professional emails for invoice delivery. Make clients feel valued while maintaining business professionalism.`
         },
         {
           role: 'user',
@@ -360,7 +360,7 @@ Tone should be warm, professional, and appreciative. Make it personal but busine
                      `Dear ${clientName},`
 
     const closing = lines.find(line => line.toLowerCase().includes('sincerely') || line.toLowerCase().includes('best regards')) ||
-                    'Best regards,\nThe Ogun Carpentry Team'
+                    'Best regards,\nThe Original Oak Carpentry Team'
 
     const bodyStart = lines.findIndex(line => line === greeting) + 1
     const bodyEnd = lines.findIndex(line => line === closing || line.toLowerCase().includes('sincerely') || line.toLowerCase().includes('best regards'))
@@ -370,7 +370,7 @@ Tone should be warm, professional, and appreciative. Make it personal but busine
       success: true,
       content: {
         subject,
-        body: body || `Thank you for choosing Ogun Carpentry for your ${projectType.toLowerCase()} project. Your invoice is ready for payment.`,
+        body: body || `Thank you for choosing Original Oak Carpentry for your ${projectType.toLowerCase()} project. Your invoice is ready for payment.`,
         greeting,
         closing,
       },
@@ -388,7 +388,7 @@ Tone should be warm, professional, and appreciative. Make it personal but busine
 // Mock AI content for development
 export const getMockAIInvoiceContent = (): AIInvoiceContent => ({
   projectDescription: 'Custom 12x16 ft treated wood deck installation with premium railing system. All work completed with attention to detail and weather-resistant construction methods.',
-  clientMessage: 'Thank you for choosing Ogun Carpentry for your deck project! We appreciate your trust in our craftsmanship and look forward to serving you again.',
+  clientMessage: 'Thank you for choosing Original Oak Carpentry for your deck project! We appreciate your trust in our craftsmanship and look forward to serving you again.',
   paymentInstructions: 'Payment can be made online through the secure payment link, by bank transfer, or by check. Please contact us if you have any questions about payment options.',
   warrantyNotes: '1-year warranty on structural integrity and installation quality. Warranty covers defects in workmanship under normal use conditions.',
   maintenanceNotes: 'Recommended maintenance: Clean and seal deck surface every 12-18 months. Check for loose boards or railings annually.',

@@ -17,7 +17,7 @@ export function Footer() {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full"></div>
               </div>
               <span className="text-2xl font-bold">
-                <span className="text-accent">Ogun</span> Carpentry
+                <span className="text-accent">Original Oak</span> Carpentry
               </span>
             </div>
             <p className="text-sm opacity-80 leading-relaxed">
@@ -127,7 +127,7 @@ export function Footer() {
         <div className="border-t border-background/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm opacity-60 text-center md:text-left">
-              &copy; 2024 Ogun Carpentry. All rights reserved. Master craftsmen licensed, bonded, and insured.
+              &copy; 2024 Original Oak Carpentry. All rights reserved. Master craftsmen licensed, bonded, and insured.
             </p>
             <div className="flex items-center gap-6 text-sm opacity-60">
               <Link href="/privacy" className="hover:opacity-100 hover:text-accent transition-all duration-300">

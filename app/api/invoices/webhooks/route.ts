@@ -150,9 +150,9 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
             <p>We appreciate your business and look forward to serving you again in the future.</p>
             <p>If you have any questions about your project or need additional services, please don't hesitate to contact us.</p>
             <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-            <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Ogun Carpentry Team</p>
+            <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Original Oak Carpentry Team</p>
             <p style="color: #666; font-size: 12px; margin-top: 20px;">
-              Ogun Carpentry<br>
+              Original Oak Carpentry<br>
               Phone: (813) 555-0123<br>
               Email: info@ogun-carpentry.com<br>
               License: CBC125847
@@ -209,7 +209,7 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
           </p>
           <p>If you have any questions, please don't hesitate to contact us.</p>
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-          <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Ogun Carpentry Team</p>
+          <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Original Oak Carpentry Team</p>
         </div>
       `
     })
@@ -252,7 +252,7 @@ async function handleInvoiceOverdue(invoice: Stripe.Invoice) {
           </p>
           <p>If you have already sent payment, please disregard this message. If you have any questions or need to discuss payment arrangements, please contact us.</p>
           <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-          <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Ogun Carpentry Team</p>
+          <p style="color: #2D5016; font-weight: bold;">Best regards,<br>The Original Oak Carpentry Team</p>
         </div>
       `
     })

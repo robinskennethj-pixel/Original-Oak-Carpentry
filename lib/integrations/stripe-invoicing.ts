@@ -31,14 +31,14 @@ export const invoiceSchema = z.object({
 
 export type InvoiceData = z.infer<typeof invoiceSchema>
 
-// Ogun Carpentry brand styling for invoices
+// Original Oak Carpentry brand styling for invoices
 export const OGUN_CARPENTRY_BRANDING = {
   logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/ogun_carpentry_logo.webp` : '/ogun_carpentry_logo.webp',
   primaryColor: '#2D5016', // Forest Green
   accentColor: '#B85C38', // Rust Orange
   secondaryColor: '#D4AF37', // Gold
   font: 'Helvetica',
-  businessName: 'Ogun Carpentry',
+  businessName: 'Original Oak Carpentry',
   businessAddress: {
     line1: '123 Workshop Lane',
     line2: 'Suite 100',
@@ -126,7 +126,7 @@ export const createBrandedInvoice = async (invoiceData: InvoiceData) => {
           value: OGUN_CARPENTRY_BRANDING.licenseNumber,
         },
       ],
-      footer: `Thank you for choosing Ogun Carpentry! ${validatedData.notes || ''}`,
+      footer: `Thank you for choosing Original Oak Carpentry! ${validatedData.notes || ''}`,
       metadata: {
         projectType: validatedData.projectType,
         projectDescription: validatedData.projectDescription,
@@ -383,7 +383,7 @@ export const getMockInvoiceData = () => ({
   totalAmount: 3200.00,
   taxAmount: 224.00,
   dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
-  notes: 'Thank you for choosing Ogun Carpentry for your outdoor living project!',
+  notes: 'Thank you for choosing Original Oak Carpentry for your outdoor living project!',
   paymentTerms: 'Net 30',
 })
 

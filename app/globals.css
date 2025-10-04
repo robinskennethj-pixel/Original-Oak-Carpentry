@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Ogun Carpentry Color Palette */
+  /* Original Oak Carpentry Color Palette */
   --background: oklch(0.96 0.01 85); /* #F5F3F0 - Off-White background */
   --foreground: oklch(0.18 0 0); /* #2E2E2E - Charcoal text */
   --card: oklch(1 0 0); /* #ffffff - White card background */

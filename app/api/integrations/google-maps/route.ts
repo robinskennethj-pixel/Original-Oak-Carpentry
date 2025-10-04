@@ -271,7 +271,7 @@ export interface MapEmbedData {
 // Mock data for development
 export const getMockMapData = () => ({
   businessInfo: {
-    name: "Ogun Carpentry",
+    name: "Original Oak Carpentry",
     address: "123 Craftsmanship Lane, Metropolitan Area, ST 12345",
     phone: "(555) 123-4567",
     website: "https://oguncarpentry.com",
@@ -338,7 +338,7 @@ export const MAP_STYLES = {
   TERRAIN: 'terrain'
 }
 
-// Custom map styling for Ogun Carpentry brand
+// Custom map styling for Original Oak Carpentry brand
 export const CUSTOM_MAP_STYLE = [
   {
     "featureType": "all",

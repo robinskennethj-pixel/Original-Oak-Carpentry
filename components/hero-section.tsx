@@ -69,7 +69,7 @@ export function HeroSection() {
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="/professional-carpenter-working-on-custom-wooden-fu.jpg"
-                alt="Master craftsman at Ogun Carpentry working on custom woodwork"
+                alt="Master craftsman at Original Oak Carpentry working on custom woodwork"
                 className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
