@@ -143,7 +143,7 @@ async function handleGetUserInfo() {
       return NextResponse.json({
         success: true,
         data: {
-          username: 'ogun_carpentry',
+          username: 'originaloakcarpentry',
           media_count: 156,
           account_type: 'BUSINESS',
         },
@@ -228,11 +228,11 @@ async function handleGetWidgetData() {
       success: true,
       data: {
         user: {
-          username: 'ogun_carpentry',
+          username: 'originaloakcarpentry',
           media_count: 156,
         },
         posts: formatInstagramForDisplay(getMockInstagramFeed()),
-        profileUrl: 'https://instagram.com/ogun_carpentry',
+        profileUrl: 'https://instagram.com/originaloakcarpentry',
         followerCount: 1842,
         isConfigured: false,
       },
@@ -362,7 +362,7 @@ export function getInstagramEmbedUrl(postUrl: string) {
 
 // Get Instagram profile URL
 export function getInstagramProfileUrl(username?: string) {
-  const profileUsername = username || 'ogun_carpentry'
+  const profileUsername = username || 'originaloakcarpentry'
   return `https://instagram.com/${profileUsername}`
 }
 
@@ -419,7 +419,7 @@ const getRecencyScore = (timestamp: string) => {
 
 // Instagram hashtag suggestions
 export const getInstagramHashtags = () => ([
-  '#oguncarpentry',
+  '#originaloakcarpentry',
   '#customwoodwork',
   '#metalwork',
   '#craftsmanship',

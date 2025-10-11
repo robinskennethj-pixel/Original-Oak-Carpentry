@@ -7,10 +7,10 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Original Oak Carpentry - Master Craftsmen of Wood & Metal",
+  title: "Original Oak Carpentry - Master Craftsmen of Wood",
   description:
-    "Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to metal fabrication, we build with the strength of Ogun.",
-  keywords: "carpentry, woodworking, custom furniture, metal work, craftsmanship, Ogun, traditional techniques, custom millwork",
+    "Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to precision finishes, we build with the strength and durability of oak.",
+  keywords: "carpentry, woodworking, custom furniture, oak carpentry, traditional techniques, custom millwork, finish carpentry",
   authors: [{ name: "Original Oak Carpentry" }],
   creator: "Original Oak Carpentry",
   publisher: "Original Oak Carpentry",
@@ -19,23 +19,23 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://oguncarpentry.com"),
+  metadataBase: new URL("https://originaloakcarpentry.com"),
   alternates: {
     canonical: "/",
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/ogun_carpentry_logo.webp",
-    apple: "/ogun_carpentry_logo.webp",
+    icon: "/ORIGINAL OAK CARPENTRY LOGO.png",
+    apple: "/ORIGINAL OAK CARPENTRY LOGO.png",
   },
   openGraph: {
-    title: "Original Oak Carpentry - Master Craftsmen of Wood & Metal",
+    title: "Original Oak Carpentry - Master Craftsmen of Wood",
     description: "Professional carpentry services combining traditional craftsmanship with modern techniques.",
-    url: "https://oguncarpentry.com",
+    url: "https://originaloakcarpentry.com",
     siteName: "Original Oak Carpentry",
     images: [
       {
-        url: "/ogun-carpentry-og-image.jpg",
+        url: "/original-oak-carpentry-og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Original Oak Carpentry - Master Craftsmen",
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Original Oak Carpentry - Master Craftsmen of Wood & Metal",
+    title: "Original Oak Carpentry - Master Craftsmen of Wood",
     description: "Professional carpentry services combining traditional craftsmanship with modern techniques.",
-    images: ["/ogun-carpentry-og-image.jpg"],
+    images: ["/original-oak-carpentry-og-image.jpg"],
   },
   robots: {
     index: true,

@@ -231,7 +231,7 @@ export const generateSrcSet = (publicId: string, baseTransformations: ImageTrans
 }
 
 // Upload image function (for admin panel)
-export const uploadImage = async (file: File, folder: string = 'ogun-carpentry') => {
+export const uploadImage = async (file: File, folder: string = 'original-oak-carpentry') => {
   const formData = new FormData()
   formData.append('file', file)
   formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET!)
@@ -399,7 +399,7 @@ export const extractPublicId = (cloudinaryUrl: string) => {
 export const formatBytes = (bytes: number) => {
   if (bytes === 0) return '0 Bytes'
   const k = 1024
-  const sizes = ['Bytes', 'KB', MB', 'GB']
+  const sizes = ["Bytes", "KB", "MB", "GB"]
   const i = Math.floor(Math.log(bytes) / Math.log(k))
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
@@ -420,35 +420,35 @@ export const calculateOptimizationSavings = (originalSize: number, optimizedSize
 // Predefined image collections for different sections
 export const IMAGE_COLLECTIONS = {
   HERO_IMAGES: [
-    'ogun-carpentry/hero-craftsmanship',
-    'ogun-carpentry/hero-workshop',
-    'ogun-carpentry/hero-tools',
+    'original-oak-carpentry/hero-craftsmanship',
+    'original-oak-carpentry/hero-workshop',
+    'original-oak-carpentry/hero-tools',
   ],
   PORTFOLIO_HIGHLIGHTS: [
-    'ogun-carpentry/dining-table-oak',
-    'ogun-carpentry/iron-gates-custom',
-    'ogun-carpentry/workshop-renovation',
-    'ogun-carpentry/armoire-restoration',
-    'ogun-carpentry/metal-railings',
-    'ogun-carpentry/reclaimed-wood-wall',
+    'original-oak-carpentry/dining-table-oak',
+    'original-oak-carpentry/wooden-gates-custom',
+    'original-oak-carpentry/workshop-renovation',
+    'original-oak-carpentry/armoire-restoration',
+    'original-oak-carpentry/wooden-railings',
+    'original-oak-carpentry/reclaimed-wood-wall',
   ],
   SERVICE_IMAGES: {
-    WOODWORK: 'ogun-carpentry/woodwork-services',
-    METALWORK: 'ogun-carpentry/metalwork-services',
-    RESTORATION: 'ogun-carpentry/restoration-services',
-    SUSTAINABLE: 'ogun-carpentry/sustainable-services',
-    CUSTOM: 'ogun-carpentry/custom-services',
-    INSTALLATION: 'ogun-carpentry/installation-services',
+    WOODWORK: 'original-oak-carpentry/woodwork-services',
+    METALWORK: 'original-oak-carpentry/metalwork-services',
+    RESTORATION: 'original-oak-carpentry/restoration-services',
+    SUSTAINABLE: 'original-oak-carpentry/sustainable-services',
+    CUSTOM: 'original-oak-carpentry/custom-services',
+    INSTALLATION: 'original-oak-carpentry/installation-services',
   },
   TEAM_PHOTOS: [
-    'ogun-carpentry/team-master-craftsman',
-    'ogun-carpentry/team-woodworker',
-    'ogun-carpentry/team-metalworker',
+    'original-oak-carpentry/team-master-craftsman',
+    'original-oak-carpentry/team-woodworker',
+    'original-oak-carpentry/team-metalworker',
   ],
   WORKSHOP_VIEWS: [
-    'ogun-carpentry/workshop-interior',
-    'ogun-carpentry/workshop-tools',
-    'ogun-carpentry/workshop-projects',
+    'original-oak-carpentry/workshop-interior',
+    'original-oak-carpentry/workshop-tools',
+    'original-oak-carpentry/workshop-projects',
   ],
 }
 

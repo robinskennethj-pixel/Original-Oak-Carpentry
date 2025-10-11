@@ -24,7 +24,7 @@ export default function AdminLoginPage() {
     // Simple authentication - in production, this should be handled server-side with proper security
     // For now, using environment variables for basic auth
     const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
-    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'ogun2024'
+    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'oak2024'
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // Store authentication status in sessionStorage
@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
             </div>
           </div>
           <h1 className="text-3xl font-bold tracking-tight">
-            <span className="text-primary">Ogun</span> Admin
+            <span className="text-primary">Original Oak</span> Admin
           </h1>
           <p className="text-muted-foreground mt-2">Business Portal Login</p>
         </div>

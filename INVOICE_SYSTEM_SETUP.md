@@ -49,8 +49,8 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-EMAIL_FROM=Original Oak Carpentry <info@ogun-carpentry.com>
-EMAIL_TO=info@ogun-carpentry.com
+EMAIL_FROM=Original Oak Carpentry <info@originaloakcarpentry.com>
+EMAIL_TO=info@originaloakcarpentry.com
 
 # SMS Configuration (Optional - enables SMS reminders)
 TWILIO_ACCOUNT_SID=AC_your_twilio_account_sid
@@ -58,7 +58,7 @@ TWILIO_AUTH_TOKEN=your_twilio_auth_token
 TWILIO_PHONE_NUMBER=+1234567890
 
 # Admin Configuration (Optional - for notifications)
-ADMIN_EMAIL=admin@ogun-carpentry.com
+ADMIN_EMAIL=admin@originaloakcarpentry.com
 ```
 
 ## 📁 File Structure
@@ -145,7 +145,7 @@ app/admin/invoices/
 
 ### Branding
 - **Logo**: Upload your business logo to Stripe dashboard
-- **Colors**: Modify `OGUN_CARPENTRY_BRANDING` object in `stripe-invoicing.ts`
+- **Colors**: Modify `ORIGINAL_OAK_CARPENTRY_BRANDING` object in `stripe-invoicing.ts`
 - **Fonts**: Change font family in PDF generation
 - **Business Info**: Update contact details and license number
 

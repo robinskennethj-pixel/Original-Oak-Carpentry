@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Search, Mail, Phone, UserPlus, FileText, DollarSign } from 'lucide-react'
+import { Search, Mail, Phone, UserPlus, FileText, DollarSign, Users } from 'lucide-react'
 
 // Mock customer data - in real app this would come from API
 const customers = [

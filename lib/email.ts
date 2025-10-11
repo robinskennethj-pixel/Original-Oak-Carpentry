@@ -251,8 +251,8 @@ export const sendInvoiceEmail = async (options: {
 
         <div class="footer">
           <p><strong>Original Oak Carpentry</strong></p>
-          <p>Phone: (813) 555-0123 | Email: info@ogun-carpentry.com</p>
-          <p>License: CBC125847 | Website: ogun-carpentry.com</p>
+          <p>Phone: (813) 555-0123 | Email: info@originaloakcarpentry.com</p>
+          <p>License: CBC125847 | Website: originaloakcarpentry.com</p>
           <p style="font-size: 12px; margin-top: 20px;">This email was sent automatically. Please do not reply to this email.</p>
         </div>
       </body>

@@ -274,7 +274,7 @@ export const getMockMapData = () => ({
     name: "Original Oak Carpentry",
     address: "123 Craftsmanship Lane, Metropolitan Area, ST 12345",
     phone: "(555) 123-4567",
-    website: "https://oguncarpentry.com",
+    website: "https://originaloakcarpentry.com",
     rating: 4.9,
     reviewCount: 127,
     hours: [

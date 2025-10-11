@@ -154,7 +154,7 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
             <p style="color: #666; font-size: 12px; margin-top: 20px;">
               Original Oak Carpentry<br>
               Phone: (813) 555-0123<br>
-              Email: info@ogun-carpentry.com<br>
+              Email: info@originaloakcarpentry.com<br>
               License: CBC125847
             </p>
           </div>

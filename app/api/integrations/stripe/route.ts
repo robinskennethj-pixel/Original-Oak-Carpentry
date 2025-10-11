@@ -321,8 +321,8 @@ export const getMockPaymentData = () => ({
       customer_email: 'john@example.com',
       customer_name: 'John Doe',
       mode: 'payment',
-      success_url: 'https://oguncarpentry.com/payment-success',
-      cancel_url: 'https://oguncarpentry.com/payment-cancel'
+      success_url: 'https://originaloakcarpentry.com/payment-success',
+      cancel_url: 'https://originaloakcarpentry.com/payment-cancel'
     }
   ]
 })

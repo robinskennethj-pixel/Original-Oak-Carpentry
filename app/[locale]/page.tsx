@@ -1,72 +1,78 @@
-import {useTranslations} from 'next-intl';
+import { HeroSection } from '@/components/hero-section'
+import { ServicesSection } from '@/components/services-section'
+import { PortfolioSection } from '@/components/portfolio-section'
+import { TestimonialsSection } from '@/components/testimonials-section'
+import { ContactSection } from '@/components/contact-section'
+import { AboutSection } from '@/components/about-section'
+import { AIChatbot } from '@/components/ai-chatbot'
+import { AICostEstimatorWidget } from '@/components/ai-cost-estimator'
+import { ServiceAreaMap } from '@/components/google-maps'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Bot, Calculator, TrendingUp } from 'lucide-react'
 
-export default function HomePage() {
-  const t = useTranslations('hero');
+export default function HomePage({
+  params: {locale}
+}: {
+  params: {locale: string}
+}) {
+  // Pass locale to components that need it for translations
+  return (
+    <div className="min-h-screen bg-white">
+      <HeroSection locale={locale} />
+      <ServicesSection locale={locale} />
 
-  try {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100">
-        <div className="container mx-auto px-4 py-16">
-          <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              {t('title')}
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              {t('subtitle')}
+      {/* AI Tools Section - Prominently Featured */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              {locale === 'es' ? 'Herramientas de IA Inteligentes' : 'Smart AI Tools'}
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              {locale === 'es'
+                ? 'Aprovecha el poder de la inteligencia artificial para planificar tu proyecto con precisión'
+                : 'Harness the power of artificial intelligence to plan your project with precision'}
             </p>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold text-blue-600 mb-4">English</h3>
-                <p className="text-gray-700">
-                  {t('subtitle')}
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <AICostEstimatorWidget locale={locale} />
+
+            <Card className="border-2 border-secondary shadow-lg">
+              <CardHeader className="bg-secondary/5">
+                <CardTitle className="text-xl flex items-center gap-2">
+                  <Bot className="h-5 w-5" />
+                  {locale === 'es' ? 'Asistente de IA' : 'AI Assistant'}
+                </CardTitle>
+                <CardDescription>
+                  {locale === 'es'
+                    ? 'Chatea con nuestro asistente de IA para respuestas instantáneas'
+                    : 'Chat with our AI assistant for instant answers'}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  {locale === 'es'
+                    ? 'Obtén respuestas instantáneas sobre servicios, precios y disponibilidad'
+                    : 'Get instant answers about services, pricing, and availability'}
                 </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold text-red-600 mb-4">Español</h3>
-                <p className="text-gray-700">
-                  Servicios profesionales de carpintería que combinan artesanía tradicional con técnicas modernas.
+                <p className="text-sm text-muted-foreground">
+                  {locale === 'es'
+                    ? '💡 Consejo: El asistente de IA aparece en la esquina inferior derecha de tu pantalla'
+                    : '💡 Tip: The AI assistant appears in the bottom-right corner of your screen'}
                 </p>
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <div className="inline-flex rounded-md shadow">
-                <a
-                  href="/en"
-                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-                >
-                  {t('cta')}
-                </a>
-              </div>
-              <div className="ml-4 inline-flex rounded-md shadow">
-                <a
-                  href="/es"
-                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-                >
-                  Sitio en Español
-                </a>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </div>
-    );
-  } catch (error) {
-    console.error('HomePage rendering error:', error);
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">Server Error</h1>
-          <p className="text-gray-700 mb-4">
-            Spanish language implementation is complete but server is experiencing issues.
-          </p>
-          <p className="text-sm text-gray-500">
-            Error: {error instanceof Error ? error.message : 'Unknown error'}
-          </p>
-        </div>
-      </div>
-    );
-  }
+      </section>
+
+      <PortfolioSection locale={locale} />
+      <AboutSection locale={locale} />
+      <TestimonialsSection locale={locale} />
+      <ContactSection locale={locale} />
+      <ServiceAreaMap />
+      <AIChatbot locale={locale} />
+    </div>
+  )
 }

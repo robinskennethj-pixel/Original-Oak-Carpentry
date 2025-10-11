@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "next_mcp": {
+      "url": "http://localhost:3000/api/mcp",
+      "description": "MCP tools for Next.js full-stack app (rebuild, lint, diagnostics)"
+    }
+  }
+}

@@ -2,21 +2,22 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Eye } from "lucide-react"
 import Link from "next/link"
+import { AIImageTagging, AIPortfolioGrid } from "@/components/ai-image-tagging"
 
 const portfolioItems = [
   {
     title: "Handcrafted Oak Dining Table",
     category: "Custom Furniture",
     image: "/modern-custom-kitchen-with-wooden-cabinets-and-gra.jpg",
-    description: "Solid oak dining table with traditional joinery and custom metal hardware",
+    description: "Solid oak dining table with traditional joinery and hand-carved details",
     slug: "oak-dining-table",
   },
   {
-    title: "Forged Iron & Wood Gates",
-    category: "Metal Fabrication",
+    title: "Custom Wooden Gates",
+    category: "Outdoor Carpentry",
     image: "/elegant-restaurant-interior-with-custom-wooden-fix.jpg",
-    description: "Custom entrance gates combining forged iron with reclaimed wood panels",
-    slug: "iron-wood-gates",
+    description: "Custom entrance gates crafted from reclaimed wood with traditional joinery",
+    slug: "wooden-gates",
   },
   {
     title: "Master Craftsman's Workshop",
@@ -33,18 +34,32 @@ const portfolioItems = [
     slug: "antique-armoire-restoration",
   },
   {
-    title: "Custom Metal Railings",
-    category: "Architectural Metalwork",
+    title: "Custom Wooden Railings",
+    category: "Architectural Woodwork",
     image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
-    description: "Decorative metal railings with traditional forging techniques",
-    slug: "metal-railings",
+    description: "Decorative wooden railings with traditional carving techniques",
+    slug: "wooden-railings",
   },
   {
     title: "Reclaimed Wood Feature Wall",
     category: "Sustainable Design",
     image: "/modern-office-with-reclaimed-wood-accent-wall.jpg",
-    description: "Feature wall using reclaimed barn wood with custom metal accents",
+    description: "Feature wall using reclaimed barn wood with hand-carved wooden accents",
     slug: "reclaimed-wood-wall",
+  },
+  {
+    title: "Weather-Resistant Outdoor Kitchen",
+    category: "Weather Proofing",
+    image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
+    description: "Marine-grade outdoor kitchen with weather-resistant finishes for coastal conditions",
+    slug: "weather-resistant-kitchen",
+  },
+  {
+    title: "Hurricane-Resistant Shutters",
+    category: "Storm Protection",
+    image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
+    description: "Custom wooden hurricane shutters designed for maximum storm protection",
+    slug: "hurricane-shutters",
   },
 ]
 
@@ -62,12 +77,12 @@ export function PortfolioSection() {
             Our Masterpieces
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance">
-            Forged with <span className="text-primary">Precision</span>,<br />
+            Crafted with <span className="text-primary">Precision</span>,<br />
             Crafted with <span className="text-accent">Passion</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
             Each piece tells a story of traditional craftsmanship meeting modern innovation. 
-            Explore our portfolio of handcrafted furniture, metalwork, and restoration projects.
+            Explore our portfolio of handcrafted furniture, fine woodworking, and restoration projects.
           </p>
         </div>
 
@@ -126,7 +141,25 @@ export function PortfolioSection() {
             </Card>
           ))}
         </div>
-        
+
+        {/* AI Image Analysis Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-full text-sm font-medium mb-6">
+              <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+              AI-Powered Analysis
+            </div>
+            <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+              See Through AI Eyes
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Our AI analyzes materials, techniques, and provides cost estimates. Click any image above to see the intelligent analysis.
+            </p>
+          </div>
+
+          <AIPortfolioGrid locale="en" />
+        </div>
+
         <div className="text-center mt-12">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
             <Link href="/portfolio">

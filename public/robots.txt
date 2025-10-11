@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://ogun-carpentry.com/sitemap.xml
+Sitemap: https://originaloakcarpentry.com/sitemap.xml
 
 # Block admin areas
 Disallow: /admin/

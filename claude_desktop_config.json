@@ -1,0 +1,64 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "c:\\Users\\Kenneth\\Documents\\ORIGINAL OAK CARPENTRY"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "postgresql": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgresql"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite", "--db-path", "C:\\Users\\Kenneth\\Documents\\ORIGINAL OAK CARPENTRY\\database.db"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "disabled": false,
+      "autoApprove": []
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

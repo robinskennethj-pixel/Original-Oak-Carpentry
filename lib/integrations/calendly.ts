@@ -1,5 +1,3 @@
-import { CalendlyEvent, CalendlyUser } from './types'
-
 const CALENDLY_API_URL = 'https://api.calendly.com'
 
 // Calendly API client
@@ -219,7 +217,7 @@ const formatDateTime = (dateTime: string) => {
 
 // Get scheduling link for specific event type
 export const getSchedulingUrl = (eventTypeSlug: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/ogun-carpentry'
+  const baseUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/original-oak-carpentry'
   return `${baseUrl}/${eventTypeSlug}`
 }
 
@@ -255,7 +253,7 @@ export const CALENDLY_EVENT_TYPES = {
 export const getMockCalendlyData = () => ({
   user: {
     name: 'Original Oak Carpentry',
-    email: 'info@oguncarpentry.com',
+    email: 'info@originaloakcarpentry.com',
     timezone: 'America/New_York',
   },
   eventTypes: [
@@ -264,7 +262,7 @@ export const getMockCalendlyData = () => ({
       name: 'Free Consultation',
       active: true,
       slug: 'free-consultation',
-      scheduling_url: 'https://calendly.com/ogun-carpentry/free-consultation',
+      scheduling_url: 'https://calendly.com/original-oak-carpentry/free-consultation',
       duration: 30,
       kind: 'solo',
       pooling_type: null,
@@ -281,7 +279,7 @@ export const getMockCalendlyData = () => ({
       name: 'Project Estimate',
       active: true,
       slug: 'project-estimate',
-      scheduling_url: 'https://calendly.com/ogun-carpentry/project-estimate',
+      scheduling_url: 'https://calendly.com/original-oak-carpentry/project-estimate',
       duration: 60,
       kind: 'solo',
       pooling_type: null,
@@ -533,5 +531,5 @@ export const getMockSchedulingData = () => ({
   nextAvailable: '2024-09-25T14:00:00Z',
   averageResponseTime: '24 hours',
   consultationDuration: 30,
-  bookingUrl: 'https://calendly.com/ogun-carpentry/free-consultation',
+  bookingUrl: 'https://calendly.com/original-oak-carpentry/free-consultation',
 })

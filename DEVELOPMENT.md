@@ -1,8 +1,8 @@
-# Development Guide - Ogun Carpentry
+# Development Guide - Original Oak Carpentry
 
 ## 🚀 Quick Start
 
-This guide will help you set up the development environment for the Ogun Carpentry website.
+This guide will help you set up the development environment for the Original Oak Carpentry website.
 
 ## 📋 Prerequisites
 
@@ -16,7 +16,7 @@ This guide will help you set up the development environment for the Ogun Carpent
 ### 1. Clone the Repository
 ```bash
 git clone [YOUR_PRIVATE_REPO_URL]
-cd ogun-carpentry
+cd original-oak-carpentry
 ```
 
 ### 2. Install Dependencies
@@ -37,8 +37,8 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-EMAIL_FROM=Ogun Carpentry <info@oguncarpentry.com>
-EMAIL_TO=info@oguncarpentry.com
+EMAIL_FROM=Original Oak Carpentry <info@originaloakcarpentry.com>
+EMAIL_TO=info@originaloakcarpentry.com
 
 # Optional - for analytics
 VERCEL_ANALYTICS_ID=your-analytics-id

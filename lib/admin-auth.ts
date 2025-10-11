@@ -40,7 +40,7 @@ export function useAdminAuth() {
 
   const login = (username: string, password: string): boolean => {
     const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
-    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'ogun2024'
+    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'oak2024'
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       sessionStorage.setItem('adminAuthenticated', 'true')

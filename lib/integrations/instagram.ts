@@ -142,7 +142,7 @@ export const getMockInstagramFeed = (): InstagramMedia[] => ([
     media_url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1080',
     permalink: 'https://instagram.com/p/mock1',
     timestamp: '2024-09-20T10:00:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 142,
     comments_count: 23,
   },
@@ -153,18 +153,18 @@ export const getMockInstagramFeed = (): InstagramMedia[] => ([
     media_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1080',
     permalink: 'https://instagram.com/p/mock2',
     timestamp: '2024-09-18T14:30:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 89,
     comments_count: 15,
   },
   {
     id: 'mock-3',
-    caption: 'Behind the scenes in our workshop. Every piece is crafted with precision and care. #workshop #tools #craftsmanship #oguncarpentry',
+    caption: 'Behind the scenes in our workshop. Every piece is crafted with precision and care. #workshop #tools #craftsmanship #originaloakcarpentry',
     media_type: 'IMAGE',
     media_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1080',
     permalink: 'https://instagram.com/p/mock3',
     timestamp: '2024-09-16T09:15:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 201,
     comments_count: 31,
   },
@@ -175,7 +175,7 @@ export const getMockInstagramFeed = (): InstagramMedia[] => ([
     media_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1080',
     permalink: 'https://instagram.com/p/mock4',
     timestamp: '2024-09-14T16:45:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 167,
     comments_count: 28,
   },
@@ -186,7 +186,7 @@ export const getMockInstagramFeed = (): InstagramMedia[] => ([
     media_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1080',
     permalink: 'https://instagram.com/p/mock5',
     timestamp: '2024-09-12T11:20:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 134,
     comments_count: 19,
   },
@@ -197,7 +197,7 @@ export const getMockInstagramFeed = (): InstagramMedia[] => ([
     media_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1080',
     permalink: 'https://instagram.com/p/mock6',
     timestamp: '2024-09-10T13:10:00Z',
-    username: 'ogun_carpentry',
+    username: 'originaloakcarpentry',
     like_count: 98,
     comments_count: 14,
   },
@@ -213,7 +213,7 @@ export const getInstagramUserInfo = async (accessToken: string, userId: string) 
 
     return {
       id: 'mock-user',
-      username: 'ogun_carpentry',
+      username: 'originaloakcarpentry',
       account_type: 'BUSINESS',
       media_count: 156
     }
@@ -414,11 +414,11 @@ export const getInstagramWidgetData = async (accessToken: string, userId: string
 
     return {
       user: {
-        username: 'ogun_carpentry',
+        username: 'originaloakcarpentry',
         media_count: 156,
       },
       posts: formatInstagramForDisplay(getMockInstagramFeed()),
-      profileUrl: 'https://instagram.com/ogun_carpentry',
+      profileUrl: 'https://instagram.com/originaloakcarpentry',
       followerCount: 1842,
       isConfigured: false,
     }
@@ -449,7 +449,7 @@ export const createInstagramAPIEndpoints = () => ({
   async getUserInfo() {
     if (!isInstagramConfigured()) {
       return {
-        username: 'ogun_carpentry',
+        username: 'originaloakcarpentry',
         media_count: 156,
       }
     }

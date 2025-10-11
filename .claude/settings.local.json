@@ -25,7 +25,8 @@
       "Bash(node:*)",
       "Bash(npm ci:*)",
       "Bash(git remote add:*)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "Bash(claude mcp:*)"
     ],
     "deny": [],
     "ask": []

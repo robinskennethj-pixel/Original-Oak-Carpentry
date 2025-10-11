@@ -1,0 +1,64 @@
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+
+export default async function LocaleLayout({
+  children,
+  params: {locale}
+}: {
+  children: React.ReactNode;
+  params: {locale: string};
+}) {
+  // Simplified approach to avoid Jest worker issues
+  const validLocale = locale === 'es' ? 'es' : 'en';
+
+  try {
+    const messages = await getMessages({locale: validLocale});
+
+    return (
+      <html lang={validLocale}>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>
+            {validLocale === 'es' ? 'Carpintería Oak Original - Servicios Profesionales' : 'Original Oak Carpentry - Professional Services'}
+          </title>
+        </head>
+        <body>
+          <NextIntlClientProvider locale={validLocale} messages={messages}>
+            <div className="min-h-screen bg-white">
+              {children}
+            </div>
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    );
+  } catch (error) {
+    console.error('Error loading messages:', error);
+
+    // Fallback with basic messages
+    const fallbackMessages = {
+      hero: {
+        title: validLocale === 'es' ? 'Carpintería Oak Original' : 'Original Oak Carpentry',
+        subtitle: validLocale === 'es' ? 'Servicios profesionales de carpintería' : 'Professional carpentry services',
+        cta: validLocale === 'es' ? 'Obtener Cotización' : 'Get Quote'
+      }
+    };
+
+    return (
+      <html lang={validLocale}>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>
+            {validLocale === 'es' ? 'Carpintería Oak Original - Servicios Profesionales' : 'Original Oak Carpentry - Professional Services'}
+          </title>
+        </head>
+        <body>
+          <NextIntlClientProvider locale={validLocale} messages={fallbackMessages}>
+            <div className="min-h-screen bg-white">
+              {children}
+            </div>
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    );
+  }
+}

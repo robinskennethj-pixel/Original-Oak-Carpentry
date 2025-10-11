@@ -119,8 +119,8 @@ export const getNearbyPlaces = async (lat: number, lng: number, radius: number =
       rating: place.rating,
       place_id: place.place_id,
       location: {
-        lat: place.geometry.location.lat,
-        lng: place.geometry.location.lng
+        lat: place.geometry?.location.lat || 0,
+        lng: place.geometry?.location.lng || 0
       }
     }))
   } catch (error) {
@@ -137,7 +137,8 @@ export const getPlacePhoto = async (photoReference: string, maxWidth: number = 4
         photoreference: photoReference,
         maxwidth: maxWidth,
         key: process.env.GOOGLE_MAPS_API_KEY!
-      }
+      },
+      responseType: 'stream'
     })
 
     return response.data
@@ -152,7 +153,7 @@ export const getMockBusinessInfo = (): BusinessInfo => ({
   name: "Original Oak Carpentry",
   address: "123 Craftsmanship Lane, Metropolitan Area, ST 12345",
   phone: "(555) 123-4567",
-  website: "https://oguncarpentry.com",
+  website: "https://originaloakcarpentry.com",
   rating: 4.9,
   reviewCount: 127,
   hours: [

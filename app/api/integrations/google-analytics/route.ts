@@ -295,7 +295,7 @@ async function handleSendEvent(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendEvent({
@@ -342,7 +342,7 @@ async function handleSendPageView(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendPageView({
@@ -391,7 +391,7 @@ async function handleSendEcommerceEvent(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendEcommerceEvent(validatedData.eventName, {
@@ -439,7 +439,7 @@ async function handleSendContactForm(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendContactFormSubmission(formType, success)
@@ -471,7 +471,7 @@ async function handleSendBooking(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendBookingEvent(eventType, duration, location)
@@ -503,7 +503,7 @@ async function handleSendPayment(data: any) {
     const ga = new GoogleAnalyticsAPI(
       process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!,
       process.env.GOOGLE_ANALYTICS_API_SECRET!,
-      'ogun-carpentry-client'
+      'original-oak-carpentry-client'
     )
 
     await ga.sendEcommerceEvent('purchase', {

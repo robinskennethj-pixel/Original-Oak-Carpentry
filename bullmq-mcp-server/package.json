@@ -1,0 +1,23 @@
+{
+  "name": "bullmq-mcp-server",
+  "version": "1.0.0",
+  "description": "BullMQ-based MCP server with Docker",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "gateway": "node src/mcp-gateway.js",
+    "gateway:dev": "node --watch src/mcp-gateway.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "bullmq": "^4.0.0",
+    "ioredis": "^5.3.0",
+    "express": "^4.18.0",
+    "cors": "^2.8.5"
+  },
+  "keywords": ["mcp", "bullmq", "queue", "docker"],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -108,7 +108,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="website">Website</Label>
-                  <Input id="website" defaultValue="https://ogun-carpentry.com" />
+                  <Input id="website" defaultValue="https://originaloakcarpentry.com" />
                 </div>
               </div>
             </CardContent>
@@ -248,7 +248,7 @@ export default function SettingsPage() {
                 <Textarea
                   id="companyDescription"
                   rows={4}
-                  defaultValue="Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to metal fabrication, we build with the strength of Ogun."
+                  defaultValue="Professional carpentry services combining traditional craftsmanship with modern techniques. From custom woodwork to finish carpentry, we build with the strength and durability of oak."
                 />
               </div>
             </CardContent>

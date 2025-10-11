@@ -144,7 +144,9 @@ export function ContactSection() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="custom-furniture">Custom Furniture</SelectItem>
-                    <SelectItem value="metal-fabrication">Metal Fabrication</SelectItem>
+                    <SelectItem value="weather-proofing">Weather Proofing</SelectItem>
+                    <SelectItem value="hurricane-resistant">Hurricane-Resistant Construction</SelectItem>
+                    <SelectItem value="outdoor-carpentry">Outdoor Carpentry</SelectItem>
                     <SelectItem value="restoration">Restoration & Repair</SelectItem>
                     <SelectItem value="bespoke-commission">Bespoke Commission</SelectItem>
                     <SelectItem value="architectural-millwork">Architectural Millwork</SelectItem>
@@ -194,7 +196,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-card-foreground mb-1">Email</h3>
-                    <p className="text-muted-foreground text-lg">info@oguncarpentry.com</p>
+                    <p className="text-muted-foreground text-lg">info@originaloakcarpentry.com</p>
                     <p className="text-sm text-muted-foreground">We'll respond within 24 hours</p>
                   </div>
                 </div>

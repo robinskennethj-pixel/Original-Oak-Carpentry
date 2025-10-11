@@ -326,7 +326,7 @@ export async function handleWebhook(request: NextRequest) {
 // Get scheduling URL for specific event type
 export function getSchedulingUrl(eventType: keyof typeof CALENDLY_EVENT_TYPES) {
   if (isCalendlyConfigured()) {
-    return `https://calendly.com/ogun-carpentry/${CALENDLY_EVENT_TYPES[eventType].slug}`
+    return `https://calendly.com/original-oak-carpentry/${CALENDLY_EVENT_TYPES[eventType].slug}`
   }
   return '#calendly-not-configured'
 }
@@ -362,7 +362,7 @@ export function getMockSchedulingData() {
     nextAvailable: '2024-09-25T14:00:00Z',
     averageResponseTime: '24 hours',
     consultationDuration: 30,
-    bookingUrl: 'https://calendly.com/ogun-carpentry/free-consultation',
+    bookingUrl: 'https://calendly.com/original-oak-carpentry/free-consultation',
   }
 }
 

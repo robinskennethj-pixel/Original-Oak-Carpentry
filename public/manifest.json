@@ -1,19 +1,19 @@
 {
   "name": "Original Oak Carpentry",
   "short_name": "Original Oak Carpentry",
-  "description": "Master Craftsmen of Wood & Metal - Professional carpentry services in Florida",
+  "description": "Master Craftsmen of Wood - Professional carpentry services in Florida",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#2D5016",
   "theme_color": "#2D5016",
   "icons": [
     {
-      "src": "/ogun_carpentry_logo.webp",
+      "src": "/original_oak_carpentry_logo.webp",
       "sizes": "192x192",
       "type": "image/webp"
     },
     {
-      "src": "/ogun_carpentry_logo.webp",
+      "src": "/original_oak_carpentry_logo.webp",
       "sizes": "512x512",
       "type": "image/webp"
     }

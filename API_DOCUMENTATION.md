@@ -1,8 +1,8 @@
-# Ogun Carpentry API Documentation
+# Original Oak Carpentry API Documentation
 
 ## 🚀 Overview
 
-This document describes the RESTful API endpoints for the Ogun Carpentry website. All APIs are built with Next.js 14 App Router and TypeScript.
+This document describes the RESTful API endpoints for the Original Oak Carpentry website. All APIs are built with Next.js 14 App Router and TypeScript.
 
 ## 📋 Base URL
 
@@ -332,8 +332,8 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-EMAIL_FROM=Ogun Carpentry <info@oguncarpentry.com>
-EMAIL_TO=info@oguncarpentry.com
+EMAIL_FROM=Original Oak Carpentry <info@originaloakcarpentry.com>
+EMAIL_TO=info@originaloakcarpentry.com
 
 # Analytics
 VERCEL_ANALYTICS_ID=your-analytics-id

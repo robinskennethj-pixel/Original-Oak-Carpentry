@@ -1,4 +1,4 @@
-# Original Oak Carpentry - Master Craftsmen of Wood & Metal
+# Original Oak Carpentry - Master Craftsmen of Wood
 
 A modern, full-stack Next.js application for Original Oak Carpentry, showcasing traditional craftsmanship combined with contemporary web design. Built with the strength and durability of oak, representing timeless craftsmanship and quality.
 
@@ -32,7 +32,7 @@ Original Oak Carpentry represents the perfect fusion of traditional craftsmanshi
 ### 🏗️ Pages & Sections
 - **Homepage** - Hero section, services overview, portfolio highlights, testimonials
 - **About** - Company story, values, expertise, and team information
-- **Services** - Detailed service offerings with custom woodwork and metal fabrication
+- **Services** - Detailed service offerings with custom woodwork and finish carpentry
 - **Portfolio** - Showcase of completed projects and masterpieces
 - **Testimonials** - Client reviews and success stories
 - **Contact** - Contact form and business information
@@ -76,7 +76,7 @@ Original Oak Carpentry represents the perfect fusion of traditional craftsmanshi
 1. **Clone the repository**
    ```bash
    git clone [YOUR_PRIVATE_REPO_URL]
-   cd ogun-carpentry
+   cd original-oak-carpentry
    ```
 
 2. **Install dependencies**
@@ -109,7 +109,7 @@ Original Oak Carpentry represents the perfect fusion of traditional craftsmanshi
 ## 🏗️ Project Structure
 
 ```
-ogun-carpentry/
+original-oak-carpentry/
 ├── app/                    # Next.js App Router pages
 │   ├── about/             # About page
 │   ├── api/               # API routes
@@ -219,8 +219,8 @@ This project is proprietary and confidential. All rights reserved.
 ## 📞 Contact Information
 
 **Original Oak Carpentry**
-- Website: [https://oguncarpentry.com](https://oguncarpentry.com)
-- Email: info@oguncarpentry.com
+- Website: [https://originaloakcarpentry.com](https://originaloakcarpentry.com)
+- Email: info@originaloakcarpentry.com
 - Phone: (555) 123-4567
 - Workshop: Metropolitan Area
 

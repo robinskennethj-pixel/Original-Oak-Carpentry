@@ -10,7 +10,7 @@ export default function ServicesPage() {
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            <span className="text-primary">Ogun</span> Carpentry
+            <span className="text-primary">Original Oak</span> Carpentry
           </Link>
           <nav className="hidden md:flex space-x-8">
             <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
@@ -37,7 +37,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">Our Services</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Master craftsmanship combining traditional techniques with modern precision. From custom woodwork to forged metal fabrication.
+            Master craftsmanship combining traditional techniques with modern precision. From custom woodwork to fine finishing and weather-resistant construction.
           </p>
         </div>
       </section>

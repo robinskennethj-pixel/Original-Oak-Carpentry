@@ -2,7 +2,7 @@ import Stripe from 'stripe'
 import { z } from 'zod'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
+  apiVersion: '2025-08-27.basil',
 })
 
 // Invoice validation schema
@@ -32,8 +32,8 @@ export const invoiceSchema = z.object({
 export type InvoiceData = z.infer<typeof invoiceSchema>
 
 // Original Oak Carpentry brand styling for invoices
-export const OGUN_CARPENTRY_BRANDING = {
-  logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/ogun_carpentry_logo.webp` : '/ogun_carpentry_logo.webp',
+export const ORIGINAL_OAK_CARPENTRY_BRANDING = {
+  logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/original_oak_carpentry_logo.webp` : '/original_oak_carpentry_logo.webp',
   primaryColor: '#2D5016', // Forest Green
   accentColor: '#B85C38', // Rust Orange
   secondaryColor: '#D4AF37', // Gold
@@ -48,8 +48,8 @@ export const OGUN_CARPENTRY_BRANDING = {
     country: 'US',
   },
   phone: '(813) 555-0123',
-  email: 'info@ogun-carpentry.com',
-  website: 'https://ogun-carpentry.com',
+  email: 'info@originaloakcarpentry.com',
+  website: 'https://originaloakcarpentry.com',
   licenseNumber: 'CBC125847',
 }
 
@@ -123,7 +123,7 @@ export const createBrandedInvoice = async (invoiceData: InvoiceData) => {
         },
         {
           name: 'License Number',
-          value: OGUN_CARPENTRY_BRANDING.licenseNumber,
+          value: ORIGINAL_OAK_CARPENTRY_BRANDING.licenseNumber,
         },
       ],
       footer: `Thank you for choosing Original Oak Carpentry! ${validatedData.notes || ''}`,
@@ -135,13 +135,6 @@ export const createBrandedInvoice = async (invoiceData: InvoiceData) => {
         originalTotal: validatedData.totalAmount.toString(),
         taxAmount: validatedData.taxAmount?.toString() || '0',
         discountAmount: validatedData.discountAmount?.toString() || '0',
-      },
-      // Branding
-      customizations: {
-        logo_url: OGUN_CARPENTRY_BRANDING.logoUrl,
-        primary_color: OGUN_CARPENTRY_BRANDING.primaryColor,
-        secondary_color: OGUN_CARPENTRY_BRANDING.accentColor,
-        font: OGUN_CARPENTRY_BRANDING.font,
       },
     })
 
@@ -177,7 +170,7 @@ export const createBrandedInvoice = async (invoiceData: InvoiceData) => {
 export const finalizeAndSendInvoice = async (invoiceId: string) => {
   try {
     // Finalize the invoice
-    const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoiceId)
+    await stripe.invoices.finalizeInvoice(invoiceId)
 
     // Send the invoice
     const sentInvoice = await stripe.invoices.sendInvoice(invoiceId)
@@ -396,5 +389,5 @@ export default {
   voidInvoice,
   getInvoiceStats,
   getMockInvoiceData,
-  OGUN_CARPENTRY_BRANDING,
+  ORIGINAL_OAK_CARPENTRY_BRANDING,
 }

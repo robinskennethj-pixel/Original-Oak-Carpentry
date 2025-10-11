@@ -6,7 +6,7 @@
 
 If you discover a security vulnerability within this project, please follow these steps:
 
-1. **Email Security Reports**: Send an email to `security@oguncarpentry.com`
+1. **Email Security Reports**: Send an email to `security@originaloakcarpentry.com`
 2. **Include Details**: Provide detailed information about the vulnerability including:
    - Type of vulnerability
    - Steps to reproduce

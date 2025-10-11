@@ -17,7 +17,7 @@ export default function ThankYouPage() {
             We've received your project inquiry and will respond within 24 hours.
           </p>
           <p className="text-muted-foreground">
-            We look forward to discussing your vision and bringing it to life with the strength and spirit of Ogun.
+            We look forward to discussing your vision and bringing it to life with the strength and durability of oak.
           </p>
         </div>
 

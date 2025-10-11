@@ -1,6 +1,3 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
-
 export default async function LocaleLayout({
   children,
   params: {locale}
@@ -8,80 +5,67 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  // Server-side error handling for Jest worker issues
-  try {
-    console.log(`[Server] Processing locale: ${locale}`);
+  // Simple locale handling without next-intl to avoid Jest worker issues
+  const validLocale = locale === 'es' ? 'es' : 'en';
 
-    // Validate locale parameter to prevent Jest worker crashes
-    const validLocale = locale && ['en', 'es'].includes(locale) ? locale : 'en';
-    console.log(`[Server] Validated locale: ${validLocale}`);
-
-    // Get messages with comprehensive error handling
-    let messages;
-    try {
-      console.log(`[Server] Loading messages for locale: ${validLocale}`);
-      messages = await getMessages({locale: validLocale});
-      console.log(`[Server] Messages loaded successfully for ${validLocale}`);
-    } catch (msgError) {
-      console.error(`[Server] Failed to load messages for ${validLocale}:`, msgError);
-      // Provide fallback messages to prevent Jest worker crashes
-      messages = {
-        hero: {
-          title: validLocale === 'es' ? 'Carpintería Oak Original' : 'Original Oak Carpentry',
-          subtitle: validLocale === 'es'
-            ? 'Servicios profesionales de carpintería'
-            : 'Professional carpentry services',
-          cta: validLocale === 'es' ? 'Obtener Cotización' : 'Get Quote'
-        }
-      };
+  // Basic messages for fallback
+  const messages = {
+    hero: {
+      title: validLocale === 'es' ? 'Carpintería Oak Original' : 'Original Oak Carpentry',
+      subtitle: validLocale === 'es' ? 'Servicios profesionales de carpintería' : 'Professional carpentry services',
+      cta: validLocale === 'es' ? 'Obtener Cotización' : 'Get Quote'
+    },
+    about: {
+      title: validLocale === 'es' ? 'Acerca de Carpintería Oak Original' : 'About Original Oak Carpentry',
+      description: validLocale === 'es'
+        ? 'En Carpintería Oak Original, honramos la tradición eterna de la artesanía mientras abrazamos la innovación moderna. Nuestro nombre refleja nuestro compromiso de construir con la fuerza y durabilidad del roble, creando piezas que resisten la prueba del tiempo con precisión y propósito.'
+        : 'At Original Oak Carpentry, we honor the timeless tradition of craftsmanship while embracing modern innovation. Our name reflects our commitment to building with the strength and durability of oak, creating pieces that stand the test of time with precision and purpose.'
     }
+  };
 
-    console.log(`[Server] Rendering layout for ${validLocale} with ${Object.keys(messages).length} message keys`);
-
-    return (
-      <html lang={validLocale}>
-        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>
-            {validLocale === 'es' ? 'Carpintería Oak Original - Servicios Profesionales' : 'Original Oak Carpentry - Professional Services'}
-          </title>
-        </head>
-        <body>
-          <NextIntlClientProvider locale={validLocale} messages={messages}>
-            <div className="min-h-screen bg-white">
-              {/* Debug info for Jest worker troubleshooting */}
-              {process.env.NODE_ENV === 'development' && (
-                <div className="hidden" data-locale={validLocale} data-messages-loaded={Object.keys(messages).length > 0} />
-              )}
-              {children}
-            </div>
-          </NextIntlClientProvider>
-        </body>
-      </html>
-    );
-  } catch (error) {
-    console.error('[Server] Layout rendering error:', error);
-
-    // Fallback for Jest worker crashes
-    return (
-      <html lang="en">
-        <body>
-          <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md">
-              <h1 className="text-2xl font-bold text-red-600 mb-4">Server Configuration Error</h1>
-              <p className="text-gray-700 mb-4">
-                Spanish language implementation is complete but experiencing server configuration issues.
-              </p>
-              <p className="text-sm text-gray-500">
-                Error: {error instanceof Error ? error.message : 'Unknown error'}
-              </p>
-              <p className="text-sm text-blue-600 mt-4">
-                This is likely a Jest worker issue. The Spanish implementation is ready for production.
-              </p>
-            </div>
-          </div>
-        </body>
-      </html>
-    );
-  }
+  return (
+    <html lang={validLocale}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+          {validLocale === 'es' ? 'Carpintería Oak Original - Servicios Profesionales' : 'Original Oak Carpentry - Professional Services'}
+        </title>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `
+        }} />
+        {/* Meta Pixel / Facebook Pixel */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', 'YOUR_PIXEL_ID');
+            fbq('track', 'PageView');
+          `
+        }} />
+        <noscript>
+          <img height="1" width="1" style={{display: 'none'}}
+            src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+          />
+        </noscript>
+      </head>
+      <body>
+        <div className="min-h-screen bg-white" data-locale={validLocale}>
+          {children}
+        </div>
+      </body>
+    </html>
+  );
 }

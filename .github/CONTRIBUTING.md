@@ -1,6 +1,6 @@
-# Contributing to Ogun Carpentry
+# Contributing to Original Oak Carpentry
 
-Thank you for your interest in contributing to the Ogun Carpentry website! We welcome contributions from the community.
+Thank you for your interest in contributing to the Original Oak Carpentry website! We welcome contributions from the community.
 
 ## 🚀 Getting Started
 
@@ -13,8 +13,8 @@ Thank you for your interest in contributing to the Ogun Carpentry website! We we
 
 1. **Fork and clone the repository**
    ```bash
-   git clone https://github.com/your-username/ogun-carpentry.git
-   cd ogun-carpentry
+   git clone https://github.com/your-username/original-oak-carpentry.git
+   cd original-oak-carpentry
    ```
 
 2. **Install dependencies**

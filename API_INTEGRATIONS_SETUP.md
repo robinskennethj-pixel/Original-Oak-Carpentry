@@ -1,6 +1,6 @@
-# Ogun Carpentry - Third-Party API Integrations Setup Guide
+# Original Oak Carpentry - Third-Party API Integrations Setup Guide
 
-This guide provides step-by-step instructions for setting up all third-party API integrations for the Ogun Carpentry website.
+This guide provides step-by-step instructions for setting up all third-party API integrations for the Original Oak Carpentry website.
 
 ## 🗺️ **Google Maps & Places API**
 
@@ -269,8 +269,8 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASS=your-app-password
-EMAIL_FROM=Ogun Carpentry <info@oguncarpentry.com>
-EMAIL_TO=info@oguncarpentry.com
+EMAIL_FROM=Original Oak Carpentry <info@originaloakcarpentry.com>
+EMAIL_TO=info@originaloakcarpentry.com
 
 # Google APIs
 GOOGLE_MAPS_API_KEY=your_google_maps_api_key
@@ -304,14 +304,14 @@ INSTAGRAM_APP_ID=your_instagram_app_id
 INSTAGRAM_APP_SECRET=your_instagram_app_secret
 
 # Site Configuration
-NEXT_PUBLIC_SITE_URL=https://oguncarpentry.com
-NEXT_PUBLIC_COMPANY_NAME=Ogun Carpentry
+NEXT_PUBLIC_SITE_URL=https://originaloakcarpentry.com
+NEXT_PUBLIC_COMPANY_NAME=Original Oak Carpentry
 NEXT_PUBLIC_COMPANY_PHONE=(555) 123-4567
-NEXT_PUBLIC_COMPANY_EMAIL=info@oguncarpentry.com
+NEXT_PUBLIC_COMPANY_EMAIL=info@originaloakcarpentry.com
 
 # Security
 NEXTAUTH_SECRET=your-secret-key-here
-NEXTAUTH_URL=https://oguncarpentry.com
+NEXTAUTH_URL=https://originaloakcarpentry.com
 ```
 
 ---

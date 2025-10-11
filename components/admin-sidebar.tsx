@@ -67,7 +67,7 @@ export function AdminSidebar() {
             <Hammer className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="text-lg font-bold">Ogun Admin</h2>
+            <h2 className="text-lg font-bold">Original Oak Admin</h2>
             <p className="text-sm text-muted-foreground">Business Portal</p>
           </div>
         </Link>

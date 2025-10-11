@@ -23,11 +23,11 @@ export default function AboutPage() {
             Our Story
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Forged by <span className="text-primary">Tradition</span>,<br />
+            Rooted in <span className="text-primary">Tradition</span>,<br />
             Driven by <span className="text-accent">Passion</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Master craftsmen combining traditional techniques with modern innovation to create exceptional woodwork and metal fabrication.
+            Master craftsmen combining traditional techniques with modern innovation to create exceptional woodwork and fine carpentry.
           </p>
         </div>
       </section>
@@ -44,8 +44,8 @@ export default function AboutPage() {
                 precision and innovation.
               </p>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Our master craftsmen bring decades of experience in both woodworking and metal fabrication, 
-                combining time-honored techniques with cutting-edge tools and materials. Every piece we create 
+                Our master craftsmen bring decades of experience in fine woodworking and traditional carpentry,
+                combining time-honored techniques with cutting-edge tools and materials. Every piece we create
                 carries the strength, durability, and artistic excellence that defines our work.
               </p>
               <p className="text-muted-foreground leading-relaxed">
@@ -112,7 +112,7 @@ export default function AboutPage() {
               <div className="w-2 h-2 bg-accent rounded-full"></div>
               Our Principles
             </div>
-            <h2 className="text-3xl font-bold text-foreground mb-6">Forged in <span className="text-primary">Excellence</span></h2>
+            <h2 className="text-3xl font-bold text-foreground mb-6">Rooted in <span className="text-primary">Excellence</span></h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               The values that guide every piece we create and every relationship we build.
             </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">Master Craftsmanship</h3>
                 <p className="text-muted-foreground">
-                  Every piece is forged with traditional techniques and modern precision, ensuring exceptional quality 
+                  Every piece is crafted with traditional techniques and modern precision, ensuring exceptional quality
                   that stands the test of time.
                 </p>
               </CardContent>
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 group-hover:text-accent transition-colors duration-300">Durability & Strength</h3>
                 <p className="text-muted-foreground">
-                  Built with the strength of Ogun, our pieces are designed to last generations, combining 
+                  Built with the strength of oak, our pieces are designed to last generations, combining
                   beauty with uncompromising durability.
                 </p>
               </CardContent>

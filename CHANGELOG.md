@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Ogun Carpentry website will be documented in this file.
+All notable changes to the Original Oak Carpentry website will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - ✅ Complete website implementation with Next.js 14
-- ✅ Authentic Ogun Carpentry brand color scheme applied
+- ✅ Authentic Original Oak Carpentry brand color scheme applied
 - ✅ All homepage buttons made functional with proper navigation
 - ✅ Comprehensive contact form with API integration
 - ✅ Service pages with individual detail views
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Contact Section**: Fully functional contact form with validation
 - **Footer**: Social media links and navigation
 - **Navigation**: Complete header navigation with mobile menu
-- **Color System**: CSS custom properties with Ogun Carpentry brand colors
+- **Color System**: CSS custom properties with Original Oak Carpentry brand colors
 - **Typography**: Geist fonts with proper hierarchy
 - **Components**: Modular, reusable component architecture
 

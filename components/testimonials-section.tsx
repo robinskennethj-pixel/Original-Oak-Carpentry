@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, Quote } from "lucide-react"
+import { AISentimentAnalyzer, AIHighlightedReview } from "@/components/ai-sentiment-analyzer"
 
 const testimonials = [
   {
@@ -14,7 +15,7 @@ const testimonials = [
     name: "Aisha Johnson",
     role: "Restaurant Owner",
     content:
-      "The custom metal gates they forged for our restaurant entrance are absolutely stunning. Every detail shows the master craftsman's touch.",
+      "The custom wooden doors they crafted for our restaurant entrance are absolutely stunning. Every detail shows the master craftsman's touch.",
     rating: 5,
     image: "/happy-homeowner-woman.jpg",
   },
@@ -42,7 +43,7 @@ export function TestimonialsSection() {
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full -translate-x-48 -translate-y-48"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full translate-x-40 translate-y-40"></div>
-      
+
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
@@ -50,13 +51,27 @@ export function TestimonialsSection() {
             Client Stories
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance">
-            Forged in <span className="text-primary">Trust</span>,<br />
+            Rooted in <span className="text-primary">Trust</span>,<br />
             Built on <span className="text-accent">Excellence</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Our clients' satisfaction is the true measure of our craft. Hear from those who have experienced 
+            Our clients' satisfaction is the true measure of our craft. Hear from those who have experienced
             the Original Oak Carpentry difference firsthand.
           </p>
+        </div>
+
+        {/* AI Sentiment Analysis Section */}
+        <div className="mb-16">
+          <div className="mb-8">
+            <h3 className="text-2xl lg:text-3xl font-bold text-center text-foreground mb-4">
+              AI-Powered Review Analysis
+            </h3>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              Discover what our clients really think with intelligent sentiment analysis that highlights
+              satisfaction patterns and key themes.
+            </p>
+          </div>
+          <AISentimentAnalyzer locale="en" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
