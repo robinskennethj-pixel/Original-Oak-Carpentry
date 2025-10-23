@@ -1,0 +1,126 @@
+version: '3.9'
+services:
+  orchestrator:
+    image: oguncarpentry-orchestrator:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    ports:
+      - target: 4000
+        published: 4000
+        protocol: tcp
+    configs:
+      - source: orchestrator_env
+        target: /etc/secrets/orchestrator.env
+    secrets:
+      - jwt_secret
+      - webhook_secret
+    networks:
+      - orchestrator_net
+
+  rag_service:
+    image: python_services-rag_service:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.2'
+          memory: 256M
+    networks:
+      - orchestrator_net
+
+  docling_service:
+    image: python_services-docling_service:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    networks:
+      - orchestrator_net
+
+  redis:
+    image: redis:7-alpine
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+    volumes:
+      - redis_data:/data
+    networks:
+      - orchestrator_net
+
+  prometheus:
+    image: prom/prometheus:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    configs:
+      - source: prometheus_config
+        target: /etc/prometheus/prometheus.yml
+    ports:
+      - target: 9090
+        published: 9090
+        protocol: tcp
+    networks:
+      - orchestrator_net
+
+  grafana:
+    image: grafana/grafana-oss:10.0.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+    networks:
+      - orchestrator_net
+
+configs:
+  orchestrator_env:
+    file: .env.production
+  prometheus_config:
+    file: ./monitoring/prometheus.yml
+
+secrets:
+  jwt_secret:
+    external: true
+  webhook_secret:
+    external: true
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  orchestrator_net:
+    external: true

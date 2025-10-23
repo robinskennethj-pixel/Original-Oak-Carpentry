@@ -1,0 +1,40 @@
+# Add these services to your main docker-compose.yml
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+  orchestrator:
+    build: ./mcp/orchestrator_mcp
+    container_name: orchestrator
+    ports:
+      - "9000:9000"
+    environment:
+      - PORT=9000
+      - RAG_API_URL=${RAG_API_URL}
+      - DOCLING_API_URL=${DOCLING_API_URL}
+      - WEB_API_URL=${WEB_API_URL}
+      - TRUSTED_WEBHOOK_SECRET=${TRUSTED_WEBHOOK_SECRET}
+      - REDIS_URL=redis://redis:6379
+      - DOCKER_SOCKET_PATH=/var/run/docker.sock
+    depends_on:
+      - web
+      - rag_service
+      - docling_service
+      - redis
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   # dev only; powerful permission: lock to dev hosts only
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+volumes:
+  redis_data:

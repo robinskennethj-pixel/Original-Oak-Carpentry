@@ -1,9 +1,13 @@
 import Stripe from 'stripe'
 import { z } from 'zod'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-08-27.basil',
-})
+// Only create Stripe client when API key is available
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2025-08-27.basil',
+  });
+}
 
 // Invoice validation schema
 export const invoiceSchema = z.object({
@@ -56,6 +60,14 @@ export const ORIGINAL_OAK_CARPENTRY_BRANDING = {
 // Create a branded invoice
 export const createBrandedInvoice = async (invoiceData: InvoiceData) => {
   try {
+    // Check if Stripe client is available
+    if (!stripe) {
+      return {
+        success: false,
+        error: 'Stripe API key not configured'
+      }
+    }
+
     const validatedData = invoiceSchema.parse(invoiceData)
 
     // Create customer if not exists

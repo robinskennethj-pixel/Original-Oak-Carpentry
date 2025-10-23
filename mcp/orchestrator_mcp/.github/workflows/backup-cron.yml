@@ -1,0 +1,247 @@
+name: Backup Cron
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+  workflow_dispatch: # Allow manual trigger
+
+env:
+  BACKUP_DIR: ./backups
+  RETENTION_DAYS: 30
+  S3_BUCKET: ${{ secrets.BACKUP_S3_BUCKET }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  PAGERDUTY_SERVICE_KEY: ${{ secrets.PAGERDUTY_SERVICE_KEY }}
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Backup Environment
+        run: |
+          mkdir -p $BACKUP_DIR
+          echo "Backup directory: $BACKUP_DIR"
+          echo "Retention days: $RETENTION_DAYS"
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq curl
+
+      - name: Configure AWS CLI (if S3 bucket configured)
+        if: env.S3_BUCKET != ''
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Check Docker Services
+        run: |
+          echo "Checking Docker services..."
+          docker ps --format "table {{.Names}}\t{{.Status}}" || echo "Docker not available or no containers running"
+
+      - name: Run Backup Script
+        id: backup
+        run: |
+          echo "Starting backup process..."
+          chmod +x scripts/backup.sh
+
+          # Run backup with error handling
+          if ./scripts/backup.sh --backup-dir "$BACKUP_DIR" --retention-days "$RETENTION_DAYS" --s3-bucket "$S3_BUCKET"; then
+            echo "backup_status=success" >> $GITHUB_OUTPUT
+            echo "Backup completed successfully"
+          else
+            echo "backup_status=failed" >> $GITHUB_OUTPUT
+            echo "Backup failed"
+            exit 1
+          fi
+
+      - name: List Backup Files
+        if: steps.backup.outputs.backup_status == 'success'
+        run: |
+          echo "Backup files created:"
+          ls -la "$BACKUP_DIR"/*_$(date +%Y%m%d)_*.* || echo "No backup files found"
+
+      - name: Verify Backup Integrity
+        if: steps.backup.outputs.backup_status == 'success'
+        run: |
+          echo "Verifying backup integrity..."
+          BACKUP_MANIFEST="$BACKUP_DIR/backup_manifest_$(date +%Y%m%d)_*.json"
+          if [ -f "$BACKUP_MANIFEST" ]; then
+            echo "Backup manifest found: $BACKUP_MANIFEST"
+            jq '.' "$BACKUP_MANIFEST" || echo "Manifest validation failed"
+          else
+            echo "No backup manifest found"
+          fi
+
+      - name: Upload Backup Artifacts (if backup failed)
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: backup-logs-${{ github.run_number }}
+          path: |
+            $BACKUP_DIR/
+            !**/*.tar.gz
+            !**/*.rdb
+          retention-days: 7
+
+      - name: Notify Success
+        if: steps.backup.outputs.backup_status == 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text: |
+            ✅ Orchestrator Backup Completed Successfully
+
+            📊 Backup Summary:
+            - Timestamp: $(date)
+            - Retention: $RETENTION_DAYS days
+            - S3 Upload: ${{ env.S3_BUCKET != '' && 'Enabled' || 'Disabled' }}
+
+            📁 Files created in: $BACKUP_DIR
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        continue-on-error: true
+
+      - name: Notify Failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: |
+            ❌ Orchestrator Backup Failed
+
+            🔍 Error Details:
+            - Timestamp: $(date)
+            - Workflow: ${{ github.workflow }}
+            - Run ID: ${{ github.run_id }}
+            - Repository: ${{ github.repository }}
+
+            Please check the workflow logs for details.
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        continue-on-error: true
+
+      - name: Trigger PagerDuty Alert (on failure)
+        if: failure() && env.PAGERDUTY_SERVICE_KEY != ''
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"service_key\": \"${{ secrets.PAGERDUTY_SERVICE_KEY }}\",
+              \"event_type\": \"trigger\",
+              \"description\": \"Orchestrator Backup Failed - GitHub Actions\",
+              \"details\": {
+                \"hostname\": \"github-actions\",
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+                \"workflow\": \"${{ github.workflow }}\",
+                \"run_id\": \"${{ github.run_id }}\",
+                \"repository\": \"${{ github.repository }}\",
+                \"branch\": \"${{ github.ref_name }}\",
+                \"commit\": \"${{ github.sha }}\"
+              }
+            }" \
+            https://events.pagerduty.com/v2/enqueue || echo "PagerDuty notification failed"
+
+  cleanup:
+    needs: backup
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Cleanup Old Backups
+        run: |
+          echo "Cleaning up backups older than $RETENTION_DAYS days..."
+
+          # Local cleanup
+          if [ -d "$BACKUP_DIR" ]; then
+            find "$BACKUP_DIR" -name "*_*" -type f -mtime +$RETENTION_DAYS -delete 2>/dev/null || true
+            echo "Local cleanup completed"
+          fi
+
+          # S3 cleanup (if configured)
+          if [ -n "$S3_BUCKET" ] && [ "${{ needs.backup.result }}" == "success" ]; then
+            echo "Cleaning up S3 backups older than $RETENTION_DAYS days..."
+            aws s3 ls "s3://$S3_BUCKET/orchestrator-backups/" | \
+            awk '{print $2}' | \
+            while read -r dir; do
+              dir_date=$(echo "$dir" | sed 's|/$||')
+              if [[ "$dir_date" =~ ^[0-9]{8}_[0-9]{6}$ ]]; then
+                dir_timestamp=$(date -d "${dir_date:0:8} ${dir_date:9:2}:${dir_date:11:2}:${dir_date:13:2}" +%s 2>/dev/null || echo 0)
+                current_timestamp=$(date +%s)
+                days_diff=$(( (current_timestamp - dir_timestamp) / 86400 ))
+
+                if [ $days_diff -gt $RETENTION_DAYS ]; then
+                  echo "Deleting S3 backup: $dir_date"
+                  aws s3 rm "s3://$S3_BUCKET/orchestrator-backups/$dir_date/" --recursive || echo "Failed to delete $dir_date"
+                fi
+              fi
+            done
+          fi
+
+  health-check:
+    needs: backup
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Post-Backup Health Check
+        run: |
+          echo "Performing post-backup health check..."
+
+          # Check if services are responding
+          SERVICES=(
+            "http://localhost:4000/health|orchestrator"
+            "http://localhost:8001/health|rag"
+            "http://localhost:8000/health|docling"
+          )
+
+          for service in "${SERVICES[@]}"; do
+            IFS='|' read -r url name <<< "$service"
+            if curl -f -s -m 10 "$url" > /dev/null 2>&1; then
+              echo "✅ $name service is healthy"
+            else
+              echo "❌ $name service is not responding"
+            fi
+          done
+
+      - name: Update Backup Metrics
+        if: always()
+        run: |
+          # This could push metrics to your monitoring system
+          echo "Backup status: ${{ needs.backup.result }}"
+          echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "Duration: $(($(date +%s) - $(date -d "$(date -u +%Y-%m-%dT%H:%M:%SZ)" +%s)))s" || echo "Duration calculation failed""
+
+  summary:
+    needs: [backup, cleanup, health-check]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Generate Backup Summary
+        run: |
+          echo "# Backup Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ needs.backup.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "**Retention Period:** $RETENTION_DAYS days" >> $GITHUB_STEP_SUMMARY
+          echo "**S3 Upload:** ${{ env.S3_BUCKET != '' && 'Enabled' || 'Disabled' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.backup.result }}" == "success" ]; then
+            echo "✅ **Backup completed successfully**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Backup failed**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Please check the workflow logs for error details." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitor backup health in your monitoring dashboard" >> $GITHUB_STEP_SUMMARY
+          echo "- Verify backup integrity periodically" >> $GITHUB_STEP_SUMMARY
+          echo "- Test restore procedures regularly" >> $GITHUB_STEP_SUMMARY

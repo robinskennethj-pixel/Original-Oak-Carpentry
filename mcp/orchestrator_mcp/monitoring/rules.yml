@@ -1,0 +1,103 @@
+groups:
+- name: orchestrator-alerts
+  rules:
+  - alert: OrchestratorDown
+    expr: up{job="orchestrator"} == 0
+    for: 1m
+    labels:
+      severity: critical
+      component: orchestrator
+    annotations:
+      summary: "Orchestrator service is down"
+      description: "Health check failed for Orchestrator MCP on {{ $labels.instance }}"
+      runbook_url: "https://wiki.company.com/runbooks/orchestrator-down"
+
+  - alert: RAGServiceDown
+    expr: up{job="rag"} == 0
+    for: 1m
+    labels:
+      severity: critical
+      component: rag
+    annotations:
+      summary: "RAG service is down"
+      description: "RAG service health check failed on {{ $labels.instance }}"
+
+  - alert: DoclingServiceDown
+    expr: up{job="docling"} == 0
+    for: 1m
+    labels:
+      severity: critical
+      component: docling
+    annotations:
+      summary: "Docling service is down"
+      description: "Docling service health check failed on {{ $labels.instance }}"
+
+  - alert: RedisDown
+    expr: up{job="redis"} == 0
+    for: 1m
+    labels:
+      severity: critical
+      component: redis
+    annotations:
+      summary: "Redis service is down"
+      description: "Redis connection failed on {{ $labels.instance }}"
+
+  - alert: HighErrorRate
+    expr: rate(orchestrator_webhooks_total{status="failure"}[5m]) > 0.1
+    for: 2m
+    labels:
+      severity: warning
+      component: orchestrator
+    annotations:
+      summary: "High webhook error rate detected"
+      description: "Webhook failure rate is {{ $value }} errors/sec"
+
+  - alert: HighResponseTime
+    expr: histogram_quantile(0.95, rate(orchestrator_request_duration_seconds_bucket[5m])) > 2
+    for: 3m
+    labels:
+      severity: warning
+      component: orchestrator
+    annotations:
+      summary: "High response time detected"
+      description: "95th percentile response time is {{ $value }}s"
+
+  - alert: PatchFailureRate
+    expr: rate(orchestrator_patches_total[5m]) - rate(orchestrator_patches_total[5m] offset 5m) < 0
+    for: 5m
+    labels:
+      severity: warning
+      component: orchestrator
+    annotations:
+      summary: "Patch success rate declining"
+      description: "Patch application rate is decreasing"
+
+  - alert: ContainerRestartLoop
+    expr: increase(kube_pod_container_status_restarts_total[1h]) > 5
+    for: 5m
+    labels:
+      severity: warning
+      component: container
+    annotations:
+      summary: "Container restart loop detected"
+      description: "Container {{ $labels.container }} in pod {{ $labels.pod }} restarted {{ $value }} times in the last hour"
+
+  - alert: HighMemoryUsage
+    expr: (container_memory_working_set_bytes / container_spec_memory_limit_bytes) > 0.8
+    for: 5m
+    labels:
+      severity: warning
+      component: container
+    annotations:
+      summary: "High memory usage detected"
+      description: "Memory usage is above 80% for container {{ $labels.container }}"
+
+  - alert: HighCPUUsage
+    expr: (rate(container_cpu_usage_seconds_total[5m]) / container_spec_cpu_quota * 100) > 80
+    for: 5m
+    labels:
+      severity: warning
+      component: container
+    annotations:
+      summary: "High CPU usage detected"
+      description: "CPU usage is above 80% for container {{ $labels.container }}"

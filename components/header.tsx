@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Hammer, Phone, ChevronDown, Menu, ArrowRight } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Phone, Menu, ArrowRight } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Link from "next/link"
 import { LanguageSwitcher } from './language-switcher'
@@ -29,9 +28,9 @@ export function Header({ locale = 'en' }: HeaderProps) {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
-            src="/original-oak-logo.png"
+            src="/ORIGINAL OAK CARPENTRY LOGO.png"
             alt="Original Oak Carpentry Logo"
-            className="h-24 w-24 object-contain bg-transparent rounded-lg"
+            className="h-20 w-20 object-contain"
           />
           <Link href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
             <span className="text-primary">Original Oak</span> Carpentry

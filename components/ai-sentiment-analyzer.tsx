@@ -693,16 +693,14 @@ export function AIHighlightedReview({ locale = 'en', reviews = [] }: AIHighlight
                     {new Date(highlightedReview.date).toLocaleDateString()}
                   </div>
                 </div>
-                <blockquote className="text-muted-foreground italic text-lg leading-relaxed border-l-4 border-primary pl-4"
-003e
+                <blockquote className="text-muted-foreground italic text-lg leading-relaxed border-l-4 border-primary pl-4">
                   "{highlightedReview.content}"
                 </blockquote>
               </div>
             </div>
 
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground"
-003e
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Zap className="h-4 w-4 text-primary" />
                 <span>{t.helpful}</span>
               </div>

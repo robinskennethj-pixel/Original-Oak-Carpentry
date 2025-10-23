@@ -1,0 +1,55 @@
+name: Auto Patch Safety Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linting
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Build Docker Services
+        run: docker compose build
+
+      - name: Verify Containers Start Successfully
+        run: |
+          docker compose up -d
+          sleep 15
+          docker ps -a
+
+      - name: Health Check Validation
+        run: |
+          curl -f http://localhost:3000 || exit 1
+
+      - name: Stop Containers
+        if: always()
+        run: docker compose down
+
+  prevent-merge-on-failure:
+    runs-on: ubuntu-latest
+    needs: test-patch
+    if: failure()
+    steps:
+      - name: Block Merge on Failure
+        run: |
+          echo "❌ Patch failed tests. Merge blocked."
+          exit 1

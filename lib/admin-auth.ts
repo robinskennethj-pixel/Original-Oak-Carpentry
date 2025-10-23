@@ -3,89 +3,155 @@
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-// Simple client-side authentication for admin section
-// In production, this should be replaced with proper server-side authentication
+interface AuthUser {
+  username: string;
+  role: string;
+  permissions: string[];
+}
 
+interface AuthResponse {
+  authenticated: boolean;
+  user?: AuthUser;
+}
+
+/**
+ * Enhanced admin authentication hook with server-side validation
+ * Replaces client-side only authentication with secure server-side checks
+ */
 export function useAdminAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<AuthUser | null>(null)
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    // Check if user is authenticated
-    const authStatus = sessionStorage.getItem('adminAuthenticated')
-    const loginTime = sessionStorage.getItem('adminLoginTime')
-
-    if (authStatus === 'true' && loginTime) {
-      // Check if session has expired (24 hours)
-      const loginTimestamp = parseInt(loginTime)
-      const now = Date.now()
-      const sessionDuration = 24 * 60 * 60 * 1000 // 24 hours
-
-      if (now - loginTimestamp < sessionDuration) {
-        setIsAuthenticated(true)
-      } else {
-        // Session expired, clear storage
-        sessionStorage.removeItem('adminAuthenticated')
-        sessionStorage.removeItem('adminLoginTime')
-        setIsAuthenticated(false)
-      }
-    } else {
-      setIsAuthenticated(false)
-    }
-
-    setIsLoading(false)
+    checkAuthStatus()
   }, [])
 
-  const login = (username: string, password: string): boolean => {
-    const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
-    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'oak2024'
+  /**
+   * Check authentication status with server-side validation
+   */
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch('/api/admin/auth', {
+        method: 'GET',
+        credentials: 'include', // Include cookies for authentication
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      sessionStorage.setItem('adminAuthenticated', 'true')
-      sessionStorage.setItem('adminLoginTime', Date.now().toString())
-      setIsAuthenticated(true)
-      return true
+      if (response.ok) {
+        const data = await response.json() as AuthResponse
+        setIsAuthenticated(data.authenticated)
+        setUser(data.user || null)
+
+        if (!data.authenticated && pathname?.startsWith('/admin')) {
+          router.push('/admin/login')
+        }
+      } else {
+        setIsAuthenticated(false)
+        setUser(null)
+        if (pathname?.startsWith('/admin')) {
+          router.push('/admin/login')
+        }
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error)
+      setIsAuthenticated(false)
+      setUser(null)
+      if (pathname?.startsWith('/admin')) {
+        router.push('/admin/login')
+      }
+    } finally {
+      setIsLoading(false)
     }
-    return false
   }
 
-  const logout = () => {
-    sessionStorage.removeItem('adminAuthenticated')
-    sessionStorage.removeItem('adminLoginTime')
-    setIsAuthenticated(false)
-    router.push('/admin/login')
-  }
+  /**
+   * Login with server-side authentication
+   */
+  const login = async (username: string, password: string): Promise<boolean> => {
+    try {
+      setIsLoading(true)
 
-  const checkAuth = () => {
-    if (!isAuthenticated && !isLoading) {
-      router.push('/admin/login')
+      const response = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: 'include', // Include cookies in request
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          await checkAuthStatus() // Refresh auth status
+          return true
+        }
+      }
       return false
+    } catch (error) {
+      console.error('Login failed:', error)
+      return false
+    } finally {
+      setIsLoading(false)
     }
-    return true
+  }
+
+  /**
+   * Logout with server-side session termination
+   */
+  const logout = async () => {
+    try {
+      await fetch('/api/admin/auth', {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    } catch (error) {
+      console.error('Logout failed:', error)
+    } finally {
+      setIsAuthenticated(false)
+      setUser(null)
+      router.push('/admin/login')
+    }
+  }
+
+  /**
+   * Refresh authentication status
+   */
+  const refreshAuth = async () => {
+    await checkAuthStatus()
   }
 
   return {
     isAuthenticated,
     isLoading,
+    user,
     login,
     logout,
-    checkAuth
+    refreshAuth
   }
 }
 
-// Hook to protect admin pages
+/**
+ * Hook to protect admin pages - ENHANCED VERSION
+ */
 export function useProtectedAdmin() {
-  const { isAuthenticated, isLoading, checkAuth } = useAdminAuth()
+  const { isAuthenticated, isLoading } = useAdminAuth()
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    if (!isLoading) {
-      checkAuth()
+    if (!isLoading && !isAuthenticated && pathname?.startsWith('/admin')) {
+      router.push('/admin/login')
     }
-  }, [isAuthenticated, isLoading, pathname, checkAuth])
+  }, [isAuthenticated, isLoading, pathname, router])
 
   return { isAuthenticated, isLoading }
 }

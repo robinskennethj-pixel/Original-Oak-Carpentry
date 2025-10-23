@@ -1,0 +1,30 @@
+{
+  "name": "langchain-mcp-server",
+  "version": "1.0.0",
+  "description": "LangChain-based MCP server with Docker",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node test/server.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "langchain": "^0.1.0",
+    "@langchain/community": "^0.0.50",
+    "@langchain/openai": "^0.0.14",
+    "openai": "^4.20.0",
+    "express": "^4.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "keywords": ["mcp", "langchain", "ai", "docker", "llm"],
+  "author": "Your Name",
+  "license": "MIT"
+}

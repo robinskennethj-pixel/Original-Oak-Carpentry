@@ -7,7 +7,7 @@ import { AboutSection } from '@/components/about-section'
 import { AIChatbot } from '@/components/ai-chatbot'
 import { AICostEstimatorWidget } from '@/components/ai-cost-estimator'
 import { ServiceAreaMap } from '@/components/google-maps'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Bot, Calculator, TrendingUp } from 'lucide-react'
 
 export default function HomePage({

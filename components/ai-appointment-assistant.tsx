@@ -290,8 +290,7 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
               AI Powered
             </Badge>
           </div>
-          <div className="flex items-center gap-2"
-003e
+          <div className="flex items-center gap-2">
             <Badge variant="outline">
               {t.step1} {currentStep} / 4
             </Badge>
@@ -434,17 +433,13 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
               {aiSuggestions.length > 0 && (
                 <Card className="border-border bg-primary/5">
                   <CardContent className="p-4">
-                    <div className="flex items-start gap-3"
-003e
+                    <div className="flex items-start gap-3">
                       <Zap className="h-5 w-5 text-primary mt-0.5" />
-                      <div className="space-y-2"
-003e
+                      <div className="space-y-2">
                         <h4 className="font-medium">{t.aiRecommendations}</h4>
-                        <ul className="space-y-1 text-sm text-muted-foreground"
-003e
+                        <ul className="space-y-1 text-sm text-muted-foreground">
                           {aiSuggestions.map((suggestion, index) => (
-                            <li key={index} className="flex items-start gap-2"
-003e
+                            <li key={index} className="flex items-start gap-2">
                               <ChevronRight className="h-3 w-3 mt-1 flex-shrink-0" />
                               <span>{suggestion}</span>
                             </li>
@@ -459,14 +454,12 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
               <div>
                 <Label>{t.availableSlots}</Label>
                 {isLoading ? (
-                  <div className="flex items-center justify-center py-8 text-muted-foreground"
-003e
+                  <div className="flex items-center justify-center py-8 text-muted-foreground">
                     <RefreshCw className="h-5 w-5 animate-spin mr-2" />
                     {t.loading}
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
-003e
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {availableSlots.filter(slot => slot.available).slice(0, 6).map((slot) => (
                       <Button
                         key={slot.id}
@@ -480,10 +473,10 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
                         className="justify-start text-left h-auto py-3"
                       >
                           <div className="flex items-center gap-2"
-003e
+>
                             <CalendarIcon className="h-4 w-4" />
                             <div className="text-sm"
-003e
+>
                               <div className="font-medium">{format(slot.date, 'MMM d, yyyy')}</div>
                               <div className="text-muted-foreground">{slot.time}</div>
                             </div>
@@ -499,20 +492,20 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
           {currentStep === 4 && (
             <div className="space-y-6">
               <Card className="border-border"
-003e
+>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2"
-003e
+>
                     <CheckCircle className="h-5 w-5 text-green-500" />
                     Review Your Appointment
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4"
-003e
+>
                   <div className="grid md:grid-cols-2 gap-4"
-003e
+>
                     <div className="space-y-3"
-003e
+>
                       <div>
                         <Label>Name</Label>
                         <p className="font-medium">{bookingRequest.name}</p>
@@ -531,7 +524,7 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
                       </div>
                     </div>
                     <div className="space-y-3"
-003e
+>
                       <div>
                         <Label>Project Type</Label>
                         <p className="font-medium">{t.projectTypes[bookingRequest.projectType as keyof typeof t.projectTypes]}</p>
@@ -562,9 +555,9 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
               </Card>
 
               <div className="flex items-center justify-center p-4 bg-green-50 border border-green-200 rounded-lg"
-003e
+>
                 <div className="flex items-center gap-2 text-green-800"
-003e
+>
                   <CheckCircle className="h-5 w-5" />
                   <span className="font-medium">Ready to confirm your appointment!</span>
                 </div>
@@ -574,7 +567,7 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
 
           {/* Navigation Buttons */}
           <div className="flex justify-between pt-6 border-t border-border"
-003e
+>
             <Button
               onClick={handlePrevious}
               disabled={currentStep === 1}
@@ -585,7 +578,7 @@ export function AIAppointmentAssistant({ locale = 'en', onAppointmentBooked }: A
             </Button>
 
             <div className="flex gap-2"
-003e
+>
               {currentStep === 4 ? (
                 <Button
                   onClick={handleBooking}
@@ -707,7 +700,7 @@ export function AIChatToBookingBridge({ locale = 'en', conversationContext, onBo
             <div className="text-center space-y-4">
               <div className="flex items-center justify-center gap-3">
                 <MessageSquare className="h-8 w-8 text-primary" />
-                <he2 className="text-xl font-semibold">{t.readyToBook}</h2>
+                <h2 className="text-xl font-semibold">{t.readyToBook}</h2>
                 <Star className="h-8 w-8 text-primary" />
               </div>
               <p className="text-muted-foreground">{t.aiSuggestion}</p>

@@ -40,7 +40,8 @@ import {
   FileText,
   Hammer,
   Home,
-  Wrench
+  Wrench,
+  TrendingUp
 } from "lucide-react"
 
 interface Job {
@@ -411,7 +412,7 @@ export default function JobManagementDashboard() {
         <div className="container mx-auto">
           <div className="flex items-center gap-3">
             <img
-              src="/original-oak-logo.png"
+              src="/ORIGINAL OAK CARPENTRY LOGO.png"
               alt="Original Oak Carpentry Logo"
               className="h-10 w-10 object-contain"
             />

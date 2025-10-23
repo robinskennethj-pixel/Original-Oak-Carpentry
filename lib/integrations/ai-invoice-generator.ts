@@ -1,9 +1,13 @@
 import OpenAI from 'openai'
 import { z } from 'zod'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-})
+// Only create OpenAI client when API key is available
+let openai: OpenAI | null = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 // AI-generated content schema
 export const aiInvoiceContentSchema = z.object({
@@ -59,6 +63,14 @@ export const generateAIInvoiceContent = async (projectData: ProjectData): Promis
   error?: string
 }> => {
   try {
+    // Check if OpenAI client is available
+    if (!openai) {
+      return {
+        success: false,
+        error: 'OpenAI API key not configured'
+      }
+    }
+
     const validatedData = projectDataSchema.parse(projectData)
 
     const prompt = `
@@ -310,6 +322,13 @@ export const generateAIEmailContent = async (clientName: string, projectType: st
   error?: string
 }> => {
   try {
+    // Check if OpenAI client is available
+    if (!openai) {
+      return {
+        success: false,
+        error: 'OpenAI API key not configured'
+      }
+    }
     const prompt = `
 Create a professional email for Original Oak Carpentry to send an invoice to a client.
 

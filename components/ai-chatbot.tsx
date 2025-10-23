@@ -220,8 +220,8 @@ export function AIChatbot({ locale = 'en', position = 'bottom-right', apiKey }: 
       {/* Chat Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed z-50 rounded-full p-4 shadow-lg transition-all duration-300 ${
-          position === 'bottom-right' ? 'bottom-6 right-6' : 'bottom-6 left-6'
+        className={`fixed z-[9999] rounded-full p-4 shadow-lg transition-all duration-300 ${
+          position === 'bottom-right' ? 'bottom-8 right-8' : 'bottom-8 left-8'
         } ${isOpen ? 'bg-red-500 hover:bg-red-600' : 'bg-primary hover:bg-primary/90'}`}
         size="icon"
       >
@@ -234,8 +234,8 @@ export function AIChatbot({ locale = 'en', position = 'bottom-right', apiKey }: 
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className={`fixed z-40 w-96 h-[500px] shadow-2xl border-border ${
-          position === 'bottom-right' ? 'bottom-20 right-6' : 'bottom-20 left-6'
+        <Card className={`fixed z-[9998] w-96 h-[500px] shadow-2xl border-border ${
+          position === 'bottom-right' ? 'bottom-24 right-8' : 'bottom-24 left-8'
         }`}>
           <CardHeader className="bg-primary text-primary-foreground rounded-t-lg p-4">
             <div className="flex items-center gap-3">

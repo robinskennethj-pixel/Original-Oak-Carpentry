@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useProtectedAdmin } from '@/lib/admin-auth';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -56,6 +57,7 @@ interface OfflineProject {
 }
 
 export default function AdminDashboard() {
+  const { isAuthenticated, isLoading } = useProtectedAdmin();
   const [projects, setProjects] = useState<OfflineProject[]>([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -175,9 +177,9 @@ export default function AdminDashboard() {
         <div className="container mx-auto">
           <div className="flex items-center gap-3">
             <img
-              src="/original-oak-logo.png"
+              src="/ORIGINAL OAK CARPENTRY LOGO.png"
               alt="Original Oak Carpentry Logo"
-              className="h-24 w-24 object-contain bg-transparent rounded-lg"
+              className="h-20 w-20 object-contain"
             />
             <h1 className="text-3xl font-bold">Original Oak Carpentry - Admin Dashboard</h1>
           </div>

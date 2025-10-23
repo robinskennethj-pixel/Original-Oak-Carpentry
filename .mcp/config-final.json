@@ -1,0 +1,36 @@
+{
+  "servers": {
+    "next_mcp": {
+      "url": "http://localhost:3012/api/mcp",
+      "description": "MCP tools for Next.js full-stack app (rebuild, lint, diagnostics) - Port 3012"
+    },
+    "bullmq_mcp": {
+      "url": "http://localhost:3002",
+      "description": "BullMQ job queue management server"
+    },
+    "filesystem_mcp": {
+      "url": "http://localhost:3003",
+      "description": "Filesystem operations for frontend development"
+    },
+    "git_mcp": {
+      "url": "http://localhost:3004",
+      "description": "Git repository operations and version control"
+    },
+    "frontend_health": {
+      "url": "http://localhost:3008",
+      "description": "Frontend health checking and monitoring"
+    },
+    "build_automation": {
+      "url": "http://localhost:3010",
+      "description": "Build automation and code sandbox"
+    },
+    "security_scanner": {
+      "url": "http://localhost:3011",
+      "description": "Security vulnerability scanning"
+    },
+    "performance_monitor": {
+      "url": "http://localhost:3007",
+      "description": "Performance monitoring and analytics"
+    }
+  }
+}

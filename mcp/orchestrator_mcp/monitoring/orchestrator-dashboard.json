@@ -1,0 +1,268 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Orchestrator Metrics",
+    "tags": ["orchestrator", "mcp", "production"],
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Patch Success Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(orchestrator_patches_total[5m])",
+            "legendFormat": "Patches/sec"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "mappings": [],
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 2,
+        "title": "Webhook Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(orchestrator_webhooks_total[5m])",
+            "legendFormat": "{{status}} - {{source}}"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Requests/sec",
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        }
+      },
+      {
+        "id": 3,
+        "title": "RAG Uptime",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "up{job='rag'}",
+            "legendFormat": "RAG Status"
+          }
+        ],
+        "valueName": "current",
+        "colorValue": true,
+        "colors": [
+          "#299c46",
+          "#d44a3a"
+        ],
+        "thresholds": "0,1",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 8
+        }
+      },
+      {
+        "id": 4,
+        "title": "Docling Uptime",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "up{job='docling'}",
+            "legendFormat": "Docling Status"
+          }
+        ],
+        "valueName": "current",
+        "colorValue": true,
+        "colors": [
+          "#299c46",
+          "#d44a3a"
+        ],
+        "thresholds": "0,1",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 8
+        }
+      },
+      {
+        "id": 5,
+        "title": "Orchestrator Uptime",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "up{job='orchestrator'}",
+            "legendFormat": "Orchestrator Status"
+          }
+        ],
+        "valueName": "current",
+        "colorValue": true,
+        "colors": [
+          "#299c46",
+          "#d44a3a"
+        ],
+        "thresholds": "0,1",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 8
+        }
+      },
+      {
+        "id": 6,
+        "title": "Redis Uptime",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "up{job='redis'}",
+            "legendFormat": "Redis Status"
+          }
+        ],
+        "valueName": "current",
+        "colorValue": true,
+        "colors": [
+          "#299c46",
+          "#d44a3a"
+        ],
+        "thresholds": "0,1",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 8
+        }
+      },
+      {
+        "id": 7,
+        "title": "Request Duration (95th percentile)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(orchestrator_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "95th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(orchestrator_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "50th percentile"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Seconds",
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        }
+      },
+      {
+        "id": 8,
+        "title": "Active Connections",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "orchestrator_active_connections",
+            "legendFormat": "Active Connections"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Connections",
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        }
+      },
+      {
+        "id": 9,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(orchestrator_webhooks_total{status='failure'}[5m])",
+            "legendFormat": "Error Rate"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "Errors/sec",
+            "min": 0
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        }
+      },
+      {
+        "id": 10,
+        "title": "CPU Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(container_cpu_usage_seconds_total{name=~'.*orchestrator.*'}[5m]) * 100",
+            "legendFormat": "CPU %"
+          }
+        ],
+        "yAxes": [
+          {
+            "label": "CPU %",
+            "min": 0,
+            "max": 100
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        }
+      }
+    ]
+  }
+}

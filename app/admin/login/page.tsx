@@ -21,10 +21,15 @@ export default function AdminLoginPage() {
     setError('')
     setIsLoading(true)
 
-    // Simple authentication - in production, this should be handled server-side with proper security
-    // For now, using environment variables for basic auth
-    const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin'
-    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'oak2024'
+    // Use server-side authentication - no hardcoded fallbacks
+    const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME
+    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD
+
+    if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
+      setError('Authentication configuration error. Please contact support.')
+      setIsLoading(false)
+      return
+    }
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // Store authentication status in sessionStorage

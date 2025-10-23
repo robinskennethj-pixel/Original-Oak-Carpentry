@@ -1,0 +1,73 @@
+name: CI + Rollback & Redeploy
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+  DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+  DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build Compose
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml build
+
+      - name: Start Services
+        run: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+      - name: Health Checks
+        run: |
+          curl -f http://localhost:4000/health
+          curl -f http://localhost:8001/health
+          curl -f http://localhost:8000/health
+
+  rollback-on-failure:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: failure()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create rollback commit
+        run: |
+          git fetch --unshallow || true
+          LAST_GOOD=$(git rev-list --max-parents=0 HEAD || true)
+          # find previous successful commit from Actions (requires setting up a tag on success in production)
+          # Fallback: use HEAD^ to revert last commit
+          git revert --no-edit HEAD || git reset --hard HEAD~1
+          git push origin HEAD:main
+
+      - name: Redeploy after rollback
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > key.pem
+          chmod 600 key.pem
+          rsync -avz -e "ssh -i key.pem -o StrictHostKeyChecking=no" . ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/var/www/orchestrator
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd /var/www/orchestrator && docker compose -f docker-compose.yml -f docker-compose.prod.yml pull && docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+
+      - name: Notify
+        run: echo "Rollback completed and redeployed"

@@ -13,7 +13,7 @@ export function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/original-oak-logo.png"
+                src="/ORIGINAL OAK CARPENTRY LOGO.png"
                 alt="Original Oak Carpentry Logo"
                 className="h-10 w-10 object-contain"
               />

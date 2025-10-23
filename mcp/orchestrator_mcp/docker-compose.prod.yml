@@ -1,0 +1,92 @@
+version: '3.9'
+services:
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - orchestrator_net
+
+  orchestrator:
+    image: oguncarpentry-orchestrator:latest
+    build: .
+    environment:
+      - NODE_ENV=production
+      - REDIS_URL=redis://redis:6379
+      - TRUSTED_WEBHOOK_SECRET=${TRUSTED_WEBHOOK_SECRET}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - patches_data:/var/app/patches
+    ports:
+      - '4000:4000'
+    networks:
+      - orchestrator_net
+
+  rag_service:
+    build: ../python_services/rag_service
+    environment:
+      - RAG_ENV=production
+    networks:
+      - orchestrator_net
+
+  docling_service:
+    build: ../python_services/docling_service
+    networks:
+      - orchestrator_net
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/rules.yml:/etc/prometheus/rules.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - '9090:9090'
+    networks:
+      - orchestrator_net
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager_data:/alertmanager
+    ports:
+      - '9093:9093'
+    networks:
+      - orchestrator_net
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+      - '--web.external-url=http://localhost:9093'
+
+  grafana:
+    image: grafana/grafana-oss:10.0.0
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/orchestrator-dashboard.json:/etc/grafana/provisioning/dashboards/orchestrator-dashboard.json:ro
+    ports:
+      - '3000:3000'
+    networks:
+      - orchestrator_net
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+
+volumes:
+  redis_data:
+  patches_data:
+  prometheus_data:
+  alertmanager_data:
+  grafana_data:
+
+networks:
+  orchestrator_net:
+    external: true

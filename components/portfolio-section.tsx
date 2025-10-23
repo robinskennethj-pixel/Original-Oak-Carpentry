@@ -1,10 +1,14 @@
+'use client';
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Eye } from "lucide-react"
 import Link from "next/link"
-import { AIImageTagging, AIPortfolioGrid } from "@/components/ai-image-tagging"
+import { AIPortfolioGrid } from "@/components/ai-image-tagging"
+import { getMCPClient, PortfolioItem } from "@/lib/integrations/mcp-client"
+import { useEffect, useState } from "react"
 
-const portfolioItems = [
+const defaultPortfolioItems = [
   {
     title: "Handcrafted Oak Dining Table",
     category: "Custom Furniture",
@@ -36,7 +40,7 @@ const portfolioItems = [
   {
     title: "Custom Wooden Railings",
     category: "Architectural Woodwork",
-    image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
+    image: "/luxury-walk-in-closet-with-custom-shelving-and-dra.jpg",
     description: "Decorative wooden railings with traditional carving techniques",
     slug: "wooden-railings",
   },
@@ -50,20 +54,79 @@ const portfolioItems = [
   {
     title: "Weather-Resistant Outdoor Kitchen",
     category: "Weather Proofing",
-    image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
+    image: "/luxury-kitchen-with-custom-cabinets-and-granite-co.jpg",
     description: "Marine-grade outdoor kitchen with weather-resistant finishes for coastal conditions",
     slug: "weather-resistant-kitchen",
   },
   {
     title: "Hurricane-Resistant Shutters",
     category: "Storm Protection",
-    image: "/coastal-home-with-custom-wooden-hurricane-shutters.jpg",
+    image: "/hurricane-shutters-installed-on-florida-home-windo.jpg",
     description: "Custom wooden hurricane shutters designed for maximum storm protection",
     slug: "hurricane-shutters",
   },
 ]
 
 export function PortfolioSection() {
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPortfolioItems = async () => {
+      try {
+        const mcpClient = getMCPClient();
+
+        // Get real portfolio images from AWS S3
+        const realImages = await mcpClient.getPortfolioImages();
+
+        // If we have real images, update the portfolio items
+        if (realImages.length > 0) {
+          const updatedItems = defaultPortfolioItems.map((item, index) => ({
+            ...item,
+            image: realImages[index % realImages.length] || item.image,
+          }));
+          setPortfolioItems(updatedItems);
+        } else {
+          setPortfolioItems(defaultPortfolioItems);
+        }
+      } catch (error) {
+        console.error('Error loading portfolio items:', error);
+        setPortfolioItems(defaultPortfolioItems);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPortfolioItems();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section id="portfolio" className="py-20 bg-muted relative overflow-hidden">
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded w-1/4 mx-auto mb-6"></div>
+              <div className="h-12 bg-gray-200 rounded w-3/4 mx-auto mb-6"></div>
+              <div className="h-6 bg-gray-200 rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-200 h-64 rounded-lg"></div>
+                <div className="mt-4 space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="portfolio" className="py-20 bg-muted relative overflow-hidden">
       {/* Background Elements */}
@@ -153,11 +216,11 @@ export function PortfolioSection() {
               See Through AI Eyes
             </h3>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our AI analyzes materials, techniques, and provides cost estimates. Click any image above to see the intelligent analysis.
+              Our AI analyzes materials, techniques, and provides cost estimates. Click any image above to see the intelligent analysis powered by our LangChain MCP server.
             </p>
           </div>
 
-          <AIPortfolioGrid locale="en" />
+          <AIPortfolioGrid locale="en" portfolioItems={portfolioItems} />
         </div>
 
         <div className="text-center mt-12">

@@ -1,23 +1,92 @@
-version: '3.9'
+version: "3.9"
 services:
-  app:
+  web:
     build: .
+    container_name: next_web
     ports:
       - "3000:3000"
+    environment:
+      - BUILDER_PUBLIC_KEY=${BUILDER_PUBLIC_KEY}
+      - RAG_API_URL=${RAG_API_URL}
+      - DOCLING_API_URL=${DOCLING_API_URL}
+      - DATABASE_URL=${DATABASE_URL}
+      - NODE_ENV=${NODE_ENV}
     depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mydb
-  db:
-    image: postgres:16
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      - rag_service
+      - docling_service
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run start
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+  rag_service:
+    build: ./mcp/rag_service
+    container_name: rag_service
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./mcp/rag_service:/app
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+  docling_service:
+    build: ./mcp/docling_service
+    container_name: docling_service
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./mcp/docling_service:/app
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+  orchestrator:
+    build: ./mcp/orchestrator_mcp
+    container_name: orchestrator
+    ports:
+      - "9000:9000"
+    environment:
+      - PORT=9000
+      - RAG_API_URL=${RAG_API_URL}
+      - DOCLING_API_URL=${DOCLING_API_URL}
+      - WEB_API_URL=${WEB_API_URL}
+      - TRUSTED_WEBHOOK_SECRET=${TRUSTED_WEBHOOK_SECRET}
+      - REDIS_URL=redis://redis:6379
+      - DOCKER_SOCKET_PATH=/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - web
+      - rag_service
+      - docling_service
+      - redis
+    restart: unless-stopped
+    networks:
+      - mcp_network
+
+networks:
+  mcp_network:
+    driver: bridge
+
 volumes:
-  pgdata:
+  redis_data:

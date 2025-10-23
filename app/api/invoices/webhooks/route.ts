@@ -3,12 +3,24 @@ import Stripe from 'stripe'
 import { sendEmail } from '@/lib/email'
 import { generateAIEmailContent } from '@/lib/integrations/ai-invoice-generator'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
-})
+// Only create Stripe client when API key is available
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2024-06-20',
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe client is available
+    if (!stripe) {
+      return NextResponse.json(
+        { success: false, error: 'Stripe API key not configured' },
+        { status: 500 }
+      )
+    }
+
     const body = await request.text()
     const signature = request.headers.get('stripe-signature')
 

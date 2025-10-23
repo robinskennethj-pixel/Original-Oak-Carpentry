@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Star, Quote } from "lucide-react"
-import { AISentimentAnalyzer, AIHighlightedReview } from "@/components/ai-sentiment-analyzer"
+import { AISentimentAnalyzer } from "@/components/ai-sentiment-analyzer"
 
 const testimonials = [
   {
@@ -58,20 +58,6 @@ export function TestimonialsSection() {
             Our clients' satisfaction is the true measure of our craft. Hear from those who have experienced
             the Original Oak Carpentry difference firsthand.
           </p>
-        </div>
-
-        {/* AI Sentiment Analysis Section */}
-        <div className="mb-16">
-          <div className="mb-8">
-            <h3 className="text-2xl lg:text-3xl font-bold text-center text-foreground mb-4">
-              AI-Powered Review Analysis
-            </h3>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-              Discover what our clients really think with intelligent sentiment analysis that highlights
-              satisfaction patterns and key themes.
-            </p>
-          </div>
-          <AISentimentAnalyzer locale="en" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

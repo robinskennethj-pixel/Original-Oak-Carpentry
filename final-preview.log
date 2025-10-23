@@ -1,0 +1,23 @@
+
+> original-oak-carpentry@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+ ⚠ Port 3002 is in use, trying 3003 instead.
+ ⚠ Port 3003 is in use, trying 3004 instead.
+ ⚠ Port 3004 is in use, trying 3005 instead.
+ ⚠ Port 3005 is in use, trying 3006 instead.
+ ⚠ Port 3006 is in use, trying 3007 instead.
+ ⚠ Port 3007 is in use, trying 3008 instead.
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3008
+  - Environments: .env.local, .env
+  - Experiments (use with caution):
+    · cpus
+
+ ✓ Starting...
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at patchIncorrectLockfile (c:\Users\Kenneth\Documents\OGUN CARPENTRY\node_modules\next\dist\lib\patch-incorrect-lockfile.js:94:33)
+ ✓ Ready in 7.4s

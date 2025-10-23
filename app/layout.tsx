@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+import { AIChatbot } from '@/components/ai-chatbot'
 
 export const metadata: Metadata = {
   title: "Original Oak Carpentry - Master Craftsmen of Wood",
@@ -72,6 +73,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Suspense fallback={null}>{children}</Suspense>
+        <AIChatbot />
         <Analytics />
       </body>
     </html>

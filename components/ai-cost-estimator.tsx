@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calculator, TrendingUp, AlertCircle, CheckCircle } from "lucide-react"
+import { Calculator, TrendingUp, AlertCircle, CheckCircle, Calendar } from "lucide-react"
 
 interface CostEstimate {
   projectType: string;
@@ -77,7 +77,7 @@ export function AICostEstimator({ locale = 'en', onEstimateGenerated }: Estimato
           { value: "units", label: "Units/Items" }
         ],
         materials: "Material Preference",
-        materials: [
+        materialsOptions: [
           { value: "pressure-treated", label: "Pressure-Treated Lumber", multiplier: 1.0 },
           { value: "cedar", label: "Cedar", multiplier: 1.4 },
           { value: "composite", label: "Composite Decking", multiplier: 2.2 },
@@ -137,7 +137,7 @@ export function AICostEstimator({ locale = 'en', onEstimateGenerated }: Estimato
           { value: "units", label: "Unidades/Artículos" }
         ],
         materials: "Preferencia de Material",
-        materials: [
+        materialsOptions: [
           { value: "pressure-treated", label: "Madera Tratada con Presión", multiplier: 1.0 },
           { value: "cedar", label: "Cedro", multiplier: 1.4 },
           { value: "composite", label: "Cubiertas Compuestas", multiplier: 2.2 },
@@ -186,7 +186,7 @@ export function AICostEstimator({ locale = 'en', onEstimateGenerated }: Estimato
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     const projectType = t.form.projectTypes.find(p => p.value === formData.projectType);
-    const material = t.form.materials.find(m => m.value === formData.materials);
+    const material = t.form.materialsOptions.find(m => m.value === formData.materials);
     const complexity = t.form.complexities.find(c => c.value === formData.complexity);
     const location = t.form.locations.find(l => l.value === formData.location);
 
@@ -368,7 +368,7 @@ export function AICostEstimator({ locale = 'en', onEstimateGenerated }: Estimato
                 className="w-full px-3 py-2 border border-border rounded-md bg-background"
               >
                 <option value="">Select material preference...</option>
-                {t.form.materials.map((material) => (
+                {t.form.materialsOptions.map((material) => (
                   <option key={material.value} value={material.value}>{material.label}</option>
                 ))}
               </select>
