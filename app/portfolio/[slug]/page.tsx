@@ -92,7 +92,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            Florida Carpentry Co.
+            <span className="text-primary">Original Oak</span> Carpentry
           </Link>
           <nav className="hidden md:flex space-x-8">
             <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
@@ -248,7 +248,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Florida Carpentry Co.</h3>
+              <h3 className="text-xl font-bold mb-4">Original Oak Carpentry</h3>
               <p className="text-primary-foreground/80">Built Strong. Built Beautiful. Built for Florida.</p>
             </div>
             <div>
@@ -284,7 +284,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-            <p>&copy; 2024 Florida Carpentry Co. All rights reserved.</p>
+            <p>&copy; 2024 Original Oak Carpentry. All rights reserved.</p>
           </div>
         </div>
       </footer>

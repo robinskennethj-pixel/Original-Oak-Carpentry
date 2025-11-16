@@ -171,16 +171,43 @@ export default function AdminDashboard() {
   const pendingInvoices = projects.filter(p => p.status === 'pending').length;
   const completedProjects = projects.filter(p => p.status === 'invoiced' || p.status === 'paid').length;
 
+  // Show loading spinner while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If not authenticated, show access denied (this should rarely show due to redirect)
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-destructive mb-4">Access Denied</h1>
+          <p className="text-muted-foreground mb-4">You must be logged in to access the admin dashboard.</p>
+          <Button onClick={() => window.location.href = '/admin-login'}>
+            Go to Login
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="bg-primary text-primary-foreground p-6">
         <div className="container mx-auto">
           <div className="flex items-center gap-3">
-            <img
-              src="/ORIGINAL OAK CARPENTRY LOGO.png"
-              alt="Original Oak Carpentry Logo"
-              className="h-20 w-20 object-contain"
-            />
+              <img
+                src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
+                alt="Original Oak Carpentry Logo"
+                className="h-12 w-auto object-contain"
+              />
             <h1 className="text-3xl font-bold">Original Oak Carpentry - Admin Dashboard</h1>
           </div>
           <p className="mt-2 opacity-90">Manage offline projects and generate AI-powered invoices</p>

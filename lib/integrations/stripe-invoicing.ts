@@ -37,7 +37,7 @@ export type InvoiceData = z.infer<typeof invoiceSchema>
 
 // Original Oak Carpentry brand styling for invoices
 export const ORIGINAL_OAK_CARPENTRY_BRANDING = {
-  logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/original_oak_carpentry_logo.webp` : '/original_oak_carpentry_logo.webp',
+  logoUrl: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png` : '/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png',
   primaryColor: '#2D5016', // Forest Green
   accentColor: '#B85C38', // Rust Orange
   secondaryColor: '#D4AF37', // Gold

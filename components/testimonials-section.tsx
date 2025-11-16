@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, Quote } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Star, Quote, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { AISentimentAnalyzer } from "@/components/ai-sentiment-analyzer"
 
 const testimonials = [
@@ -10,6 +12,7 @@ const testimonials = [
       "Original Oak Carpentry restored my great-grandfather's armoire to perfection. The traditional techniques they used brought it back to life better than I ever imagined.",
     rating: 5,
     image: "/satisfied-homeowner.jpg",
+    slug: "marcus-williams",
   },
   {
     name: "Aisha Johnson",
@@ -18,6 +21,7 @@ const testimonials = [
       "The custom wooden doors they crafted for our restaurant entrance are absolutely stunning. Every detail shows the master craftsman's touch.",
     rating: 5,
     image: "/happy-homeowner-woman.jpg",
+    slug: "aisha-johnson",
   },
   {
     name: "James Rodriguez",
@@ -26,6 +30,7 @@ const testimonials = [
       "Working with Original Oak Carpentry is like collaborating with artists. Their ability to translate vision into reality is truly remarkable.",
     rating: 5,
     image: "/business-owner.png",
+    slug: "james-rodriguez",
   },
   {
     name: "Dr. Patricia Thompson",
@@ -34,6 +39,7 @@ const testimonials = [
       "They restored our 1920s home's original woodwork using period-appropriate techniques. The craftsmanship is museum-quality.",
     rating: 5,
     image: "/homeowner-historic-house.jpg",
+    slug: "patricia-thompson",
   },
 ]
 
@@ -77,20 +83,28 @@ export function TestimonialsSection() {
                   {testimonial.content}
                   <span className="text-2xl text-primary/20 absolute -bottom-4 -right-2">"</span>
                 </blockquote>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300">
-                      {testimonial.name}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    <div>
+                      <div className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                    </div>
                   </div>
+                  <Button asChild size="sm" variant="outline" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Link href={`/testimonials/${testimonial.slug}`}>
+                      Read More
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>

@@ -1,0 +1,256 @@
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { ArrowLeft, Calendar, MapPin, DollarSign, Clock } from "lucide-react"
+import Link from "next/link"
+
+export default function WaterfrontDeckPergolaPage() {
+  const projectDetails = {
+    title: "Waterfront Deck & Pergola",
+    category: "Outdoor Living",
+    location: "Tampa Bay, FL",
+    duration: "4 weeks",
+    budget: "$45,000 - $55,000",
+    completedDate: "February 2024",
+    client: "The Thompson Family"
+  }
+
+  const features = [
+    "Storm-resistant composite decking material",
+    "Custom cedar pergola with retractable canopy",
+    "Hurricane-rated structural anchoring system",
+    "Built-in seating with weather-resistant cushions",
+    "Integrated LED lighting for evening ambiance",
+    "Saltwater-resistant hardware throughout",
+    "Custom privacy screens with decorative elements",
+    "Professional waterproofing and drainage system"
+  ]
+
+  const images = [
+    {
+      src: "/waterfront-deck-with-pergola-overlooking-florida-c.jpg",
+      alt: "Completed waterfront deck with pergola",
+      caption: "Main deck view overlooking Tampa Bay with custom pergola"
+    },
+    {
+      src: "/deck-construction-progress-photo.jpg",
+      alt: "Deck construction in progress",
+      caption: "Construction phase showing hurricane-rated foundation work"
+    },
+    {
+      src: "/deck-evening-lighting-ambiance.jpg",
+      alt: "Deck with evening lighting",
+      caption: "Evening view showcasing integrated LED lighting system"
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold text-primary">
+            <span className="text-primary">Original Oak</span> Carpentry
+          </Link>
+          <nav className="hidden md:flex space-x-8">
+            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+              Home
+            </Link>
+            <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+              About
+            </Link>
+            <Link href="/services" className="text-muted-foreground hover:text-primary transition-colors">
+              Services
+            </Link>
+            <Link href="/portfolio" className="text-primary font-medium">
+              Portfolio
+            </Link>
+            <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+              Contact
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      {/* Back Button */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <Button asChild variant="outline">
+            <Link href="/portfolio" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Portfolio
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      {/* Hero Section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Badge className="mb-4">{projectDetails.category}</Badge>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              {projectDetails.title}
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              A stunning waterfront outdoor living space designed to withstand Florida's coastal 
+              environment while providing the perfect setting for relaxation and entertainment.
+            </p>
+            
+            {/* Project Details Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              <Card>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="font-medium">{projectDetails.location}</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Duration</p>
+                    <p className="font-medium">{projectDetails.duration}</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <DollarSign className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Investment</p>
+                    <p className="font-medium">{projectDetails.budget}</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="p-4 flex items-center gap-3">
+                  <Calendar className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Completed</p>
+                    <p className="font-medium">{projectDetails.completedDate}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Image */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <img
+              src={images[0].src}
+              alt={images[0].alt}
+              className="w-full h-96 md:h-[500px] object-cover rounded-lg shadow-lg"
+            />
+            <p className="text-center text-muted-foreground mt-4">{images[0].caption}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Details */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Project Overview</h2>
+                <p className="text-muted-foreground mb-6">
+                  Located on Tampa Bay, this waterfront deck project required specialized expertise 
+                  in coastal construction. The Thompson family wanted an outdoor space that could 
+                  handle saltwater exposure, high winds, and Florida's intense sun while maintaining 
+                  its beauty for years to come.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Our team designed and built a multi-level deck system with integrated pergola, 
+                  using only the highest quality materials rated for marine environments. The result 
+                  is an outdoor oasis that's both stunning and storm-ready.
+                </p>
+                <h3 className="text-xl font-semibold mb-4">Client Testimonial</h3>
+                <blockquote className="border-l-4 border-primary pl-4 italic text-muted-foreground">
+                  "Living on the water, we needed something that could handle the elements. Original Oak 
+                  Carpentry delivered beyond our expectations. The deck has weathered two storm seasons 
+                  and still looks brand new."
+                  <footer className="mt-2 font-medium text-foreground">— David Thompson</footer>
+                </blockquote>
+              </div>
+              
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Key Features</h2>
+                <ul className="space-y-3">
+                  {features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Additional Images */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Project Gallery</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {images.slice(1).map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-64 object-cover rounded-lg shadow-lg"
+                  />
+                  <p className="text-center text-muted-foreground mt-4">{image.caption}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready for Your Outdoor Living Space?</h2>
+          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+            Let us create a custom outdoor space that's built to withstand Florida's coastal environment.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="secondary" size="lg" asChild>
+              <Link href="/contact">Get Free Consultation</Link>
+            </Button>
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary" asChild>
+              <Link href="/portfolio">View More Projects</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-muted py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link href="/about" className="hover:text-foreground">About</Link></li>
+                <li><Link href="/portfolio" className="hover:text-foreground">Portfolio</Link></li>
+                <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}

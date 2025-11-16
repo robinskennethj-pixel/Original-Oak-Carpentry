@@ -76,11 +76,18 @@ export function PortfolioSection() {
       try {
         const mcpClient = getMCPClient();
 
-        // Get real portfolio images from AWS S3
-        const realImages = await mcpClient.getPortfolioImages();
+        // Get real portfolio images from AWS S3 (with timeout)
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('MCP service timeout')), 2000)
+        );
+        
+        const realImages = await Promise.race([
+          mcpClient.getPortfolioImages(),
+          timeoutPromise
+        ]) as string[];
 
         // If we have real images, update the portfolio items
-        if (realImages.length > 0) {
+        if (realImages && realImages.length > 0) {
           const updatedItems = defaultPortfolioItems.map((item, index) => ({
             ...item,
             image: realImages[index % realImages.length] || item.image,
@@ -90,7 +97,8 @@ export function PortfolioSection() {
           setPortfolioItems(defaultPortfolioItems);
         }
       } catch (error) {
-        console.error('Error loading portfolio items:', error);
+        // Silently fall back to default items when MCP services are unavailable
+        console.warn('MCP portfolio service unavailable, using default images');
         setPortfolioItems(defaultPortfolioItems);
       } finally {
         setIsLoading(false);

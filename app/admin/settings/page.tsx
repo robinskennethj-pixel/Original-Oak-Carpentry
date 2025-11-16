@@ -234,12 +234,16 @@ export default function SettingsPage() {
               <div className="space-y-2">
                 <Label htmlFor="companyLogo">Company Logo</Label>
                 <div className="flex items-center gap-4">
-                  <div className="w-20 h-20 bg-muted rounded-lg flex items-center justify-center">
-                    <Building className="h-8 w-8 text-muted-foreground" />
+                  <div className="w-20 h-20 bg-muted rounded-lg flex items-center justify-center p-2">
+            <img
+              src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
+              alt="Original Oak Carpentry Logo"
+              className="h-12 w-auto object-contain"
+            />
                   </div>
                   <div>
                     <Button variant="outline">Upload Logo</Button>
-                    <p className="text-sm text-muted-foreground mt-1">Recommended: PNG or SVG, max 2MB</p>
+                    <p className="text-sm text-muted-foreground mt-1">Current logo: original_oak_header_logo.png</p>
                   </div>
                 </div>
               </div>

@@ -23,7 +23,7 @@ const services = [
     title: "Restoration & Repair",
     description: "Expert restoration services bringing new life to cherished wooden pieces and structures.",
     features: ["Antique Restoration", "Structural Repair", "Finish Restoration", "Custom Repairs"],
-    slug: "restoration-repair",
+    slug: "repair-restoration",
   },
   {
     icon: Leaf,

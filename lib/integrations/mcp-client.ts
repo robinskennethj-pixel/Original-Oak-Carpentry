@@ -70,15 +70,20 @@ class MCPClient {
   private buildAutomationBaseUrl: string;
 
   constructor() {
-    this.langchainBaseUrl = process.env.LANGCHAIN_MCP_URL || 'http://localhost:3000';
-    this.bullmqBaseUrl = process.env.BULLMQ_MCP_URL || 'http://localhost:3002';
-    this.awsBaseUrl = process.env.AWS_MCP_URL || 'http://localhost:3001';
-    this.dockerBaseUrl = process.env.DOCKER_MCP_URL || 'http://localhost:3003';
-    this.filesystemBaseUrl = process.env.FILESYSTEM_MCP_URL || 'http://localhost:3003';
-    this.gitBaseUrl = process.env.GIT_MCP_URL || 'http://localhost:3004';
-    this.portManagerBaseUrl = process.env.PORT_MANAGER_MCP_URL || 'http://localhost:3009';
-    this.performanceMonitorBaseUrl = process.env.PERFORMANCE_MONITOR_MCP_URL || 'http://localhost:3007';
-    this.buildAutomationBaseUrl = process.env.BUILD_AUTOMATION_MCP_URL || 'http://localhost:3010';
+    // All MCP services now run through Next.js API routes on port 3015
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? process.env.NEXT_PUBLIC_APP_URL || 'https://originaloakcarpentry.com'
+      : 'http://localhost:3015';
+    
+    this.langchainBaseUrl = `${baseUrl}/api/mcp/langchain`;
+    this.bullmqBaseUrl = `${baseUrl}/api/mcp/bullmq`;
+    this.awsBaseUrl = `${baseUrl}/api/mcp/aws`;
+    this.dockerBaseUrl = `${baseUrl}/api/mcp/docker`;
+    this.filesystemBaseUrl = `${baseUrl}/api/mcp/filesystem`;
+    this.gitBaseUrl = `${baseUrl}/api/mcp/git`;
+    this.portManagerBaseUrl = `${baseUrl}/api/mcp/port-manager`;
+    this.performanceMonitorBaseUrl = `${baseUrl}/api/mcp/performance`;
+    this.buildAutomationBaseUrl = `${baseUrl}/api/mcp/build`;
 
     this.initializeServers();
   }
@@ -356,7 +361,7 @@ Please create a detailed, engaging description that highlights craftsmanship, ma
       const response = await axios.get(`${this.awsBaseUrl}/portfolio-images`);
       return response.data?.images || [];
     } catch (error) {
-      console.error('Error getting portfolio images:', error);
+      // Silently fail when MCP service is unavailable - fallback handling is in place
       return [];
     }
   }

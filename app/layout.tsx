@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 import { AIChatbot } from '@/components/ai-chatbot'
+import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
   title: "Original Oak Carpentry - Master Craftsmen of Wood",
@@ -70,10 +71,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <AIChatbot />
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} style={{ fontFeatureSettings: 'normal' }} suppressHydrationWarning>
+      <body className="font-sans" style={{ fontFeatureSettings: 'normal' }}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Suspense fallback={null}>{children}</Suspense>
+          <AIChatbot />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

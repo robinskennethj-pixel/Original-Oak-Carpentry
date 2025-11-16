@@ -67,7 +67,7 @@ export function HeroSection() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src="/professional-carpenter-working-on-custom-wooden-fu.jpg"
+                src="/modern-custom-kitchen-with-wooden-cabinets-and-gra-hero section image.jpg"
                 alt="Custom carpentry work by Original Oak Carpentry"
                 className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
               />

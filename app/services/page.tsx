@@ -81,12 +81,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   Custom cabinetry designed for Florida's humidity and your lifestyle needs.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Custom kitchen cabinets</li>
                   <li>• Bathroom vanities</li>
                   <li>• Cabinet refacing</li>
                   <li>• Hardware installation</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/custom-woodwork">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
             <Card>
@@ -154,12 +157,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   Bespoke woodworking and millwork crafted to your exact specifications.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Custom mantels</li>
                   <li>• Stair railings</li>
                   <li>• Window casings</li>
                   <li>• Decorative elements</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/custom-woodwork">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -185,12 +191,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   Complete interior construction for offices, retail spaces, and commercial properties.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Reception areas and lobbies</li>
                   <li>• Conference rooms</li>
                   <li>• Retail displays and fixtures</li>
                   <li>• Restaurant build-outs</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/custom-woodwork">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
             <Card>
@@ -201,12 +210,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   Carpentry services for apartment complexes, condos, and multi-unit developments.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Unit finish work</li>
                   <li>• Common area construction</li>
                   <li>• Balcony and deck installation</li>
                   <li>• Amenity space build-outs</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/custom-woodwork">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -235,12 +247,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   Eco-friendly construction using sustainable materials and green building practices.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Reclaimed wood projects</li>
                   <li>• FSC-certified materials</li>
                   <li>• Energy-efficient installations</li>
                   <li>• Low-VOC finishes</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/sustainable-crafting">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
             <Card>
@@ -254,12 +269,15 @@ export default function ServicesPage() {
                 <p className="text-muted-foreground mb-4">
                   One-of-a-kind custom pieces crafted with traditional woodworking techniques.
                 </p>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                   <li>• Custom furniture</li>
                   <li>• Artistic installations</li>
                   <li>• Handcrafted details</li>
                   <li>• Unique design elements</li>
                 </ul>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/services/bespoke-commissions">Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -271,34 +289,54 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">Our Process</h2>
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                1
-              </div>
-              <h3 className="font-semibold mb-2">Consultation</h3>
-              <p className="text-sm text-muted-foreground">We discuss your vision, needs, and budget</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                2
-              </div>
-              <h3 className="font-semibold mb-2">Design & Planning</h3>
-              <p className="text-sm text-muted-foreground">Detailed plans and material selection</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                3
-              </div>
-              <h3 className="font-semibold mb-2">Construction</h3>
-              <p className="text-sm text-muted-foreground">Expert craftsmanship and quality materials</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                4
-              </div>
-              <h3 className="font-semibold mb-2">Completion</h3>
-              <p className="text-sm text-muted-foreground">Final inspection and your satisfaction</p>
-            </div>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  1
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Consultation</h3>
+                <p className="text-sm text-muted-foreground mb-4">We discuss your vision, needs, and budget</p>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/process">Learn More</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  2
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Design & Planning</h3>
+                <p className="text-sm text-muted-foreground mb-4">Detailed plans and material selection</p>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/process">Learn More</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  3
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Construction</h3>
+                <p className="text-sm text-muted-foreground mb-4">Expert craftsmanship and quality materials</p>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/process">Learn More</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  4
+                </div>
+                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Completion</h3>
+                <p className="text-sm text-muted-foreground mb-4">Final inspection and your satisfaction</p>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/process">Learn More</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -321,7 +359,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Florida Carpentry Co.</h3>
+              <h3 className="text-xl font-bold mb-4">Original Oak Carpentry</h3>
               <p className="text-primary-foreground/80">Built Strong. Built Beautiful. Built for Florida.</p>
             </div>
             <div>
@@ -357,7 +395,7 @@ export default function ServicesPage() {
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-            <p>&copy; 2024 Florida Carpentry Co. All rights reserved.</p>
+            <p>&copy; 2024 Original Oak Carpentry. All rights reserved.</p>
           </div>
         </div>
       </footer>

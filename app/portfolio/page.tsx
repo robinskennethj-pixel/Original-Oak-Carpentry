@@ -69,7 +69,7 @@ export default function PortfolioPage() {
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            Florida Carpentry Co.
+            <span className="text-primary">Original Oak</span> Carpentry
           </Link>
           <nav className="hidden md:flex space-x-8">
             <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
@@ -181,23 +181,43 @@ export default function PortfolioPage() {
       {/* Stats */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-muted-foreground">Projects Completed</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">98%</div>
-              <div className="text-muted-foreground">Customer Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">15+</div>
-              <div className="text-muted-foreground">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Counties Served</div>
-            </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">500+</div>
+                <div className="text-muted-foreground mb-4">Projects Completed</div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/about/achievements">View Details</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">98%</div>
+                <div className="text-muted-foreground mb-4">Customer Satisfaction</div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/about/achievements">View Details</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">15+</div>
+                <div className="text-muted-foreground mb-4">Years Experience</div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/about/achievements">View Details</Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardContent className="p-6">
+                <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">50+</div>
+                <div className="text-muted-foreground mb-4">Counties Served</div>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/about/achievements">View Details</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -207,7 +227,7 @@ export default function PortfolioPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <blockquote className="text-2xl font-light text-muted-foreground mb-6 italic">
-              "Florida Carpentry Co. transformed our hurricane-damaged home into something even more beautiful than
+              "Original Oak Carpentry transformed our hurricane-damaged home into something even more beautiful than
               before. Their attention to detail and knowledge of Florida building requirements gave us complete
               confidence."
             </blockquote>
@@ -244,7 +264,7 @@ export default function PortfolioPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Florida Carpentry Co.</h3>
+              <h3 className="text-xl font-bold mb-4">Original Oak Carpentry</h3>
               <p className="text-primary-foreground/80">Built Strong. Built Beautiful. Built for Florida.</p>
             </div>
             <div>
@@ -280,7 +300,7 @@ export default function PortfolioPage() {
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-            <p>&copy; 2024 Florida Carpentry Co. All rights reserved.</p>
+            <p>&copy; 2024 Original Oak Carpentry. All rights reserved.</p>
           </div>
         </div>
       </footer>

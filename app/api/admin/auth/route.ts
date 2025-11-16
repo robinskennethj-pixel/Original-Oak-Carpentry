@@ -1,152 +1,139 @@
-import { NextRequest, NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { cookies } from 'next/headers';
-import validator from 'validator';
+import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH;
-const JWT_SECRET = process.env.JWT_SECRET;
-const COOKIE_NAME = 'admin_session';
-
-// Validate environment variables
-if (!ADMIN_USERNAME || !ADMIN_PASSWORD_HASH || !JWT_SECRET) {
-  throw new Error('Missing required admin authentication environment variables');
+// Simple credentials for development
+const ADMIN_CREDENTIALS = {
+  username: 'admin',
+  password: 'oak2024admin'
 }
 
-/**
- * POST /api/admin/auth - Admin login endpoint
- */
-export async function POST(req: NextRequest) {
-  try {
-    const { username, password } = await req.json();
+// Session management
+const ADMIN_SESSION_KEY = 'admin_session'
+const SESSION_DURATION = 24 * 60 * 60 * 1000 // 24 hours
 
-    // Input validation and sanitization
-    if (!username || !password) {
-      return NextResponse.json(
-        { error: 'Username and password are required' },
-        { status: 400 }
-      );
-    }
-
-    // Sanitize inputs
-    const sanitizedUsername = validator.escape(validator.trim(username));
-    const sanitizedPassword = validator.trim(password);
-
-    // Validate username format
-    if (!validator.isAlphanumeric(sanitizedUsername)) {
-      return NextResponse.json(
-        { error: 'Invalid username format' },
-        { status: 400 }
-      );
-    }
-
-    // Validate password length
-    if (sanitizedPassword.length < 6 || sanitizedPassword.length > 128) {
-      return NextResponse.json(
-        { error: 'Invalid password length' },
-        { status: 400 }
-      );
-    }
-
-    // Verify credentials using sanitized inputs
-    const isValidUsername = sanitizedUsername === ADMIN_USERNAME;
-    const isValidPassword = await bcrypt.compare(sanitizedPassword, ADMIN_PASSWORD_HASH);
-
-    if (!isValidUsername || !isValidPassword) {
-      // Log failed attempt for security monitoring
-      console.warn(`Failed admin login attempt for username: ${sanitizedUsername} at ${new Date().toISOString()}`);
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
-    }
-
-    // Generate JWT token
-    const token = jwt.sign(
-      {
-        username: sanitizedUsername,
-        role: 'admin',
-        permissions: ['read', 'write', 'admin'],
-        iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
-      },
-      JWT_SECRET
-    );
-
-    // Set secure HTTP-only cookie
-    const cookieStore = cookies();
-    cookieStore.set(COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 24 * 60 * 60, // 24 hours
-      path: '/'
-    });
-
-    return NextResponse.json({
-      success: true,
-      message: 'Authentication successful',
-      user: { username: sanitizedUsername, role: 'admin' }
-    });
-
-  } catch (error) {
-    console.error('Admin authentication error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
+interface Session {
+  username: string
+  loginTime: number
+  expiresAt: number
 }
 
-/**
- * GET /api/admin/auth - Check authentication status
- */
-export async function GET(req: NextRequest) {
+// GET: Check authentication status
+export async function GET(request: NextRequest) {
+  console.log('=== AUTH GET REQUEST ===')
   try {
-    const cookieStore = cookies();
-    const token = cookieStore.get(COOKIE_NAME)?.value;
-
-    if (!token) {
-      return NextResponse.json({ authenticated: false });
+    const cookieStore = cookies()
+    const sessionCookie = cookieStore.get(ADMIN_SESSION_KEY)
+    
+    console.log('Session cookie:', sessionCookie?.value ? 'exists' : 'not found')
+    
+    if (!sessionCookie) {
+      return NextResponse.json({ authenticated: false })
     }
 
     try {
-      const decoded = jwt.verify(token, JWT_SECRET) as any;
+      const session: Session = JSON.parse(sessionCookie.value)
+      
+      // Check if session is expired
+      if (Date.now() > session.expiresAt) {
+        // Clear expired session
+        cookieStore.delete(ADMIN_SESSION_KEY)
+        return NextResponse.json({ authenticated: false })
+      }
+
       return NextResponse.json({
         authenticated: true,
-        user: { username: decoded.username, role: decoded.role }
-      });
-    } catch (e) {
-      // Token is invalid or expired
-      cookieStore.delete(COOKIE_NAME);
-      return NextResponse.json({ authenticated: false });
+        user: {
+          username: session.username,
+          role: 'admin',
+          permissions: ['all']
+        }
+      })
+    } catch (error) {
+      return NextResponse.json({ authenticated: false })
     }
-
   } catch (error) {
-    console.error('Auth check error:', error);
-    return NextResponse.json({ authenticated: false });
-  }
-}
-
-/**
- * DELETE /api/admin/auth - Logout endpoint
- */
-export async function DELETE(req: NextRequest) {
-  try {
-    const cookieStore = cookies();
-    cookieStore.delete(COOKIE_NAME);
-
-    return NextResponse.json({
-      success: true,
-      message: 'Logged out successfully'
-    });
-
-  } catch (error) {
-    console.error('Logout error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
-    );
+    )
+  }
+}
+
+// POST: Login
+export async function POST(request: NextRequest) {
+  console.log('=== AUTH POST REQUEST START ===')
+  try {
+    const body = await request.json()
+    console.log('Raw request body:', JSON.stringify(body))
+    const { username, password } = body
+    console.log('Extracted values - username:', JSON.stringify(username), 'password:', JSON.stringify(password))
+    console.log('Login attempt:', { username, passwordLength: password?.length })
+
+    if (!username || !password) {
+      console.log('Missing credentials')
+      return NextResponse.json(
+        { error: 'Username and password are required' },
+        { status: 400 }
+      )
+    }
+
+    // Simple credential validation
+    if (username !== ADMIN_CREDENTIALS.username || password !== ADMIN_CREDENTIALS.password) {
+      console.log('Invalid credentials')
+      return NextResponse.json(
+        { error: 'Invalid username or password' },
+        { status: 401 }
+      )
+    }
+
+    console.log('Authentication successful')
+
+    // Create session
+    const session: Session = {
+      username,
+      loginTime: Date.now(),
+      expiresAt: Date.now() + SESSION_DURATION
+    }
+
+    // Set secure cookie
+    const cookieStore = cookies()
+    cookieStore.set(ADMIN_SESSION_KEY, JSON.stringify(session), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: SESSION_DURATION / 1000, // Convert to seconds
+      path: '/'
+    })
+
+    return NextResponse.json({
+      success: true,
+      user: {
+        username,
+        role: 'admin',
+        permissions: ['all']
+      }
+    })
+  } catch (error) {
+    console.error('Login error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
+// DELETE: Logout
+export async function DELETE(request: NextRequest) {
+  console.log('=== AUTH DELETE REQUEST (LOGOUT) ===')
+  try {
+    const cookieStore = cookies()
+    cookieStore.delete(ADMIN_SESSION_KEY)
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 }

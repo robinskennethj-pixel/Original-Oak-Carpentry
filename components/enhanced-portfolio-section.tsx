@@ -72,8 +72,21 @@ export function EnhancedPortfolioSection() {
   };
 
   const generateRealPortfolioItems = async (mcpClient: any): Promise<PortfolioItem[]> => {
-    // Get real images from AWS S3
-    const realImages = await mcpClient.getPortfolioImages();
+    // Get real images from AWS S3 (with timeout)
+    let realImages: string[] = [];
+    try {
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('MCP service timeout')), 2000)
+      );
+      
+      realImages = await Promise.race([
+        mcpClient.getPortfolioImages(),
+        timeoutPromise
+      ]) as string[];
+    } catch (error) {
+      console.warn('MCP portfolio service unavailable, using default images');
+      realImages = [];
+    }
 
     // Generate AI-powered portfolio content
     const baseItems: PortfolioItem[] = [

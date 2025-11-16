@@ -411,11 +411,11 @@ export default function JobManagementDashboard() {
       <div className="bg-primary text-primary-foreground p-6">
         <div className="container mx-auto">
           <div className="flex items-center gap-3">
-            <img
-              src="/ORIGINAL OAK CARPENTRY LOGO.png"
-              alt="Original Oak Carpentry Logo"
-              className="h-10 w-10 object-contain"
-            />
+          <img
+            src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
+            alt="Original Oak Carpentry Logo"
+            className="h-12 w-auto object-contain"
+          />
             <h1 className="text-3xl font-bold">Job Management Dashboard</h1>
           </div>
           <p className="mt-2 opacity-90">Track and manage all carpentry projects - online & offline</p>

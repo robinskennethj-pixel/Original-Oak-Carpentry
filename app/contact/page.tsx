@@ -4,8 +4,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
 import Link from "next/link"
+import VoiceChat from "@/components/VoiceChat"
 
 export default function ContactPage() {
   return (
@@ -14,7 +15,7 @@ export default function ContactPage() {
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-primary">
-            Florida Carpentry Co.
+            <span className="text-primary">Original Oak</span> Carpentry
           </Link>
           <nav className="hidden md:flex space-x-8">
             <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
@@ -195,6 +196,57 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Voice Chat Section */}
+      <section className="py-20 bg-gradient-to-br from-accent/10 to-secondary/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Talk to Our AI Assistant
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Get instant answers about your project using voice commands. Simply click and speak!
+            </p>
+          </div>
+          
+          <div className="max-w-2xl mx-auto">
+            <Card className="border-2 border-accent shadow-lg">
+              <CardHeader className="bg-accent/5 text-center">
+                <CardTitle className="text-xl flex items-center justify-center gap-2">
+                  <MessageCircle className="h-5 w-5" />
+                  Voice Chat Assistant
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Ask about pricing, timelines, materials, or any carpentry questions
+                </p>
+              </CardHeader>
+              <CardContent className="flex justify-center py-8">
+                <VoiceChat agent="support" />
+              </CardContent>
+            </Card>
+            
+            <div className="mt-8 text-center">
+              <p className="text-sm text-muted-foreground mb-4">
+                <strong>Try asking:</strong>
+              </p>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                <div className="bg-white/50 p-3 rounded-lg">
+                  "How much does a deck cost?"
+                </div>
+                <div className="bg-white/50 p-3 rounded-lg">
+                  "What materials do you recommend?"
+                </div>
+                <div className="bg-white/50 p-3 rounded-lg">
+                  "How long does installation take?"
+                </div>
+                <div className="bg-white/50 p-3 rounded-lg">
+                  "Do you handle hurricane-resistant work?"
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Emergency Service */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 text-center">
@@ -266,7 +318,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Florida Carpentry Co.</h3>
+              <h3 className="text-xl font-bold mb-4">Original Oak Carpentry</h3>
               <p className="text-primary-foreground/80">Built Strong. Built Beautiful. Built for Florida.</p>
             </div>
             <div>
@@ -302,7 +354,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60">
-            <p>&copy; 2024 Florida Carpentry Co. All rights reserved.</p>
+            <p>&copy; 2024 Original Oak Carpentry. All rights reserved.</p>
           </div>
         </div>
       </footer>

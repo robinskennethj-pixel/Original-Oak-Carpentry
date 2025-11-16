@@ -9,11 +9,13 @@ import { Footer } from '@/components/footer'
 import { AIChatbot } from '@/components/ai-chatbot'
 import { AICostEstimatorWidget } from '@/components/ai-cost-estimator'
 import { InteractiveProjectEstimator } from '@/components/interactive-project-estimator'
+import VoiceChat from '@/components/VoiceChat'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Bot, Zap, Eye, Users, Cloud, Play, Filter, MessageCircle, Award, Leaf, BookOpen, Mail, BarChart3, Trophy, AlertCircle, Home } from 'lucide-react'
+import Link from 'next/link'
 
 export default function HomePage() {
   return (
@@ -50,7 +52,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
             <AICostEstimatorWidget />
 
             <Card className="border-2 border-secondary shadow-lg">
@@ -72,6 +74,26 @@ export default function HomePage() {
                 </p>
               </CardContent>
             </Card>
+
+            <Card className="border-2 border-accent shadow-lg">
+              <CardHeader className="bg-accent/5">
+                <CardTitle className="text-xl flex items-center gap-2">
+                  <MessageCircle className="h-5 w-5" />
+                  Voice Chat Assistant
+                </CardTitle>
+                <CardDescription>
+                  Talk directly with our AI using voice commands
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Use voice commands to get instant project estimates and answers
+                </p>
+                <div className="flex justify-center">
+                  <VoiceChat agent="support" />
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Additional AI Features Grid */}
@@ -88,8 +110,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   See before/after comparisons and 3D previews of your project
                 </p>
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
-                  View Visualizations
+                <Button asChild variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
+                  <Link href="/virtual-gallery">View Visualizations</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -106,8 +128,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   Track project status, download invoices, and manage your account
                 </p>
-                <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
-                  Access Portal
+                <Button asChild variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+                  <Link href="/client-portal">Access Portal</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -124,8 +146,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   Real-time hurricane alerts and storm preparation tips
                 </p>
-                <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-                  View Weather Alerts
+                <Button asChild variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+                  <Link href="/weather-alerts">View Weather Alerts</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -142,8 +164,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   Filter projects by type with AI-powered categorization
                 </p>
-                <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white">
-                  Browse Portfolio
+                <Button asChild variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white">
+                  <Link href="/portfolio">Browse Portfolio</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -160,8 +182,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   Watch craftsmanship demonstrations and maintenance tips
                 </p>
-                <Button variant="outline" className="w-full border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
-                  Watch Videos
+                <Button asChild variant="outline" className="w-full border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
+                  <Link href="/videos">Watch Videos</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -178,8 +200,8 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   Eco-friendly materials and sustainable practices
                 </p>
-                <Button variant="outline" className="w-full border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white">
-                  Learn More
+                <Button asChild variant="outline" className="w-full border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white">
+                  <Link href="/services/sustainable-crafting">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -220,8 +242,8 @@ export default function HomePage() {
                   <span>AR visualization for mobile devices</span>
                 </div>
               </div>
-              <Button className="mt-6 bg-blue-600 hover:bg-blue-700">
-                View Virtual Gallery
+              <Button asChild className="mt-6 bg-blue-600 hover:bg-blue-700">
+                <Link href="/virtual-gallery">View Virtual Gallery</Link>
               </Button>
             </div>
             <div className="relative">
@@ -288,8 +310,8 @@ export default function HomePage() {
                     <span>Access project photos and updates</span>
                   </div>
                 </div>
-                <Button className="w-full bg-green-600 hover:bg-green-700">
-                  Access Client Portal
+                <Button asChild className="w-full bg-green-600 hover:bg-green-700">
+                  <Link href="/client-portal">Access Client Portal</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -394,8 +416,8 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <Button className="w-full bg-orange-600 hover:bg-orange-700">
-                Schedule Storm-Proof Inspection
+              <Button asChild className="w-full bg-orange-600 hover:bg-orange-700">
+                <Link href="/weather-alerts">View Weather Alerts</Link>
               </Button>
             </div>
           </div>
@@ -461,8 +483,8 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-                <Button className="w-full mt-4 bg-purple-600 hover:bg-purple-700">
-                  View Full Portfolio
+                <Button asChild className="w-full mt-4 bg-purple-600 hover:bg-purple-700">
+                  <Link href="/portfolio">Browse Portfolio</Link>
                 </Button>
               </div>
             </div>
@@ -525,8 +547,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <Button className="w-full mt-4 bg-pink-600 hover:bg-pink-700">
-                View All Videos
+              <Button asChild className="w-full mt-4 bg-pink-600 hover:bg-pink-700">
+                <Link href="/videos">Watch Videos</Link>
               </Button>
             </div>
           </div>
@@ -579,8 +601,8 @@ export default function HomePage() {
                 <p className="text-sm text-muted-foreground">
                   We're committed to environmentally responsible carpentry practices that protect Florida's natural beauty.
                 </p>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
-                  Learn About Our Green Practices
+                <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700">
+                  <Link href="/services/sustainable-crafting">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -619,8 +641,8 @@ export default function HomePage() {
                 <p className="text-sm text-muted-foreground">
                   Recognized for excellence in craftsmanship and customer service throughout Central Florida.
                 </p>
-                <Button className="w-full bg-yellow-600 hover:bg-yellow-700">
-                  View All Certifications
+                <Button asChild className="w-full bg-yellow-600 hover:bg-yellow-700">
+                  <Link href="/certifications">View All Certifications</Link>
                 </Button>
               </CardContent>
             </Card>

@@ -12,11 +12,11 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img
-                src="/ORIGINAL OAK CARPENTRY LOGO.png"
-                alt="Original Oak Carpentry Logo"
-                className="h-10 w-10 object-contain"
-              />
+            <img
+              src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
+              alt="Original Oak Carpentry Logo"
+              className="h-12 w-auto object-contain"
+            />
               <span className="text-2xl font-bold">
                 <span className="text-accent">Original Oak</span> Carpentry
               </span>

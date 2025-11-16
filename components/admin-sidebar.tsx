@@ -63,8 +63,12 @@ export function AdminSidebar() {
       {/* Header */}
       <div className="p-6 border-b">
         <Link href="/admin" className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <Hammer className="h-5 w-5 text-primary-foreground" />
+          <div className="flex items-center justify-center">
+          <img
+            src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
+            alt="Original Oak Carpentry Logo"
+            className="h-12 w-auto object-contain"
+          />
           </div>
           <div>
             <h2 className="text-lg font-bold">Original Oak Admin</h2>
