@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 // Mock monthly data for development
 const MOCK_MONTHLY_DATA = [
   { month: 'Jan', revenue: 12500, invoices: 4 },

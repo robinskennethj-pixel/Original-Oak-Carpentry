@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 // Mock top clients data for development
 const MOCK_TOP_CLIENTS = [
   {
