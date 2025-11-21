@@ -520,22 +520,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
         </div>
       </section>
 
-      {/* Calendly Widget Script */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function(C,a,l,e,n,d,l,y){
-              C[l]=C[l]||function(){(C[l].q=C[l].q||[]).push(arguments)};
-              C[l].l=+new Date;
-              n=a.createElement(e);
-              d=a.getElementsByTagName(e)[0];
-              n.async=1;
-              n.src="https://calendly.com/assets/external/widget.js";
-              d.parentNode.insertBefore(n,d);
-            })(window,document,"Calendly","script");
-          `
-        }}
-      />
+      {/* Calendly Widget Script - Removed to fix text rendering issues */}
 
       <Footer />
     </div>

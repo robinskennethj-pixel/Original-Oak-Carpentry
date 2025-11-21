@@ -19,15 +19,11 @@ export default function AdminLoginPage() {
   const { login, isLoading } = useAdminAuth() // Use the login function from the hook
   const router = useRouter()
 
-  // Debug logging for state changes
-  console.log('Component render - username:', username, 'password length:', password.length, 'isLoading:', isLoading)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
-    console.log('Form submitted with:', { username, password: '***' })
-    console.log('Username length:', username.length, 'Password length:', password.length)
 
     const success = await login(username, password)
 
@@ -39,7 +35,6 @@ export default function AdminLoginPage() {
   }
 
   const handleGoogleSuccess = async (user: any) => {
-    console.log('Google sign-in successful:', user)
     setError('')
     
     // For now, we'll treat Google sign-in as successful admin login
@@ -52,7 +47,6 @@ export default function AdminLoginPage() {
   }
 
   const handleGoogleError = (error: string) => {
-    console.error('Google sign-in error:', error)
     setError(error)
   }
 
@@ -149,22 +143,6 @@ export default function AdminLoginPage() {
                 disabled={isLoading}
               />
               
-              {/* Debug button for testing */}
-              <Button
-                type="button"
-                onClick={async () => {
-                  console.log('Debug login clicked')
-                  const success = await login('admin', 'oak2024admin')
-                  console.log('Debug login result:', success)
-                  if (success) {
-                    router.push('/admin')
-                  }
-                }}
-                className="w-full mt-2 bg-red-500 hover:bg-red-600"
-                disabled={isLoading}
-              >
-                Debug Login (admin/oak2024admin)
-              </Button>
             </form>
           </CardContent>
         </Card>

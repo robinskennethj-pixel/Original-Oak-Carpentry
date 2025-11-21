@@ -41,38 +41,39 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Dark Oak Carpentry Theme - High Contrast */
+  --background: oklch(0.08 0 0); /* #141414 - Very dark background */
+  --foreground: oklch(0.95 0 0); /* #F2F2F2 - Very light text */
+  --card: oklch(0.12 0 0); /* #1F1F1F - Dark card background */
+  --card-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light card text */
+  --popover: oklch(0.12 0 0); /* #1F1F1F - Dark popover */
+  --popover-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light popover text */
+  --primary: oklch(0.35 0.12 142); /* #2A5A3F - Dark Forest Green primary */
+  --primary-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light text on primary */
+  --secondary: oklch(0.55 0.12 45); /* #8B6B42 - Dark Wood secondary */
+  --secondary-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light text on secondary */
+  --muted: oklch(0.25 0 0); /* #404040 - Dark muted background */
+  --muted-foreground: oklch(0.75 0 0); /* #BFBFBF - Light muted text */
+  --accent: oklch(0.45 0.15 25); /* #8B4C28 - Dark Rust accent */
+  --accent-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light accent text */
+  --destructive: oklch(0.55 0.2 25); /* #C53030 - Red destructive */
+  --destructive-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light destructive text */
+  --border: oklch(0.3 0 0); /* #4D4D4D - Medium gray border */
+  --input: oklch(0.15 0 0); /* #262626 - Dark input background */
+  --ring: oklch(0.35 0.12 142 / 0.5); /* Dark Forest Green focus ring */
+  --chart-1: oklch(0.35 0.12 142); /* #2A5A3F - Dark Forest Green chart */
+  --chart-2: oklch(0.45 0.15 25); /* #8B4C28 - Dark Rust chart */
+  --chart-3: oklch(0.55 0.12 45); /* #8B6B42 - Dark Wood chart */
+  --chart-4: oklch(0.75 0 0); /* #BFBFBF - Light Gray chart */
+  --chart-5: oklch(0.25 0 0); /* #404040 - Dark Gray chart */
+  --sidebar: oklch(0.1 0 0); /* #1A1A1A - Very dark sidebar */
+  --sidebar-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light sidebar text */
+  --sidebar-primary: oklch(0.35 0.12 142); /* #2A5A3F - Dark Forest Green sidebar primary */
+  --sidebar-primary-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light sidebar primary text */
+  --sidebar-accent: oklch(0.45 0.15 25); /* #8B4C28 - Dark Rust sidebar accent */
+  --sidebar-accent-foreground: oklch(0.95 0 0); /* #F2F2F2 - Light sidebar accent text */
+  --sidebar-border: oklch(0.3 0 0); /* #4D4D4D - Medium gray sidebar border */
+  --sidebar-ring: oklch(0.35 0.12 142 / 0.5); /* Dark Forest Green sidebar focus ring */
 }
 
 /* @theme inline { */

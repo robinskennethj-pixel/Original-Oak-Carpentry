@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Bot, Zap, Eye, Users, Cloud, Play, Filter, MessageCircle, Award, Leaf, BookOpen, Mail, BarChart3, Trophy, AlertCircle, Home } from 'lucide-react'
 import Link from 'next/link'
+import { NewsletterSection } from '@/components/newsletter-section'
 
 export default function HomePage() {
   return (
@@ -719,102 +720,17 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Button className="bg-blue-600 hover:bg-blue-700">
-              <BookOpen className="mr-2 h-4 w-4" />
-              Visit Our Blog
+            <Button asChild className="bg-blue-600 hover:bg-blue-700">
+              <Link href="/blog">
+                <BookOpen className="mr-2 h-4 w-4" />
+                Visit Our Blog
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Newsletter & Lead Magnet */}
-      <section className="py-20 bg-gradient-to-r from-green-50 to-emerald-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Free Resources & Newsletter
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Get exclusive guides and stay updated with the latest carpentry tips
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="border-2 border-green-200 shadow-lg">
-                <CardHeader className="bg-green-50">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-green-600" />
-                    Free Guide: Ultimate Florida Home Maintenance
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">
-                    Comprehensive guide covering:
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      Seasonal maintenance checklists
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      Hurricane preparation tips
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      Wood care in humid climate
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      When to call a professional
-                    </li>
-                  </ul>
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Download Free Guide
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-emerald-200 shadow-lg">
-                <CardHeader className="bg-emerald-50">
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <Mail className="h-5 w-5 text-emerald-600" />
-                    Monthly Newsletter
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">
-                    Subscribe for:
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      Seasonal maintenance reminders
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      Exclusive discounts and offers
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      New blog posts and guides
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                      Hurricane season alerts
-                    </li>
-                  </ul>
-                  <div className="space-y-3">
-                    <Input placeholder="Enter your email address" type="email" />
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
-                      Subscribe Now
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      <NewsletterSection />
 
       {/* Interactive Cost/Material Comparison Tool */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-slate-50">

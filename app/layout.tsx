@@ -71,8 +71,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} style={{ fontFeatureSettings: 'normal' }} suppressHydrationWarning>
-      <body className="font-sans" style={{ fontFeatureSettings: 'normal' }}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

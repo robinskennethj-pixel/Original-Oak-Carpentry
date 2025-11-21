@@ -32,129 +32,213 @@ export function Header({ locale = 'en' }: HeaderProps) {
                  <img
                    src="/ORIGINAL OAK CARPENTRY - FULL-WEBSITE-LOGO.png"
                    alt="Original Oak Carpentry Logo"
-                   className="h-12 w-auto object-contain"
+                   className="h-16 w-auto object-contain"
                  />
           <Link href="/" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
             <span className="text-primary">Original Oak</span> Carpentry
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-            <Home className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            {translations.home}
-          </Link>
-          <Link href="/about" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-            <User className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            {translations.about}
-          </Link>
-          
-          {/* Services Dropdown */}
+        <nav className="hidden md:flex items-center gap-4">
+          {/* Main Navigation Menu */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-              <Wrench className="h-4 w-4 group-hover:scale-110 transition-transform" />
-              {translations.services}
-              <ChevronDown className="h-3 w-3" />
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group h-auto p-2"
+              >
+                <Menu className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                Navigation
+                <ChevronDown className="h-3 w-3" />
+              </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-72 max-h-96 overflow-y-auto z-50 bg-background border shadow-lg">
+              {/* Home */}
               <DropdownMenuItem asChild>
-                <Link href="/services/custom-woodwork" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2">
+                  <Home className="h-4 w-4" />
+                  {translations.home}
+                </Link>
+              </DropdownMenuItem>
+              
+              {/* About */}
+              <DropdownMenuItem asChild>
+                <Link href="/about" className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  {translations.about}
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator />
+              
+              {/* Services Section */}
+              <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground">
+                {translations.services}
+              </div>
+              <DropdownMenuItem asChild>
+                <Link href="/services" className="flex items-center gap-2 ml-4">
+                  <Wrench className="h-4 w-4" />
+                  View All Services
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/services/custom-woodwork" className="flex items-center gap-2 ml-4">
                   <Hammer className="h-4 w-4" />
                   Custom Woodwork
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/services/finish-carpentry" className="flex items-center gap-2">
+                <Link href="/services/finish-carpentry" className="flex items-center gap-2 ml-4">
                   <Palette className="h-4 w-4" />
                   Finish Carpentry
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/services/outdoor-living" className="flex items-center gap-2">
+                <Link href="/services/outdoor-living" className="flex items-center gap-2 ml-4">
                   <TreePine className="h-4 w-4" />
                   Outdoor Living
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/services/hurricane-resistant" className="flex items-center gap-2">
+                <Link href="/services/hurricane-resistant" className="flex items-center gap-2 ml-4">
                   <Zap className="h-4 w-4" />
                   Hurricane Resistant
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/services/repair-restoration" className="flex items-center gap-2">
+                <Link href="/services/repair-restoration" className="flex items-center gap-2 ml-4">
                   <Building className="h-4 w-4" />
                   Repair & Restoration
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/services/sustainable-crafting" className="flex items-center gap-2">
+                <Link href="/services/sustainable-crafting" className="flex items-center gap-2 ml-4">
                   <Leaf className="h-4 w-4" />
                   Sustainable Crafting
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/services" className="font-medium">
-                  View All Services
+                <Link href="/services/bespoke-commissions" className="flex items-center gap-2 ml-4">
+                  <Wrench className="h-4 w-4" />
+                  Bespoke Commissions
                 </Link>
               </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Portfolio Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-              <FolderOpen className="h-4 w-4 group-hover:scale-110 transition-transform" />
-              {translations.portfolio}
-              <ChevronDown className="h-3 w-3" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
               <DropdownMenuItem asChild>
-                <Link href="/portfolio/luxury-kitchen-renovation" className="flex items-center gap-2">
+                <Link href="/services/installation-service" className="flex items-center gap-2 ml-4">
+                  <Building className="h-4 w-4" />
+                  Installation & Service
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator />
+              
+              {/* Portfolio Section */}
+              <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground">
+                {translations.portfolio}
+              </div>
+              <DropdownMenuItem asChild>
+                <Link href="/portfolio" className="flex items-center gap-2 ml-4">
+                  <FolderOpen className="h-4 w-4" />
+                  View All Projects
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/portfolio/luxury-kitchen-renovation" className="flex items-center gap-2 ml-4">
                   <Building className="h-4 w-4" />
                   Kitchen Renovations
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/portfolio/waterfront-deck--pergola" className="flex items-center gap-2">
+                <Link href="/portfolio/waterfront-deck--pergola" className="flex items-center gap-2 ml-4">
                   <TreePine className="h-4 w-4" />
                   Outdoor Projects
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/portfolio/restaurant-build-out" className="flex items-center gap-2">
+                <Link href="/portfolio/restaurant-build-out" className="flex items-center gap-2 ml-4">
                   <Building className="h-4 w-4" />
                   Commercial Work
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/portfolio/historic-home-restoration" className="flex items-center gap-2">
+                <Link href="/portfolio/historic-home-restoration" className="flex items-center gap-2 ml-4">
                   <Hammer className="h-4 w-4" />
                   Restorations
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/portfolio" className="font-medium">
-                  View All Projects
+                <Link href="/portfolio/custom-walk-in-closet" className="flex items-center gap-2 ml-4">
+                  <Building className="h-4 w-4" />
+                  Custom Closets
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/portfolio/poolside-cabana" className="flex items-center gap-2 ml-4">
+                  <TreePine className="h-4 w-4" />
+                  Outdoor Structures
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator />
+              
+              {/* Smart AI Tools Section */}
+              <div className="px-2 py-1.5 text-sm font-semibold text-muted-foreground">
+                Smart AI Tools
+              </div>
+              <DropdownMenuItem asChild>
+                <Link href="/virtual-gallery" className="flex items-center gap-2 ml-4">
+                  <Zap className="h-4 w-4" />
+                  Virtual Gallery
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/client-portal" className="flex items-center gap-2 ml-4">
+                  <User className="h-4 w-4" />
+                  Client Portal
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/weather-alerts" className="flex items-center gap-2 ml-4">
+                  <Zap className="h-4 w-4" />
+                  Weather Alerts
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/videos" className="flex items-center gap-2 ml-4">
+                  <FolderOpen className="h-4 w-4" />
+                  Videos & Tutorials
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/certifications" className="flex items-center gap-2 ml-4">
+                  <Star className="h-4 w-4" />
+                  Certifications
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator />
+              
+              {/* Other Pages */}
+              <DropdownMenuItem asChild>
+                <Link href="/testimonials" className="flex items-center gap-2">
+                  <Star className="h-4 w-4" />
+                  {translations.testimonials}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/contact" className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  {translations.contact}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/admin" className="flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  {translations.admin}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Link href="/testimonials" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-            <Star className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            {translations.testimonials}
-          </Link>
-          <Link href="/contact" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-            <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            {translations.contact}
-          </Link>
-          <Link href="/admin" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group">
-            <Shield className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            {translations.admin}
-          </Link>
         </nav>
 
         <div className="flex items-center gap-4">

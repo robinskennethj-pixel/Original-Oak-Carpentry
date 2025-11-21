@@ -58,7 +58,6 @@ export function useAdminAuth() {
         }
       }
     } catch (error) {
-      console.error('Auth check failed:', error)
       setIsAuthenticated(false)
       setUser(null)
       if (pathname?.startsWith('/admin')) {
@@ -76,11 +75,7 @@ export function useAdminAuth() {
     try {
       setIsLoading(true)
 
-      console.log('Login attempt:', { username, password: '***' })
       const requestBody = { username, password }
-      console.log('Request body:', JSON.stringify(requestBody))
-      console.log('Username type:', typeof username, 'Password type:', typeof password)
-      console.log('Username value:', username, 'Password length:', password?.length)
 
       const response = await fetch('/api/admin/auth', {
         method: 'POST',
@@ -91,23 +86,15 @@ export function useAdminAuth() {
         credentials: 'include', // Include cookies in request
       })
 
-      console.log('Response status:', response.status)
-      console.log('Response headers:', response.headers)
-
       if (response.ok) {
         const data = await response.json()
-        console.log('Response data:', data)
         if (data.success) {
           await checkAuthStatus() // Refresh auth status
           return true
         }
-      } else {
-        const errorText = await response.text()
-        console.error('Login failed with status:', response.status, 'Error:', errorText)
       }
       return false
     } catch (error) {
-      console.error('Login failed:', error)
       return false
     } finally {
       setIsLoading(false)

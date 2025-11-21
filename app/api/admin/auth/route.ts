@@ -19,12 +19,9 @@ interface Session {
 
 // GET: Check authentication status
 export async function GET(request: NextRequest) {
-  console.log('=== AUTH GET REQUEST ===')
   try {
     const cookieStore = cookies()
     const sessionCookie = cookieStore.get(ADMIN_SESSION_KEY)
-    
-    console.log('Session cookie:', sessionCookie?.value ? 'exists' : 'not found')
     
     if (!sessionCookie) {
       return NextResponse.json({ authenticated: false })
@@ -61,16 +58,11 @@ export async function GET(request: NextRequest) {
 
 // POST: Login
 export async function POST(request: NextRequest) {
-  console.log('=== AUTH POST REQUEST START ===')
   try {
     const body = await request.json()
-    console.log('Raw request body:', JSON.stringify(body))
     const { username, password } = body
-    console.log('Extracted values - username:', JSON.stringify(username), 'password:', JSON.stringify(password))
-    console.log('Login attempt:', { username, passwordLength: password?.length })
 
     if (!username || !password) {
-      console.log('Missing credentials')
       return NextResponse.json(
         { error: 'Username and password are required' },
         { status: 400 }
@@ -79,14 +71,11 @@ export async function POST(request: NextRequest) {
 
     // Simple credential validation
     if (username !== ADMIN_CREDENTIALS.username || password !== ADMIN_CREDENTIALS.password) {
-      console.log('Invalid credentials')
       return NextResponse.json(
         { error: 'Invalid username or password' },
         { status: 401 }
       )
     }
-
-    console.log('Authentication successful')
 
     // Create session
     const session: Session = {
@@ -114,7 +103,6 @@ export async function POST(request: NextRequest) {
       }
     })
   } catch (error) {
-    console.error('Login error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -124,7 +112,6 @@ export async function POST(request: NextRequest) {
 
 // DELETE: Logout
 export async function DELETE(request: NextRequest) {
-  console.log('=== AUTH DELETE REQUEST (LOGOUT) ===')
   try {
     const cookieStore = cookies()
     cookieStore.delete(ADMIN_SESSION_KEY)
