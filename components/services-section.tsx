@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Home, Leaf, Hammer, Shield, Wrench, TreePine } from "lucide-react"
+import { Home, Leaf, Hammer, Shield, Wrench, TreePine, Square } from "lucide-react"
 import Link from "next/link"
 
 const services = [
@@ -17,6 +17,13 @@ const services = [
     description: "Precision finish work that transforms spaces with beautiful wood details and trim.",
     features: ["Door & Window Trim", "Crown Molding", "Baseboards", "Wainscoting"],
     slug: "finish-carpentry",
+  },
+  {
+    icon: Square,
+    title: "Flooring Services",
+    description: "Expert flooring installation and refinishing services for all types of wood and luxury flooring.",
+    features: ["Hardwood Installation", "Luxury Vinyl Plank", "Floor Refinishing", "Subfloor Preparation"],
+    slug: "flooring-services",
   },
   {
     icon: Shield,
