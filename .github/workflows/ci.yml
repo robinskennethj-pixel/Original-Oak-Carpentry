@@ -26,6 +26,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Run tests
+      run: npm test
+
     - name: Run linter
       run: npm run lint
 
@@ -41,3 +44,4 @@ jobs:
           echo "Build failed - .next directory not found"
           exit 1
         fi
+        echo "✅ Build completed successfully"

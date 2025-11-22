@@ -7,7 +7,6 @@ on:
 
 env:
   NODE_ENV: production
-  DOCKER_BUILDKIT: 1
 
 jobs:
   build-test-deploy:
@@ -28,83 +27,43 @@ jobs:
 
       # 3️⃣ Install Dependencies
       - name: 📦 Install Dependencies
-        run: |
-          npm ci --legacy-peer-deps
-          cd frontend && npm ci --legacy-peer-deps && cd ..
+        run: npm ci
 
-      # 4️⃣ Run Lint & Type Checks
+      # 4️⃣ Run Tests
+      - name: 🧪 Run Tests
+        run: npm test
+
+      # 5️⃣ Run Lint & Type Checks
       - name: 🔍 Lint & Type Check
         run: |
-          npm run lint || echo "⚠️ Lint warnings only"
-          npm run type-check || echo "⚠️ Type warnings only"
+          npm run lint
+          npm run type-check
 
-      # 5️⃣ Run Unit Tests
-      - name: 🧪 Run Tests
-        run: npm test --if-present
+      # 6️⃣ Build Next.js Application
+      - name: 🏗️ Build Application
+        run: npm run build
 
-      # 6️⃣ Build Docker Services
-      - name: 🐳 Build Docker Images
-        run: docker compose -f docker-compose.prod.yml build
-
-      # 7️⃣ Health Check (before deploy)
-      - name: 💊 Pre-Deploy Health Check
+      # 7️⃣ Verify Build Output
+      - name: ✅ Verify Build
         run: |
-          echo "Performing pre-deploy health check..."
-          docker compose -f docker-compose.prod.yml up -d
-          sleep 10
-          curl -fsS http://localhost:8080/health || exit 1
-          docker compose down
+          if [ ! -d ".next" ]; then
+            echo "❌ Build failed - .next directory not found"
+            exit 1
+          fi
+          echo "✅ Build completed successfully"
+          echo "📊 Build size:"
+          du -sh .next
 
-      # 8️⃣ Run Full Production Deployment
-      - name: 🚀 Run Full Deployment Script
-        run: bash ./deploy_full_production.sh
-        env:
-          ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          API_KEY: ${{ secrets.API_KEY }}
-          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
-          RAG_API_URL: ${{ secrets.RAG_API_URL }}
-          DOCLING_API_URL: ${{ secrets.DOCLING_API_URL }}
-          BUILDER_API_KEY: ${{ secrets.BUILDER_API_KEY }}
-          REDIS_URL: ${{ secrets.REDIS_URL }}
-          GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
-          GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
-          PAGERDUTY_ROUTING_KEY: ${{ secrets.PAGERDUTY_ROUTING_KEY }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO: ${{ secrets.GITHUB_REPO }}
-
-      # 9️⃣ Post-Deployment Health Verification
-      - name: 🩺 Post-Deployment Health Check
-        run: |
-          echo "Verifying deployment..."
-          curl -fsS https://your-production-domain.com/health || exit 1
-          echo "✅ Deployment verified successfully."
-
-      # 🔟 Notify Success
-      - name: 🎉 Send Success Alerts
+      # 8️⃣ Success Notification
+      - name: 🎉 Build Success
         if: success()
         run: |
-          curl -X POST -H "Content-type: application/json" \
-          --data '{"text":"✅ Original Oak Carpentry production deployment completed successfully!"}' \
-          $SLACK_WEBHOOK_URL
-          curl -X POST https://events.pagerduty.com/v2/enqueue \
-          -H "Content-Type: application/json" \
-          -d "{\"routing_key\":\"$PAGERDUTY_ROUTING_KEY\",\"event_action\":\"trigger\",\"payload\":{\"summary\":\"✅ Deployment Success - Original Oak Carpentry MCP\",\"severity\":\"info\",\"source\":\"GitHub Actions\"}}"
+          echo "✅ Original Oak Carpentry build completed successfully!"
+          echo "🚀 Ready for deployment"
 
-      # 🔁 Rollback on Failure
-      - name: ⚠️ Rollback if Failure
+      # 9️⃣ Failure Notification
+      - name: ❌ Build Failed
         if: failure()
         run: |
-          echo "❌ Deployment failed. Rolling back..."
-          git revert HEAD --no-edit
-          git push origin main
-          curl -X POST -H "Content-type: application/json" \
-          --data '{"text":"🚨 Deployment failed and rollback executed!"}' \
-          $SLACK_WEBHOOK_URL
-          curl -X POST https://events.pagerduty.com/v2/enqueue \
-          -H "Content-Type: application/json" \
-          -d "{\"routing_key\":\"$PAGERDUTY_ROUTING_KEY\",\"event_action\":\"trigger\",\"payload\":{\"summary\":\"🚨 Deployment Failure - Rollback Executed\",\"severity\":\"error\",\"source\":\"GitHub Actions\"}}"
+          echo "❌ Build failed. Please check the logs above."
+          exit 1
