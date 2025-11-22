@@ -62,3 +62,4 @@ You can customize the Google Sign-In component by:
 - Adding additional OAuth scopes if needed
 - Implementing custom success/error handling
 - Adding user profile management features
+
